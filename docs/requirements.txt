@@ -1,0 +1,19 @@
+# docs/requirements.txt
+# Dependencias para construir la documentación de accim
+
+# --- Paquetes que usa Sphinx ---
+sphinx
+sphinx-rtd-theme
+nbsphinx
+myst-parser
+
+# --- Dependencias del paquete accim (de setup.py) ---
+# Sphinx necesita importarlas para leer los docstrings del código
+scikit-learn
+eppy>=0.5.63
+pycountry
+matplotlib<=3.7
+numpy<2.0.0
+pandas
+datapackage
+unidecode

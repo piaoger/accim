@@ -1,35 +1,33 @@
-# Read the Docs configuration file for Sphinx projects
-# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+# .readthedocs.yaml
+# Archivo de configuración para Read the Docs - Versión corregida y completa para accim
 
-# Required
+# Requerido
 version: 2
 
-# Set the OS, Python version and other tools you might need
+# Define el entorno de construcción, respetando python_requires='<3.10'
 build:
   os: ubuntu-22.04
   tools:
     python: "3.9"
-    # You can also specify other tool versions:
-    # nodejs: "20"
-    # rust: "1.70"
-    # golang: "1.20"
 
-# Build documentation in the "docs/" directory with Sphinx
+# Especifica la ruta correcta a tu archivo de configuración de Sphinx
 sphinx:
-  configuration: accim/docs/conf.py
-  # You can configure Sphinx to use a different builder, for instance use the dirhtml builder for simpler URLs
-  # builder: "dirhtml"
-  # Fail on all warnings to avoid broken references
-  # fail_on_warning: true
+  configuration: docs/source/conf.py
 
-# Optionally build your docs in additional formats such as PDF and ePub
+# Construye la documentación en formatos adicionales (mantenido de tu config original)
 formats:
   - pdf
   - epub
 
-# Optional but recommended, declare the Python requirements required
-# to build your documentation
-# See https://docs.readthedocs.io/en/stable/guides/reproducible-builds.html
+# Define cómo instalar tu paquete y sus dependencias
 python:
   install:
-    - requirements: requirements.txt
+    # 1. Instala tu paquete 'accim' para que Sphinx pueda importarlo
+    - method: pip
+      path: .
+      # 2. Desactiva la ejecución del script post-instalación que modificaría archivos de EnergyPlus
+      #extra_requirements:
+      #  - "no-idd-mod"
+        
+    # 3. Instala las dependencias de Sphinx y de accim desde un archivo dedicado
+    - requirements: docs/requirements.txt

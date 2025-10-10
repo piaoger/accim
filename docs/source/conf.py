@@ -5,7 +5,11 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../accim'))
+
+# --- CORRECCIÓN IMPORTANTE ---
+# Sube dos niveles (desde docs/source/) para llegar a la raíz del proyecto.
+# Esto permite a Sphinx encontrar e importar el paquete 'accim'.
+sys.path.insert(0, os.path.abspath('../..'))
 
 import accim
 
@@ -42,8 +46,5 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'accim/sample_files']
 html_theme = 'sphinx_rtd_theme'
 html_static_path = [
     '_static',
-    # 'accim/docs/previous_versions_pdfs',
-    # 'docs/previous_versions_pdfs',
     'previous_versions_pdfs',
-    # r'C:\Python\accim\accim\docs\previous_versions_pdfs',
 ]
