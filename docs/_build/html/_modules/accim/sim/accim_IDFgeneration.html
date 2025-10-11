@@ -53,14 +53,15 @@
 <p class="caption" role="heading"><span class="caption-text">How-to Guides:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../jupyter_notebooks/addAccis/using_addAccis.html">Using <code class="docutils literal notranslate"><span class="pre">addAccis()</span></code> to apply adaptive setpoint temperatures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../jupyter_notebooks/full_example_IBPSA/full_example_IBPSA.html">Full example of adaptive setpoint temperature simulation: IBPSA webinar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../jupyter_notebooks/rename_epw_files/using_rename_epw_files.html">Using <code class="docutils literal notranslate"><span class="pre">rename_epw_files()</span></code> to rename the EPWs for proper data analysis after simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../jupyter_notebooks/runEp/using_runEp.html">Using <code class="docutils literal notranslate"><span class="pre">runEp()</span></code> to directly run simulations with EnergyPlus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../jupyter_notebooks/Table/using_Table.html">Using the class <code class="docutils literal notranslate"><span class="pre">Table()</span></code> for data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jupyter_notebooks/full_example_IBPSA/full_example_IBPSA.html">Full example of adaptive setpoint temperature simulation: IBPSA webinar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jupyter_notebooks/research_paper_case_study/research_paper_case_study.html">accim: a Python library to perform building energy simulations considering adaptive comfort and data analytics</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Further information:</span></p>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">accim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">accim</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Documentation for previous versions:</span></p>
 <ul>
@@ -92,11 +93,27 @@
            <div itemprop="articleBody">
              
   <h1>Source code for accim.sim.accim_IDFgeneration</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Generate IDFs.&quot;&quot;&quot;</span>
+<span></span><span class="c1"># accim - Adaptive-Comfort-Control-Implemented Model</span>
+<span class="c1"># Copyright (C) 2021-2025 Daniel Sánchez-García</span>
+
+<span class="c1"># accim is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># any later version.</span>
+
+<span class="c1"># accim is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;Generate IDFs.&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="inputData">
-<a class="viewcode-back" href="../../../accim.sim.html#accim.sim.accim_IDFgeneration.inputData">[docs]</a>
+<a class="viewcode-back" href="../../../api/accim.sim.html#accim.sim.accim_IDFgeneration.inputData">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">inputData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ScriptType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Input data for IDF generation.</span>
 
@@ -482,7 +499,7 @@
         <span class="s1">&#39;21 = CHL Perez-Fargallo;</span><span class="se">\n</span><span class="s1">&#39;</span>
         <span class="s1">&#39;22 = INT ISO7730;</span><span class="se">\n</span><span class="s1">&#39;</span>
         <span class="s1">&#39;99 = CUSTOM;</span><span class="se">\n</span><span class="s1">&#39;</span>
-        <span class="s1">&#39;Please refer to the full list of setpoint temperatures at https://htmlpreview.github.io/?https://github.com/dsanchez-garcia/accim/blob/master/accim/docs/html_files/full_setpoint_table.html</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;Please refer to the full list of setpoint temperatures at https://htmlpreview.github.io/?https://github.com/dsanchez-garcia/accim/blob/master/docs/source/html_files/full_setpoint_table.html</span><span class="se">\n</span><span class="s1">&#39;</span>
         <span class="s1">&#39;): &#39;</span>
     <span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
     <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ComfStand_List</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">elem</span> <span class="ow">in</span> <span class="n">fullComfStandList</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ComfStand_List</span><span class="p">):</span>
@@ -574,7 +591,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;85 = 85% ACCEPT;&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="mi">90</span> <span class="ow">in</span> <span class="n">availableCATlist</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;90 = 90% ACCEPT;&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please refer to the full list of setpoint temperatures at https://htmlpreview.github.io/?https://github.com/dsanchez-garcia/accim/blob/master/accim/docs/html_files/full_setpoint_table.html&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please refer to the full list of setpoint temperatures at https://htmlpreview.github.io/?https://github.com/dsanchez-garcia/accim/blob/master/docs/source/html_files/full_setpoint_table.html&quot;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">CAT_List</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;):&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
     <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CAT_List</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">elem</span> <span class="ow">in</span> <span class="n">fullCATlist</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">CAT_List</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;          Category numbers are not correct. Please enter the numbers again.&#39;</span><span class="p">)</span>
@@ -595,7 +612,7 @@
         <span class="s2">&quot;Enter the Comfort Mode numbers separated by space (</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="s2">&quot;0 or 0.X = Static;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="s2">&quot;1, 1.X, 2, 3 = Adaptive;</span><span class="se">\n</span><span class="s2">&quot;</span>
-        <span class="s2">&quot;Please refer to the full list of setpoint temperatures at https://htmlpreview.github.io/?https://github.com/dsanchez-garcia/accim/blob/master/accim/docs/html_files/full_setpoint_table.html</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;Please refer to the full list of setpoint temperatures at https://htmlpreview.github.io/?https://github.com/dsanchez-garcia/accim/blob/master/docs/source/html_files/full_setpoint_table.html</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="s2">&quot;): &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
     <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ComfMod_List</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">elem</span> <span class="ow">in</span> <span class="n">fullComfModList</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ComfMod_List</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;          Comfort Mode numbers are not correct. Please enter the numbers again.&#39;</span><span class="p">)</span>
@@ -608,33 +625,58 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;          Comfort Mode numbers are not correct. Please enter the numbers again.&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ComfMod_List</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
                 <span class="nb">float</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;     Enter the Comfort Mode numbers separated by space: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">SetpointAcc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Enter the setpoint accuracy number (any number greater than 0): &#39;</span><span class="p">))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetpointAcc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Enter the setpoint accuracy number (any number greater than 0, if omitted will be 100): &#39;</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetpointAcc</span> <span class="o">=</span> <span class="mi">100</span>
     <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">SetpointAcc</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;          The setpoint accuracy number is not correct. It must be a number greater than 0. Please enter the number again.&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">SetpointAcc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;         Enter the setpoint accuracy number (any number greater than 0): &#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetpointAcc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;         Enter the setpoint accuracy number (any number greater than 0, if omitted will be 100): &#39;</span><span class="p">))</span>
     <span class="k">while</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;          Are you sure the number is correct? [y or [] / n]: &#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">SetpointAcc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;      Enter the setpoint accuracy number (any number greater than 0): &#39;</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SetpointAcc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;      Enter the setpoint accuracy number (any number greater than 0, if omitted will be 100): &#39;</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SetpointAcc</span> <span class="o">=</span> <span class="mi">100</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">SetpointAcc</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;          The setpoint accuracy number is not correct. It must be a number greater than 0. Please enter the number again.&#39;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">SetpointAcc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;         Enter the setpoint accuracy number (any number greater than 0): &#39;</span><span class="p">))</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">CATcoolOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Enter the number for the CAT cooling offset modifier (value will be summed to the ACST): &#39;</span><span class="p">))</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">SetpointAcc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;      Enter the setpoint accuracy number (any number greater than 0, if omitted will be 100): &#39;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">SetpointAcc</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CATcoolOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Enter the number for the CAT cooling offset modifier (value will be summed to the ACST, if omitted will be 0): &#39;</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CATcoolOffset</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">while</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;          Are you sure the number is correct? [y or [] / n]: &#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">CATcoolOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;      Enter the number for the CAT cooling offset modifier (value will be summed to the ACST): &#39;</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">CATcoolOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">        Enter the number for the CAT cooling offset modifier (value will be summed to the ACST, if omitted will be 0): &#39;</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">CATcoolOffset</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Enter the number for the CAT heating offset modifier (value will be summed to the AHST): &#39;</span><span class="p">))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Enter the number for the CAT heating offset modifier (value will be summed to the AHST, if omitted will be 0): &#39;</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">while</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;          Are you sure the number is correct? [y or [] / n]: &#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;      Enter the number for the CAT heating offset modifier (value will be summed to the AHST): &#39;</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">        Enter the number for the CAT heating offset modifier (value will be summed to the AHST, if omitted will be 0): &#39;</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">CATcoolOffset</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;          You have entered a CATheatOffset (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span><span class="si">}</span><span class="s1">) larger than the CATcoolOffset (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">CATcoolOffset</span><span class="si">}</span><span class="s1">), &#39;</span>
               <span class="sa">f</span><span class="s1">&#39;which will probably lead to an error in the EnergyPlus simulation.&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">CATcoolOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Enter the number for the CAT cooling offset modifier (value will be summed to the ACST): &#39;</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">        Enter the number for the CAT heating offset modifier (value will be summed to the AHST, if omitted will be 0): &#39;</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="k">while</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;          Are you sure the number is correct? [y or [] / n]: &#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">CATcoolOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;      Enter the number for the CAT cooling offset modifier (value will be summed to the ACST): &#39;</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Enter the number for the CAT heating offset modifier (value will be summed to the AHST): &#39;</span><span class="p">))</span>
-        <span class="k">while</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;          Are you sure the number is correct? [y or [] / n]: &#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;      Enter the number for the CAT heating offset modifier (value will be summed to the AHST): &#39;</span><span class="p">))</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">        Enter the number for the CAT heating offset modifier (value will be summed to the AHST, if omitted will be 0): &#39;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">CATheatOffset</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="c1"># self.CATheatOffset = float(input(&#39;\nEnter the number for the CAT heating offset modifier (value will be summed to the AHST): &#39;))</span>
+        <span class="c1"># while input(&#39;          Are you sure the number is correct? [y or [] / n]: &#39;) == &#39;n&#39;:</span>
+        <span class="c1">#     self.CATheatOffset = float(input(&#39;      Enter the number for the CAT heating offset modifier (value will be summed to the AHST): &#39;))</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ComfStand_List</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ComfMod_List</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">22</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ComfStand_List</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">CoolSeasonStart</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
@@ -923,7 +965,7 @@
 
 
 <div class="viewcode-block" id="genIDF">
-<a class="viewcode-back" href="../../../accim.sim.html#accim.sim.accim_IDFgeneration.genIDF">[docs]</a>
+<a class="viewcode-back" href="../../../api/accim.sim.html#accim.sim.accim_IDFgeneration.genIDF">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">genIDF</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
     <span class="n">ScriptType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">TempCtrl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>

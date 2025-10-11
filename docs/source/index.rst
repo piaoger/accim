@@ -31,9 +31,9 @@ Welcome to accim |version|'s documentation!
 
 .. toctree::
    :maxdepth: 7
-   :caption: Further information:
+   :caption: API Reference:
 
-   modules
+   api/modules
 
 .. toctree::
    :maxdepth: 7

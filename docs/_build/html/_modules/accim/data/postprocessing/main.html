@@ -53,14 +53,15 @@
 <p class="caption" role="heading"><span class="caption-text">How-to Guides:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../jupyter_notebooks/addAccis/using_addAccis.html">Using <code class="docutils literal notranslate"><span class="pre">addAccis()</span></code> to apply adaptive setpoint temperatures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../jupyter_notebooks/full_example_IBPSA/full_example_IBPSA.html">Full example of adaptive setpoint temperature simulation: IBPSA webinar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../jupyter_notebooks/rename_epw_files/using_rename_epw_files.html">Using <code class="docutils literal notranslate"><span class="pre">rename_epw_files()</span></code> to rename the EPWs for proper data analysis after simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../jupyter_notebooks/runEp/using_runEp.html">Using <code class="docutils literal notranslate"><span class="pre">runEp()</span></code> to directly run simulations with EnergyPlus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../jupyter_notebooks/Table/using_Table.html">Using the class <code class="docutils literal notranslate"><span class="pre">Table()</span></code> for data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../jupyter_notebooks/full_example_IBPSA/full_example_IBPSA.html">Full example of adaptive setpoint temperature simulation: IBPSA webinar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../jupyter_notebooks/research_paper_case_study/research_paper_case_study.html">accim: a Python library to perform building energy simulations considering adaptive comfort and data analytics</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Further information:</span></p>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">accim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">accim</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Documentation for previous versions:</span></p>
 <ul>
@@ -92,11 +93,27 @@
            <div itemprop="articleBody">
              
   <h1>Source code for accim.data.postprocessing.main</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span></span><span class="c1"># accim - Adaptive-Comfort-Control-Implemented Model</span>
+<span class="c1"># Copyright (C) 2021-2025 Daniel Sánchez-García</span>
+
+<span class="c1"># accim is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># any later version.</span>
+
+<span class="c1"># accim is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span>
 
 <div class="viewcode-block" id="Table">
-<a class="viewcode-back" href="../../../../accim.data.postprocessing.html#accim.data.postprocessing.main.Table">[docs]</a>
+<a class="viewcode-back" href="../../../../api/accim.data.postprocessing.html#accim.data.postprocessing.main.Table">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Table</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a table or dataframe using the EnergyPlus simulation</span>
 <span class="sd">    results CSV files available in the current folder.</span>
@@ -1513,7 +1530,7 @@
         <span class="c1"># todo pop up when process ends; by default True</span>
 
 <div class="viewcode-block" id="Table.gather_vars_query">
-<a class="viewcode-back" href="../../../../accim.data.postprocessing.html#accim.data.postprocessing.main.Table.gather_vars_query">[docs]</a>
+<a class="viewcode-back" href="../../../../api/accim.data.postprocessing.html#accim.data.postprocessing.main.Table.gather_vars_query">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">gather_vars_query</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">vars_to_gather</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1539,7 +1556,7 @@
 
 
 <div class="viewcode-block" id="Table.format_table">
-<a class="viewcode-back" href="../../../../accim.data.postprocessing.html#accim.data.postprocessing.main.Table.format_table">[docs]</a>
+<a class="viewcode-back" href="../../../../api/accim.data.postprocessing.html#accim.data.postprocessing.main.Table.format_table">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">format_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                      <span class="n">type_of_table</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span>
                      <span class="n">custom_cols</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1659,7 +1676,7 @@
 
 
 <div class="viewcode-block" id="Table.custom_order">
-<a class="viewcode-back" href="../../../../accim.data.postprocessing.html#accim.data.postprocessing.main.Table.custom_order">[docs]</a>
+<a class="viewcode-back" href="../../../../api/accim.data.postprocessing.html#accim.data.postprocessing.main.Table.custom_order">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">custom_order</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">ordered_list</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1700,7 +1717,7 @@
     <span class="c1">#     return block_list()</span>
 
 <div class="viewcode-block" id="Table.wrangled_table">
-<a class="viewcode-back" href="../../../../accim.data.postprocessing.html#accim.data.postprocessing.main.Table.wrangled_table">[docs]</a>
+<a class="viewcode-back" href="../../../../api/accim.data.postprocessing.html#accim.data.postprocessing.main.Table.wrangled_table">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">wrangled_table</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">reshaping</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2183,7 +2200,7 @@
 
 
 <div class="viewcode-block" id="Table.enter_vars_to_gather">
-<a class="viewcode-back" href="../../../../accim.data.postprocessing.html#accim.data.postprocessing.main.Table.enter_vars_to_gather">[docs]</a>
+<a class="viewcode-back" href="../../../../api/accim.data.postprocessing.html#accim.data.postprocessing.main.Table.enter_vars_to_gather">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">enter_vars_to_gather</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">vars_to_gather</span><span class="o">=</span><span class="kc">None</span>
@@ -2211,7 +2228,7 @@
 
 
 <div class="viewcode-block" id="Table.generate_fig_data">
-<a class="viewcode-back" href="../../../../accim.data.postprocessing.html#accim.data.postprocessing.main.Table.generate_fig_data">[docs]</a>
+<a class="viewcode-back" href="../../../../api/accim.data.postprocessing.html#accim.data.postprocessing.main.Table.generate_fig_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_fig_data</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">vars_to_gather_cols</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2494,7 +2511,7 @@
                         <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
                         <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
                         <span class="p">[</span>
-                            <span class="n">df_for_graph</span><span class="p">[[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_for_graph</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">baseline</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]]</span>
+                            <span class="n">df_for_graph</span><span class="p">[[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_for_graph</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="n">baseline</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="n">dataset</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()]]</span>
                             <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">data_on_y_axis_baseline_plot</span>
                         <span class="p">]</span>
                     <span class="p">]</span>
@@ -2502,7 +2519,7 @@
                     <span class="n">temp</span> <span class="o">=</span> <span class="p">[</span>
                         <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
                         <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
-                        <span class="n">df_for_graph</span><span class="p">[[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_for_graph</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">data_on_x_axis</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]]</span>
+                        <span class="n">df_for_graph</span><span class="p">[[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_for_graph</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="n">data_on_x_axis</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()]]</span>
                     <span class="p">]</span>
                 <span class="n">temp_row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_row</span><span class="p">)</span>
@@ -2516,7 +2533,7 @@
                         <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
                         <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
                         <span class="p">[</span>
-                            <span class="n">df_for_graph</span><span class="p">[[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_for_graph</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]]</span>
+                            <span class="n">df_for_graph</span><span class="p">[[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_for_graph</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="n">dataset</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()]]</span>
                             <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">data_on_y_axis_baseline_plot</span>
                         <span class="p">],</span>
                         <span class="p">[</span><span class="n">dataset</span> <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">data_on_y_axis_baseline_plot</span><span class="p">],</span>
@@ -2534,7 +2551,7 @@
                             <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
                             <span class="s1">&#39;dataframe&#39;</span><span class="p">:</span> <span class="p">[</span>
                                 <span class="n">df_for_graph</span><span class="p">[[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_for_graph</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span>
-                                              <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]]</span>
+                                              <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="n">dataset</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()]]</span>
                                 <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_on_y_main_axis</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
                             <span class="p">],</span>
                             <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">dataset</span> <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_on_y_main_axis</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]],</span>
@@ -2567,7 +2584,7 @@
                         <span class="s1">&#39;axis&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
                         <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
                         <span class="s1">&#39;dataframe&#39;</span><span class="p">:</span> <span class="p">[</span>
-                            <span class="n">df_for_graph</span><span class="p">[[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_for_graph</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]]</span>
+                            <span class="n">df_for_graph</span><span class="p">[[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_for_graph</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="n">dataset</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()]]</span>
                             <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">data_on_y_sec_axis</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
                         <span class="p">],</span>
                         <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">dataset</span> <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">data_on_y_sec_axis</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]],</span>
@@ -2683,7 +2700,7 @@
 
 
 <div class="viewcode-block" id="Table.scatter_plot">
-<a class="viewcode-back" href="../../../../accim.data.postprocessing.html#accim.data.postprocessing.main.Table.scatter_plot">[docs]</a>
+<a class="viewcode-back" href="../../../../api/accim.data.postprocessing.html#accim.data.postprocessing.main.Table.scatter_plot">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">scatter_plot</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">vars_to_gather_cols</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -3103,7 +3120,7 @@
 
 
 <div class="viewcode-block" id="Table.scatter_plot_with_baseline">
-<a class="viewcode-back" href="../../../../accim.data.postprocessing.html#accim.data.postprocessing.main.Table.scatter_plot_with_baseline">[docs]</a>
+<a class="viewcode-back" href="../../../../api/accim.data.postprocessing.html#accim.data.postprocessing.main.Table.scatter_plot_with_baseline">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">scatter_plot_with_baseline</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">vars_to_gather_cols</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -3722,7 +3739,7 @@
 
 
 <div class="viewcode-block" id="Table.time_plot">
-<a class="viewcode-back" href="../../../../accim.data.postprocessing.html#accim.data.postprocessing.main.Table.time_plot">[docs]</a>
+<a class="viewcode-back" href="../../../../api/accim.data.postprocessing.html#accim.data.postprocessing.main.Table.time_plot">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">time_plot</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">vars_to_gather_cols</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>

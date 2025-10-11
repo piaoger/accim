@@ -1,36 +1,30 @@
 @echo off
-echo Generando archivos fuente de la API con sphinx-apidoc...
-sphinx-apidoc -o docs/source ../accim -f
-if errorlevel 1 goto error_apidoc
+REM build_docs.bat
+REM Este script automatiza la generación de la documentación de accim.
+REM Debe ser ejecutado desde la raíz del proyecto.
 
-echo.
-echo Navegando al directorio docs...
+ECHO --- [Paso 1 de 3] Limpiando compilaciones anteriores...
+REM Borra el contenido de la carpeta de salida para asegurar una compilación limpia.
+REM El flag /Q ejecuta el borrado sin pedir confirmación.
+IF EXIST docs\build rmdir /s /q docs\build
+
+ECHO.
+ECHO --- [Paso 2 de 3] Generando archivos .rst de la API con sphinx-apidoc...
+REM Ejecuta sphinx-apidoc para generar/actualizar los archivos .rst desde el código fuente.
+REM -o docs\source\api: Directorio de salida para los archivos .rst.
+REM accim: Ruta al paquete que se va a documentar.
+REM accim/sample_files/*: Patrón para excluir archivos que no deben ser documentados.
+REM --force: Sobrescribe los archivos existentes.
+sphinx-apidoc --force -o docs\source\api accim accim/sample_files/*
+
+ECHO.
+ECHO --- [Paso 3 de 3] Construyendo la documentación HTML con Sphinx...
+REM Cambia al directorio 'docs' y ejecuta el comando 'make html'.
 cd docs
-if errorlevel 1 goto error_cd_docs
+call make.bat html
+cd ..
 
-echo.
-echo Construyendo la documentación HTML con make.bat...
-.\make.bat html
-if errorlevel 1 goto error_make_html
-
-echo.
-echo Proceso de documentación completado exitosamente.
-goto end
-
-:error_apidoc
-echo.
-echo Error al ejecutar sphinx-apidoc.
-goto end
-
-:error_cd_docs
-echo.
-echo Error al cambiar al directorio docs.
-goto end
-
-:error_make_html
-echo.
-echo Error al ejecutar make.bat.
-goto end
-
-:end
-pause
+ECHO.
+ECHO --- Proceso completado ---
+ECHO La documentacion HTML ha sido generada en: docs\build\html\index.html
+PAUSE

@@ -19,9 +19,7 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="accim.parametric_and_optimisation.funcs_for_besos package" href="accim.parametric_and_optimisation.funcs_for_besos.html" />
-    <link rel="prev" title="accim.data.postprocessing package" href="accim.data.postprocessing.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,30 +54,15 @@
 <p class="caption" role="heading"><span class="caption-text">How-to Guides:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/addAccis/using_addAccis.html">Using <code class="docutils literal notranslate"><span class="pre">addAccis()</span></code> to apply adaptive setpoint temperatures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/full_example_IBPSA/full_example_IBPSA.html">Full example of adaptive setpoint temperature simulation: IBPSA webinar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/rename_epw_files/using_rename_epw_files.html">Using <code class="docutils literal notranslate"><span class="pre">rename_epw_files()</span></code> to rename the EPWs for proper data analysis after simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/runEp/using_runEp.html">Using <code class="docutils literal notranslate"><span class="pre">runEp()</span></code> to directly run simulations with EnergyPlus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/Table/using_Table.html">Using the class <code class="docutils literal notranslate"><span class="pre">Table()</span></code> for data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/full_example_IBPSA/full_example_IBPSA.html">Full example of adaptive setpoint temperature simulation: IBPSA webinar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/research_paper_case_study/research_paper_case_study.html">accim: a Python library to perform building energy simulations considering adaptive comfort and data analytics</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Further information:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">accim</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="accim.html">accim package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="accim.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="accim.data.html">accim.data package</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">accim.parametric_and_optimisation package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="accim.run.html">accim.run package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="accim.sim.html">accim.sim package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="accim.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="accim.html#module-accim.utils">accim.utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="accim.html#module-accim">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
-</ul>
-</li>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">accim</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Documentation for previous versions:</span></p>
 <ul>
@@ -100,8 +83,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">accim</a></li>
-          <li class="breadcrumb-item"><a href="accim.html">accim package</a></li>
       <li class="breadcrumb-item active">accim.parametric_and_optimisation package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/accim.parametric_and_optimisation.rst.txt" rel="nofollow"> View page source</a>
@@ -175,13 +156,13 @@
 <span id="accim-parametric-and-optimisation-main-module"></span><h2>accim.parametric_and_optimisation.main module<a class="headerlink" href="#module-accim.parametric_and_optimisation.main" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="accim.parametric_and_optimisation.main.AccimPredefModelsParamSim">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accim.parametric_and_optimisation.main.</span></span><span class="sig-name descname"><span class="pre">AccimPredefModelsParamSim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">building:</span> <span class="pre">&lt;module</span> <span class="pre">'besos.IDF_class'</span> <span class="pre">from</span> <span class="pre">'C:\\Users\\danie\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\besos\\IDF_class.py'&gt;,</span> <span class="pre">output_type:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'standard',</span> <span class="pre">output_keep_existing:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">output_freqs:</span> <span class="pre">list</span> <span class="pre">=</span> <span class="pre">['hourly'],</span> <span class="pre">ScriptType:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'vrf_mm',</span> <span class="pre">SupplyAirTempInputMethod:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'temperature</span> <span class="pre">difference',</span> <span class="pre">debugging:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accim/parametric_and_optimisation/main.html#AccimPredefModelsParamSim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accim.parametric_and_optimisation.main.AccimPredefModelsParamSim" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#accim.parametric_and_optimisation.main.OptimParamSimulation" title="accim.parametric_and_optimisation.main.OptimParamSimulation"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimParamSimulation</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accim.parametric_and_optimisation.main.</span></span><span class="sig-name descname"><span class="pre">AccimPredefModelsParamSim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">building:</span> <span class="pre">&lt;module</span> <span class="pre">'besos.IDF_class'</span> <span class="pre">from</span> <span class="pre">'C:\\Users\\sanga\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\besos\\IDF_class.py'&gt;,</span> <span class="pre">output_type:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'standard',</span> <span class="pre">output_keep_existing:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">output_freqs:</span> <span class="pre">list</span> <span class="pre">=</span> <span class="pre">['hourly'],</span> <span class="pre">ScriptType:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'vrf_mm',</span> <span class="pre">SupplyAirTempInputMethod:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'temperature</span> <span class="pre">difference',</span> <span class="pre">debugging:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accim/parametric_and_optimisation/main.html#AccimPredefModelsParamSim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accim.parametric_and_optimisation.main.AccimPredefModelsParamSim" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="api/accim.parametric_and_optimisation.html#accim.parametric_and_optimisation.main.OptimParamSimulation" title="accim.parametric_and_optimisation.main.OptimParamSimulation"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimParamSimulation</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="accim.parametric_and_optimisation.main.OptimParamSimulation">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accim.parametric_and_optimisation.main.</span></span><span class="sig-name descname"><span class="pre">OptimParamSimulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">building:</span> <span class="pre">&lt;module</span> <span class="pre">'besos.IDF_class'</span> <span class="pre">from</span> <span class="pre">'C:\\Users\\danie\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\besos\\IDF_class.py'&gt;,</span> <span class="pre">parameters_type:</span> <span class="pre">~typing.Literal['accim</span> <span class="pre">custom</span> <span class="pre">model',</span> <span class="pre">'accim</span> <span class="pre">predefined</span> <span class="pre">model',</span> <span class="pre">'apmv</span> <span class="pre">setpoints'],</span> <span class="pre">output_type:</span> <span class="pre">~typing.Literal['standard',</span> <span class="pre">'custom',</span> <span class="pre">'detailed',</span> <span class="pre">'simplified']</span> <span class="pre">=</span> <span class="pre">'standard',</span> <span class="pre">output_keep_existing:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">output_freqs:</span> <span class="pre">~typing.List[~typing.Literal['timestep',</span> <span class="pre">'hourly',</span> <span class="pre">'daily',</span> <span class="pre">'monthly',</span> <span class="pre">'runperiod']]</span> <span class="pre">=</span> <span class="pre">['hourly'],</span> <span class="pre">ScriptType:</span> <span class="pre">~typing.Literal['vrf_mm',</span> <span class="pre">'vrf_ac',</span> <span class="pre">'ex_ac']</span> <span class="pre">=</span> <span class="pre">'vrf_mm',</span> <span class="pre">SupplyAirTempInputMethod:</span> <span class="pre">~typing.Literal['temperature</span> <span class="pre">difference',</span> <span class="pre">'supply</span> <span class="pre">air</span> <span class="pre">temperature']</span> <span class="pre">=</span> <span class="pre">'temperature</span> <span class="pre">difference',</span> <span class="pre">make_averages:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">debugging:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">verbosemode:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accim/parametric_and_optimisation/main.html#OptimParamSimulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accim.parametric_and_optimisation.main.OptimParamSimulation" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accim.parametric_and_optimisation.main.</span></span><span class="sig-name descname"><span class="pre">OptimParamSimulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">building:</span> <span class="pre">&lt;module</span> <span class="pre">'besos.IDF_class'</span> <span class="pre">from</span> <span class="pre">'C:\\Users\\sanga\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\besos\\IDF_class.py'&gt;,</span> <span class="pre">parameters_type:</span> <span class="pre">~typing.Literal['accim</span> <span class="pre">custom</span> <span class="pre">model',</span> <span class="pre">'accim</span> <span class="pre">predefined</span> <span class="pre">model',</span> <span class="pre">'apmv</span> <span class="pre">setpoints'],</span> <span class="pre">output_type:</span> <span class="pre">~typing.Literal['standard',</span> <span class="pre">'custom',</span> <span class="pre">'detailed',</span> <span class="pre">'simplified']</span> <span class="pre">=</span> <span class="pre">'standard',</span> <span class="pre">output_keep_existing:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">output_freqs:</span> <span class="pre">~typing.List[~typing.Literal['timestep',</span> <span class="pre">'hourly',</span> <span class="pre">'daily',</span> <span class="pre">'monthly',</span> <span class="pre">'runperiod']]</span> <span class="pre">=</span> <span class="pre">['hourly'],</span> <span class="pre">ScriptType:</span> <span class="pre">~typing.Literal['vrf_mm',</span> <span class="pre">'vrf_ac',</span> <span class="pre">'ex_ac']</span> <span class="pre">=</span> <span class="pre">'vrf_mm',</span> <span class="pre">SupplyAirTempInputMethod:</span> <span class="pre">~typing.Literal['temperature</span> <span class="pre">difference',</span> <span class="pre">'supply</span> <span class="pre">air</span> <span class="pre">temperature']</span> <span class="pre">=</span> <span class="pre">'temperature</span> <span class="pre">difference',</span> <span class="pre">make_averages:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">debugging:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">verbosemode:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accim/parametric_and_optimisation/main.html#OptimParamSimulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accim.parametric_and_optimisation.main.OptimParamSimulation" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="accim.parametric_and_optimisation.main.OptimParamSimulation.get_available_parameters">
@@ -889,10 +870,7 @@ pd.DataFrame: The expanded dataframe with an additional datetime column.</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="accim.data.postprocessing.html" class="btn btn-neutral float-left" title="accim.data.postprocessing package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="accim.parametric_and_optimisation.funcs_for_besos.html" class="btn btn-neutral float-right" title="accim.parametric_and_optimisation.funcs_for_besos package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

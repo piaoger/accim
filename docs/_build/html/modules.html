@@ -19,9 +19,7 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="accim package" href="accim.html" />
-    <link rel="prev" title="Using the class Table() for data analysis" href="jupyter_notebooks/Table/using_Table.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,18 +54,15 @@
 <p class="caption" role="heading"><span class="caption-text">How-to Guides:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/addAccis/using_addAccis.html">Using <code class="docutils literal notranslate"><span class="pre">addAccis()</span></code> to apply adaptive setpoint temperatures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/full_example_IBPSA/full_example_IBPSA.html">Full example of adaptive setpoint temperature simulation: IBPSA webinar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/rename_epw_files/using_rename_epw_files.html">Using <code class="docutils literal notranslate"><span class="pre">rename_epw_files()</span></code> to rename the EPWs for proper data analysis after simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/runEp/using_runEp.html">Using <code class="docutils literal notranslate"><span class="pre">runEp()</span></code> to directly run simulations with EnergyPlus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/Table/using_Table.html">Using the class <code class="docutils literal notranslate"><span class="pre">Table()</span></code> for data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/full_example_IBPSA/full_example_IBPSA.html">Full example of adaptive setpoint temperature simulation: IBPSA webinar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/research_paper_case_study/research_paper_case_study.html">accim: a Python library to perform building energy simulations considering adaptive comfort and data analytics</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Further information:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">accim</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="accim.html">accim package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
-</ul>
-</li>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">accim</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Documentation for previous versions:</span></p>
 <ul>
@@ -107,7 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="accim.data.html">accim.data package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="accim.data.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="accim.data.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="accim.data.html#module-accim.data.data_preprocessing">accim.data.data_preprocessing module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accim.data.html#accim-data-data-preprocessing-module">accim.data.data_preprocessing module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="accim.data.html#module-accim.data.morphing">accim.data.morphing module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="accim.data.html#module-accim.data">Module contents</a></li>
 </ul>
@@ -146,7 +141,7 @@
 <li class="toctree-l4"><a class="reference internal" href="accim.sim.html#module-accim.sim.apmv_setpoints">accim.sim.apmv_setpoints module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="accim.sim.html#module-accim.sim.chile_funcs">accim.sim.chile_funcs module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="accim.sim.html#module-accim.sim.dicts">accim.sim.dicts module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="accim.sim.html#accim-sim-lists-module">accim.sim.lists module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accim.sim.html#module-accim.sim.lists">accim.sim.lists module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="accim.sim.html#module-accim.sim.utils">accim.sim.utils module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="accim.sim.html#module-accim.sim">Module contents</a></li>
 </ul>
@@ -154,10 +149,12 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="accim.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accim.html#module-accim.lists">accim.lists module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accim.html#module-accim.utils">accim.utils module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="accim.html#accim.utils.amend_idf_version_from_dsb"><code class="docutils literal notranslate"><span class="pre">amend_idf_version_from_dsb()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="accim.html#accim.utils.get_accim_args"><code class="docutils literal notranslate"><span class="pre">get_accim_args()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="accim.html#accim.utils.get_accim_args_flattened"><code class="docutils literal notranslate"><span class="pre">get_accim_args_flattened()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="accim.html#accim.utils.get_idd_path_from_ep_version"><code class="docutils literal notranslate"><span class="pre">get_idd_path_from_ep_version()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="accim.html#accim.utils.modify_timesteps"><code class="docutils literal notranslate"><span class="pre">modify_timesteps()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="accim.html#accim.utils.modify_timesteps_path"><code class="docutils literal notranslate"><span class="pre">modify_timesteps_path()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="accim.html#accim.utils.print_available_outputs_mod"><code class="docutils literal notranslate"><span class="pre">print_available_outputs_mod</span></code></a></li>
@@ -173,6 +170,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_Table.html">using_Table module</a></li>
 </ul>
 </div>
 </section>
@@ -180,10 +178,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="jupyter_notebooks/Table/using_Table.html" class="btn btn-neutral float-left" title="Using the class Table() for data analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="accim.html" class="btn btn-neutral float-right" title="accim package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

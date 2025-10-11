@@ -59,14 +59,15 @@
 <p class="caption" role="heading"><span class="caption-text">How-to Guides:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../addAccis/using_addAccis.html">Using <code class="docutils literal notranslate"><span class="pre">addAccis()</span></code> to apply adaptive setpoint temperatures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../full_example_IBPSA/full_example_IBPSA.html">Full example of adaptive setpoint temperature simulation: IBPSA webinar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rename_epw_files/using_rename_epw_files.html">Using <code class="docutils literal notranslate"><span class="pre">rename_epw_files()</span></code> to rename the EPWs for proper data analysis after simulation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Using <code class="docutils literal notranslate"><span class="pre">runEp()</span></code> to directly run simulations with EnergyPlus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Table/using_Table.html">Using the class <code class="docutils literal notranslate"><span class="pre">Table()</span></code> for data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../full_example_IBPSA/full_example_IBPSA.html">Full example of adaptive setpoint temperature simulation: IBPSA webinar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research_paper_case_study/research_paper_case_study.html">accim: a Python library to perform building energy simulations considering adaptive comfort and data analytics</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Further information:</span></p>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">accim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">accim</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Documentation for previous versions:</span></p>
 <ul>
@@ -118,7 +119,7 @@
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 .ipynb_checkpoints
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X.idf
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X.idf
 United-Kingdom_Aberdeen_Present.epw
 using_runEp.ipynb
 __init__.py
@@ -155,7 +156,7 @@ __init__.py
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&#39;TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X.idf&#39;]
+[&#39;TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X.idf&#39;]
 </pre></div></div>
 </div>
 <p>Based on that, let’s use <code class="docutils literal notranslate"><span class="pre">runEp()</span></code>:</p>
@@ -168,7 +169,7 @@ __init__.py
     <span class="n">runOnlyAccim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#only runs output IDFs, that is, IDFs with &quot;[&quot; in its name</span>
     <span class="n">confirmRun</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#to skip confirmation</span>
     <span class="n">num_CPUs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="c1">#to specify the number of CPUs to be used</span>
-    <span class="n">EnergyPlus_version</span><span class="o">=</span><span class="s1">&#39;23.1&#39;</span><span class="p">,</span> <span class="c1">#to specify the EnergyPlus version of the IDF, and the version of EnergyPlus you are going to run</span>
+    <span class="n">EnergyPlus_version</span><span class="o">=</span><span class="s1">&#39;25.1&#39;</span><span class="p">,</span> <span class="c1">#to specify the EnergyPlus version of the IDF, and the version of EnergyPlus you are going to run</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -179,13 +180,13 @@ __init__.py
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 The IDFs we are going to run are:
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X.idf
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X.idf
  and the No. of IDFs is going to be 1
 The sample_EPWs we are going to run are:
 United-Kingdom_Aberdeen_Present.epw
  and the No. of sample_EPWs is going to be 1
 Therefore, the simulations are going to be:
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present
  and the No. of simulations is going to be 1
 </pre></div></div>
 </div>
@@ -204,22 +205,22 @@ TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.audit
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.bnd
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.csv
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.dxf
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.eio
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.end
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.err
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.eso
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.mdd
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.mtd
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.rdd
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.rvaudit
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.shd
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_PresentTable.csv
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_PresentTable.htm
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_PresentZsz.csv
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.audit
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.bnd
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.csv
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.dxf
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.eio
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.end
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.err
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.eso
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.mdd
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.mtd
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.rdd
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.rvaudit
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.shd
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_PresentTable.csv
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_PresentTable.htm
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_PresentZsz.csv
 </pre></div></div>
 </div>
 <p>The CSV files we have generated follow the naming convention ‘IDF[EPW’ and therefore, are suitable to be used with the class Table, within the accim.data.datawrangling module.</p>
@@ -236,7 +237,7 @@ TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-TestModel_V2310[CS_INT ASHRAE55[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.csv
+TestModel_V2510[CS_AUS DeDear[CA_80[CM_3[HM_2[VC_0[VO_0.0[MT_50.0[MW_50.0[AT_0.1[NS_X[United-Kingdom_Aberdeen_Present.csv
 </pre></div></div>
 </div>
 <p>Now, let’s remove all output files of the simulation run:</p>

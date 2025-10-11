@@ -23,8 +23,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Using rename_epw_files() to rename the EPWs for proper data analysis after simulation" href="../rename_epw_files/using_rename_epw_files.html" />
-    <link rel="prev" title="Using addAccis() to apply adaptive setpoint temperatures" href="../addAccis/using_addAccis.html" /> 
+    <link rel="next" title="accim: a Python library to perform building energy simulations considering adaptive comfort and data analytics" href="../research_paper_case_study/research_paper_case_study.html" />
+    <link rel="prev" title="Using the class Table() for data analysis" href="../Table/using_Table.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -59,6 +59,9 @@
 <p class="caption" role="heading"><span class="caption-text">How-to Guides:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../addAccis/using_addAccis.html">Using <code class="docutils literal notranslate"><span class="pre">addAccis()</span></code> to apply adaptive setpoint temperatures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rename_epw_files/using_rename_epw_files.html">Using <code class="docutils literal notranslate"><span class="pre">rename_epw_files()</span></code> to rename the EPWs for proper data analysis after simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../runEp/using_runEp.html">Using <code class="docutils literal notranslate"><span class="pre">runEp()</span></code> to directly run simulations with EnergyPlus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Table/using_Table.html">Using the class <code class="docutils literal notranslate"><span class="pre">Table()</span></code> for data analysis</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Full example of adaptive setpoint temperature simulation: IBPSA webinar</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#1.-Data-pre-processing">1. Data pre-processing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#1.1.-Implementing-ACCIS-(using-addAccis())">1.1. Implementing ACCIS (using <code class="docutils literal notranslate"><span class="pre">addAccis()</span></code>)</a></li>
@@ -73,13 +76,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../rename_epw_files/using_rename_epw_files.html">Using <code class="docutils literal notranslate"><span class="pre">rename_epw_files()</span></code> to rename the EPWs for proper data analysis after simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../runEp/using_runEp.html">Using <code class="docutils literal notranslate"><span class="pre">runEp()</span></code> to directly run simulations with EnergyPlus</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Table/using_Table.html">Using the class <code class="docutils literal notranslate"><span class="pre">Table()</span></code> for data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research_paper_case_study/research_paper_case_study.html">accim: a Python library to perform building energy simulations considering adaptive comfort and data analytics</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Further information:</span></p>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">accim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">accim</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Documentation for previous versions:</span></p>
 <ul>
@@ -190,24 +191,13 @@ __init__.py
 </pre></div></div>
 </div>
 <p>So now, we’re going to generate building energy models with setpoint temperatures based on the Brazilian comfort model (i.e. ComfStand takes the value 15). We’re going to select the 80% acceptability levels (i.e. CAT takes the value 80), and we’re going to select the setpoint behaviour to horizontally extend the setpoint temperatures (or comfort limits) when applicability limits are exceeded (i.e. ComfMod takes the value 3), and the fully static setpoint temperatures (i.e. ComfMod takes the
-value 0). There are 2 methods to apply adaptive setpoint temperatures:</p>
-<ul class="simple">
-<li><p>Short method, which is running the following to lines of code:</p></li>
-</ul>
+value 0). There are 2 methods to apply adaptive setpoint temperatures: - Short method, which is running the following to lines of code:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from accim.sim import accis
 accis.addAccis()
 </pre></div>
 </div>
-<p>When we run the 2 lines of code above, accim is going to ask us to enter some information it needs to generate the output IDFs. The data we’re going to input, in the same order, is:</p>
-<ul class="simple">
-<li><p>Enter the ScriptType: <strong>vrf_mm</strong></p></li>
-<li><p>Enter the SupplyAirTempInputMethod: <strong>temperature difference</strong></p></li>
-<li><p>Do you want to keep the existing outputs (true or false)?: <strong>false</strong></p></li>
-<li><p>Enter the Output type (standard, simplified or detailed): <strong>standard</strong></p></li>
-<li><p>Enter the Output frequencies separated by space (timestep, hourly, daily, monthly, runperiod): <strong>hourly</strong></p></li>
-<li><p>Enter the EnergyPlus version (9.1 to 23.1): <strong>23.1</strong></p></li>
-<li><p>Enter the Temperature Control method (temperature or pmv): <strong>temperature</strong></p></li>
-</ul>
+<p>When we run the 2 lines of code above, accim is going to ask us to enter some information it needs to generate the output IDFs. The data we’re going to input, in the same order, is: - Enter the ScriptType: <strong>vrf_mm</strong> - Enter the SupplyAirTempInputMethod: <strong>temperature difference</strong> - Do you want to keep the existing outputs (true or false)?: <strong>false</strong> - Enter the Output type (standard, simplified or detailed): <strong>standard</strong> - Enter the Output frequencies separated by space (timestep, hourly,
+daily, monthly, runperiod): <strong>hourly</strong> - Enter the EnergyPlus version (9.1 to 23.1): <strong>23.1</strong> - Enter the Temperature Control method (temperature or pmv): <strong>temperature</strong></p>
 <p>After that, accim will let us know the information we have entered, and it will start the generic IDF generation process. Lots of actions are going to be performed, and all of them will be printed on screen. Once this process is done, accim will let us know if any of the IDFs is not going to work for any reason, and then it will start the output IDF files generation process. Then, accim will ask us again to enter some information, this time to generate the output IDF(s). The data we are going to
 enter now is:</p>
 <ul class="simple">
@@ -846,21 +836,11 @@ RCP852100_GC20_Palmas.epw
 </pre></div></div>
 </div>
 <p>Now, we’re going to rename them. We want them to follow the pattern “Country_City_RCPscenario-Year”. But, why is that? Because later, when we run the simulations and read the CSV files, we will be able to analyse them considering the fields Country, City, RCPscenario and Year as categorical variables. So let’s rename them running the code in the cell below.</p>
-<p>First, accim will try to rename them based on the original name and the geolocation. If no match between those is found, accim will assign the string ‘UNKNOWN’ to the city. Then, accim will ask you if you want to edit some of the new names. If so, you’ll need to enter the IDs:</p>
-<ul class="simple">
-<li><p>If any of the city or subcountry names needs some amendment (if you are not happy with any of the available options, you can exclude it from renaming at the next stage), please enter the EPW IDs separated by space:<strong>(hit enter)</strong></p></li>
-</ul>
-<p>Afterwards, you’ll be asked to enter the new city name for each ID you previously entered (in this case, 0 1 2 3). So,</p>
-<ul class="simple">
-<li><p>Regarding the file ID: 0 … Please enter the amended city or subcountry, which must be unique: <strong>Chapeco</strong></p></li>
-<li><p>Regarding the file ID: 1 … Please enter the amended city or subcountry, which must be unique: <strong>Palmas</strong></p></li>
-<li><p>Regarding the file ID: 2 … Please enter the amended city or subcountry, which must be unique: <strong>Chapeco</strong></p></li>
-<li><p>Regarding the file ID: 3 … Please enter the amended city or subcountry, which must be unique: <strong>Palmas</strong></p></li>
-</ul>
-<p>Then, accim will let you know the old names, and the new named after amendments. Next, accim will ask you if you want to exclude some EPW from renaming. In this case, we’re just going to hit enter to continue because we don’t want to exclude any:</p>
-<ul class="simple">
-<li><p>If you want to exclude some EPWs from renaming, please enter the new names separated by space, otherwise, hit enter to continue:</p></li>
-</ul>
+<p>First, accim will try to rename them based on the original name and the geolocation. If no match between those is found, accim will assign the string ‘UNKNOWN’ to the city. Then, accim will ask you if you want to edit some of the new names. If so, you’ll need to enter the IDs: - If any of the city or subcountry names needs some amendment (if you are not happy with any of the available options, you can exclude it from renaming at the next stage), please enter the EPW IDs separated by space:<strong>(hit
+enter)</strong></p>
+<p>Afterwards, you’ll be asked to enter the new city name for each ID you previously entered (in this case, 0 1 2 3). So, - Regarding the file ID: 0 … Please enter the amended city or subcountry, which must be unique: <strong>Chapeco</strong> - Regarding the file ID: 1 … Please enter the amended city or subcountry, which must be unique: <strong>Palmas</strong> - Regarding the file ID: 2 … Please enter the amended city or subcountry, which must be unique: <strong>Chapeco</strong> - Regarding the file ID: 3 … Please enter the
+amended city or subcountry, which must be unique: <strong>Palmas</strong></p>
+<p>Then, accim will let you know the old names, and the new named after amendments. Next, accim will ask you if you want to exclude some EPW from renaming. In this case, we’re just going to hit enter to continue because we don’t want to exclude any: - If you want to exclude some EPWs from renaming, please enter the new names separated by space, otherwise, hit enter to continue:</p>
 <p>Finally, accim will ask for confirmation to proceed with the renaming: Do you want to rename the file or files? [y/n]:<strong>y</strong></p>
 <p>At this point, accim will make a copy of the EPWs and rename them. Afterwards, we would be asked if we want to delete the older EPWs. In this case, we won’t because the deletion has been already set to False in the arguments.</p>
 <div class="nbinput docutils container">
@@ -1058,23 +1038,9 @@ Brazil_Palmas_RCP85-2100.epw
 </pre></div></div>
 </div>
 <p>So, we are going to simulate all IDF(s) with all EPW(s). When we run later the simulations using accim, the output files (i.e. the CSVs) will be named following the pattern <strong>‘idf[epw’</strong>, where the character ‘[’ is used as a separator for later data analysis, so that CSV rows can be grouped by EPW location. You may have noticed the same character is used as a separator in the IDF name, in order to group the CSV rows depending on the input data.</p>
-<p>To run the simulations, 2 methods can be used:</p>
-<ul>
-<li><p>the shorter, in which the following 2 lines of code needs to be run: <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">accim.run</span> <span class="pre">import</span> <span class="pre">run</span>&#160;&#160; <span class="pre">run.runEp()</span></code> After this, you’ll be asked to enter the EnergyPlus version (which should coincide with the IDF EnergyPlus version):</p>
-<ul class="simple">
-<li><p>Please enter the desired EnergyPlus version: <strong>23.1</strong></p></li>
-</ul>
-<p>Then, you will need to say if you want to run only output IDFs of accim, or otherwise all existing IDFs in the folder:</p>
-<ul class="simple">
-<li><p>Do you want to run only ACCIM output IDFs? [y or n]: <strong>y</strong></p></li>
-</ul>
-<p>Next, accim will tell you the IDF(s) and EPW(s) it’s going to use for the simulations, and finally all the simulations it’s going to run based on the name pattern ‘idf[epw’. Finally, it will ask for confirmation to proceed with the simulation:</p>
-<ul class="simple">
-<li><p>Do you still want to proceed? [y or n]:<strong>y</strong></p></li>
-</ul>
-</li>
-<li><p>the longer method, in which the parameters are specified when calling the function. We’ll use the longer method, so let’s run the cell below. Since there are a few simulations, it might take a few minutes.</p></li>
-</ul>
+<p>To run the simulations, 2 methods can be used: - the shorter, in which the following 2 lines of code needs to be run: <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">accim.run</span> <span class="pre">import</span> <span class="pre">run</span>&#160;&#160;&#160;&#160; <span class="pre">run.runEp()</span></code> After this, you’ll be asked to enter the EnergyPlus version (which should coincide with the IDF EnergyPlus version): - Please enter the desired EnergyPlus version: <strong>23.1</strong></p>
+<p>Then, you will need to say if you want to run only output IDFs of accim, or otherwise all existing IDFs in the folder: - Do you want to run only ACCIM output IDFs? [y or n]: <strong>y</strong></p>
+<p>Next, accim will tell you the IDF(s) and EPW(s) it’s going to use for the simulations, and finally all the simulations it’s going to run based on the name pattern ‘idf[epw’. Finally, it will ask for confirmation to proceed with the simulation: - Do you still want to proceed? [y or n]:<strong>y</strong> - the longer method, in which the parameters are specified when calling the function. We’ll use the longer method, so let’s run the cell below. Since there are a few simulations, it might take a few minutes.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
@@ -3429,8 +3395,8 @@ No reshaping method has been applied, only multiindexing.
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../addAccis/using_addAccis.html" class="btn btn-neutral float-left" title="Using addAccis() to apply adaptive setpoint temperatures" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../rename_epw_files/using_rename_epw_files.html" class="btn btn-neutral float-right" title="Using rename_epw_files() to rename the EPWs for proper data analysis after simulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Table/using_Table.html" class="btn btn-neutral float-left" title="Using the class Table() for data analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../research_paper_case_study/research_paper_case_study.html" class="btn btn-neutral float-right" title="accim: a Python library to perform building energy simulations considering adaptive comfort and data analytics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

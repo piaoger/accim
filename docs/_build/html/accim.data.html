@@ -19,9 +19,7 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="accim.data.postprocessing package" href="accim.data.postprocessing.html" />
-    <link rel="prev" title="accim package" href="accim.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,30 +54,15 @@
 <p class="caption" role="heading"><span class="caption-text">How-to Guides:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/addAccis/using_addAccis.html">Using <code class="docutils literal notranslate"><span class="pre">addAccis()</span></code> to apply adaptive setpoint temperatures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/full_example_IBPSA/full_example_IBPSA.html">Full example of adaptive setpoint temperature simulation: IBPSA webinar</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/rename_epw_files/using_rename_epw_files.html">Using <code class="docutils literal notranslate"><span class="pre">rename_epw_files()</span></code> to rename the EPWs for proper data analysis after simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/runEp/using_runEp.html">Using <code class="docutils literal notranslate"><span class="pre">runEp()</span></code> to directly run simulations with EnergyPlus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/Table/using_Table.html">Using the class <code class="docutils literal notranslate"><span class="pre">Table()</span></code> for data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/full_example_IBPSA/full_example_IBPSA.html">Full example of adaptive setpoint temperature simulation: IBPSA webinar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter_notebooks/research_paper_case_study/research_paper_case_study.html">accim: a Python library to perform building energy simulations considering adaptive comfort and data analytics</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Further information:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">accim</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="accim.html">accim package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="accim.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">accim.data package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="accim.parametric_and_optimisation.html">accim.parametric_and_optimisation package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="accim.run.html">accim.run package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="accim.sim.html">accim.sim package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="accim.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="accim.html#module-accim.utils">accim.utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="accim.html#module-accim">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
-</ul>
-</li>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">accim</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Documentation for previous versions:</span></p>
 <ul>
@@ -100,8 +83,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">accim</a></li>
-          <li class="breadcrumb-item"><a href="accim.html">accim package</a></li>
       <li class="breadcrumb-item active">accim.data package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/accim.data.rst.txt" rel="nofollow"> View page source</a>
@@ -149,82 +130,8 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="module-accim.data.data_preprocessing">
-<span id="accim-data-data-preprocessing-module"></span><h2>accim.data.data_preprocessing module<a class="headerlink" href="#module-accim.data.data_preprocessing" title="Link to this heading"></a></h2>
-<p>Submodule to perform data processing before simulation run.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="accim.data.data_preprocessing.give_address">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accim.data.data_preprocessing.</span></span><span class="sig-name descname"><span class="pre">give_address</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accim/data/data_preprocessing.html#give_address"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accim.data.data_preprocessing.give_address" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Search address from coordinates using nominatim.openstreetmap.org.
-Version 3 to avoid ssl error.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>latitude</strong> (<em>float</em>) – The latitude from the EPW file.</p></li>
-<li><p><strong>longitude</strong> (<em>float</em>) – The longitude from the EPW file.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="accim.data.data_preprocessing.give_address_openssl">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accim.data.data_preprocessing.</span></span><span class="sig-name descname"><span class="pre">give_address_openssl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accim/data/data_preprocessing.html#give_address_openssl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accim.data.data_preprocessing.give_address_openssl" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Search address from coordinates using nominatim.openstreetmap.org.
-Version 2 to avoid ssl error.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>latitude</strong> (<em>float</em>) – The latitude from the EPW file.</p></li>
-<li><p><strong>longitude</strong> (<em>float</em>) – The longitude from the EPW file.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="accim.data.data_preprocessing.give_address_ssl">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accim.data.data_preprocessing.</span></span><span class="sig-name descname"><span class="pre">give_address_ssl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accim/data/data_preprocessing.html#give_address_ssl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accim.data.data_preprocessing.give_address_ssl" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Search address from coordinates using nominatim.openstreetmap.org.
-Version 1 to avoid ssl error.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>latitude</strong> (<em>float</em>) – The latitude from the EPW file.</p></li>
-<li><p><strong>longitude</strong> (<em>float</em>) – The longitude from the EPW file.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="accim.data.data_preprocessing.rename_epw_files">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accim.data.data_preprocessing.</span></span><span class="sig-name descname"><span class="pre">rename_epw_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filelist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rename_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm_renaming</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirm_deletion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accim/data/data_preprocessing.html#rename_epw_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accim.data.data_preprocessing.rename_epw_files" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Renames the EPW files following the name convention ‘Country_City_RCPscenario-Year’.
-The Country and City fields are computed based on the coordinates of the EPW,
-and the RCPscenario and Year are taken from the original name.
-If no reference is found, the sample_EPWs are considered to be  for Present scenario.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filelist</strong> (<em>list</em>) – A list of the EPW files.
-If omitted, it will rename all sample_EPWs in that folder.</p></li>
-<li><p><strong>rename_dict</strong> (<em>dict</em>) – A dict to set the city field for each EPW file.
-It must follow the pattern
-{‘city name to be search in epw file name’: ‘city name for the epw file if found`}</p></li>
-<li><p><strong>confirm_renaming</strong> (<em>bool</em>) – True or False,
-to skip renaming confirmation on prompt command or console</p></li>
-<li><p><strong>confirm_deletion</strong> (<em>bool</em>) – True or False,
-to skip deletion confirmation on prompt command or console</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="accim-data-data-preprocessing-module">
+<h2>accim.data.data_preprocessing module<a class="headerlink" href="#accim-data-data-preprocessing-module" title="Link to this heading"></a></h2>
 </section>
 <section id="module-accim.data.morphing">
 <span id="accim-data-morphing-module"></span><h2>accim.data.morphing module<a class="headerlink" href="#module-accim.data.morphing" title="Link to this heading"></a></h2>
@@ -267,10 +174,7 @@ except .epw files.</p></li>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="accim.html" class="btn btn-neutral float-left" title="accim package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="accim.data.postprocessing.html" class="btn btn-neutral float-right" title="accim.data.postprocessing package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
