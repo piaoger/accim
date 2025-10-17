@@ -50,7 +50,7 @@ class Table:
     :param concatenated_csv_name: Used as the name for the concatenated csv file.
     :type concatenated_csv_name: str
     :param idf_path: The path of the IDF used for the simulations.
-    :type path-like
+    :type idf_path: path-like
     :param drop_nan: If True, drops the rows with NaNs before
         exporting the CSV using concatenated_csv_name.
     :type drop_nan: bool

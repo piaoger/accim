@@ -1,5 +1,5 @@
 4. Detailed use and explanation of arguments
-===============
+============================================
 
 4.1 First steps
 ---------------
@@ -837,7 +837,7 @@ repository <https://htmlpreview.github.io/?https://github.com/dsanchez-garcia/ac
 .. |Venting Opening Factor| image:: images/VentingOpeningFactor.png
 
 4.4 Putting it into practice: Adaptive setpoint temperatures step by step
--------------------------------------------------------------------
+-------------------------------------------------------------------------
 
 You can see a Jupyter Notebook either in the How-to Guide section of this documentation or in the link below:
 
@@ -1163,7 +1163,7 @@ simulations you need, you’ll get the files you usually get when you run
 any simulation, including the hourly results on a CSV file.
 
 4.5 Renaming epw files for later data analysis
-------------------------------------------
+----------------------------------------------
 
 You can see a Jupyter Notebook either in the How-to Guide section of this documentation or in the link below:
 
@@ -1182,7 +1182,7 @@ YOUR_USERNAME:
 Then, you just need to copy the folder to a different path (i.e. Desktop), open a cmd dialog pointing at it, and run "jupyter notebook". After that, an internet browser will pop up, and you will be able to open the .ipynb file.
 
 4.6 Running simulations
--------------------
+-----------------------
 
 You can see a Jupyter Notebook either in the How-to Guide section of this documentation or in the link below:
 
@@ -1334,7 +1334,7 @@ IDFs, .py scripts and the hourly CSV values which contains the results
 of the simulations.
 
 4.7 Functions and methods for data analysis; making figures and tables
-------------------------------------------------------------------
+----------------------------------------------------------------------
 
 You can see a Jupyter Notebook either in the How-to Guide section of this documentation or in the link below:
 
