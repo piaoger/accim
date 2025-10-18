@@ -100,19 +100,20 @@ setuptools.setup(
         'Topic :: Scientific/Engineering'
         ],
     packages=setuptools.find_packages(),
-    package_data={
-       '': [
-           '*.csv',
-           '*.idf',
-           '*.epw',
-           '*.eso',
-           '*.jpg',
-           '*.png',
-           '*.xlsx',
-           '*.xls',
-           '*.ipynb'
-            ]
-       },
+    # package_data={
+    #    '': [
+    #        '*.csv',
+    #        '*.idf',
+    #        '*.epw',
+    #        '*.eso',
+    #        '*.jpg',
+    #        '*.png',
+    #        '*.xlsx',
+    #        '*.xls',
+    #        '*.ipynb'
+    #         ]
+    #    },
+    include_package_data=True,
     python_requires='<3.10',
     install_requires=[
         'scikit-learn',
@@ -124,6 +125,7 @@ setuptools.setup(
         'pandas',
         'datapackage',
         'unidecode',
+        'besos',
         # 'shutil',
         # 'glob'
         ],

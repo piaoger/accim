@@ -1,7 +1,14 @@
-include README.md
-include LICENSE.txt
+# MANIFEST.in (versión mejorada)
 
-prune accim/sample_files/jupyter_notebooks/z_SS
-prune accim/dist
-prune accim/dist/Superseded
-prune accim/docs
+# 1. Incluir archivos de metadatos en la raíz
+include README.md
+include LICENSE
+
+# 2. Incluir de forma recursiva TODOS los archivos dentro de sample_files
+#    Esto reemplaza la necesidad de 'package_data' en setup.py
+recursive-include accim/sample_files *
+
+# 3. Excluir (podar) directorios específicos que no queremos en la distribución final
+# prune accim/sample_files/jupyter_notebooks/z_SS
+# prune dist
+# prune docs
