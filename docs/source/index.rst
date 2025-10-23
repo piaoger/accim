@@ -10,13 +10,13 @@ Welcome to accim |version|'s documentation!
    :maxdepth: 7
    :caption: Tutorial:
 
-   1_requirements
-   2_installation
-   3_quick tutorial
-   4_detailed use
-   5_troubleshooting
-   6_citation
-   7_credits
+   1_requirements.md
+   2_installation.md
+   3_quick tutorial.md
+   4_detailed use.md
+   5_troubleshooting.md
+   6_citation.md
+   7_credits.md
 
 .. toctree::
    :maxdepth: 7
@@ -39,7 +39,7 @@ Welcome to accim |version|'s documentation!
    :maxdepth: 7
    :caption: Documentation for previous versions:
 
-   8_pdfs_for_prev_versions
+   8_pdfs_for_prev_versions.md
 
 Indices and tables
 ==================
