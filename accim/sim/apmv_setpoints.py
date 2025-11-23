@@ -1177,6 +1177,7 @@ def add_vrf_system(
         cop=cop,
         VRFschedule=VRFschedule
     )
+    z.addForscriptSchVRFsystem(verboseMode=verboseMode)
 
 
 # todo calculate number of occupied hours from occupancy schedules
