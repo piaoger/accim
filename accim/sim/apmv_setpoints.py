@@ -1179,5 +1179,27 @@ def add_vrf_system(
     )
     z.addForscriptSchVRFsystem(verboseMode=verboseMode)
 
+    # TSDSlist = ([i
+    #              for i
+    #              in building.idfobjects['ThermostatSetpoint:DualSetpoint']])
+    # # print(TSDSlist)
+    #
+    # for i in range(len(TSDSlist)):
+    #     firstTSDS = building.idfobjects['ThermostatSetpoint:DualSetpoint'][-1]
+    #     building.removeidfobject(firstTSDS)
+    #
+    # del TSDSlist
+    #
+    # ZCTlist = ([i
+    #              for i
+    #              in building.idfobjects['ZONECONTROL:THERMOSTAT']])
+    # # print(TSDSlist)
+    #
+    # for i in range(len(ZCTlist)):
+    #     firstZCT = building.idfobjects['ZONECONTROL:THERMOSTAT'][-1]
+    #     building.removeidfobject(firstZCT)
+    #
+    # del ZCTlist
+
 
 # todo calculate number of occupied hours from occupancy schedules
