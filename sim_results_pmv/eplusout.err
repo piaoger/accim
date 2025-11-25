@@ -1,67 +1,132 @@
-Program Version,EnergyPlus, Version 9.4.0-998c4b761e, YMD=2025.11.25 08:59,
-   ** Warning ** Sizing:Parameters: note Timesteps in Averaging Window entered value=[2] is less than 1 hour (i.e., 6 timesteps).
+Program Version,EnergyPlus, Version 25.1.0-68a4a7c774, YMD=2025.11.25 19:25,
    ************* Beginning Zone Sizing Calculations
-   ** Warning ** Weather file location will be used rather than entered (IDF) Location object.
-   **   ~~~   ** ..Location object=UNTITLED (01-01:31-12)  (01-01:31-12)
-   **   ~~~   ** ..Weather File Location=SEVILLA - ESP IWEC Data WMO#=083910
-   **   ~~~   ** ..due to location differences, Latitude difference=[3.03] degrees, Longitude difference=[2.35] degrees.
-   **   ~~~   ** ..Time Zone difference=[0.0] hour(s), Elevation difference=[94.67] percent, [551.00] meters.
-   ** Warning ** GetSurfaceData: Construction PROJECT PARTITION of interzone surface BLOCK1:ZONE2_PARTITION_2_0_0 does not have the same materials in the reverse order as the construction PROJECT PARTITION_REV of adjacent surface BLOCK1:ZONE1_PARTITION_4_0_10000
-   **   ~~~   ** or the properties of the reversed layers are not correct due to differing layer front and back side values
-   **   ~~~   ** ...but Nominal U values are similar, diff=[0.0000] ... simulation proceeds.
-   **   ~~~   ** ...if the two zones are expected to have significantly different temperatures, the proper "reverse" construction should be created.
-   **   ~~~   ** ...this problem for this pair will not be reported again.
-   ** Warning ** GetSurfaceData: Entered Zone Floor Areas differ from calculated Zone Floor Area(s).
-   **   ~~~   ** ...use Output:Diagnostics,DisplayExtraWarnings; to show more details on individual zones.
-   ************* Note that the following warning(s) may/will occur if you have not enclosed your zone completely.
-   ** Warning ** Entered Zone Volumes differ from calculated zone volume(s).
-   **   ~~~   ** ...use Output:Diagnostics,DisplayExtraWarnings; to show more details on individual zones.
-   ** Warning ** CheckUsedConstructions: There are 5 nominally unused constructions in input.
+   ** Warning ** GetHTSurfaceData: Surfaces with interface to Ground found but no "Ground Temperatures" were input.
+   **   ~~~   ** Found first in surface=SURFACE 1
+   **   ~~~   ** Defaults, constant throughout the year of (18.0) will be used.
+   ** Warning ** CheckUsedConstructions: There are 2 nominally unused constructions in input.
    **   ~~~   ** For explicit details on each unused construction, use Output:Diagnostics,DisplayExtraWarnings;
-   ** Warning ** GetVRFInput: AirConditioner:VariableRefrigerantFlow="VRF OUTDOOR UNIT_BLOCK1:ZONE2" curve values
-   **   ~~~   ** ... Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name = VRFCOOLCAPFT output is not equal to 1.0 (+ or - 10%) at rated conditions.
-   **   ~~~   ** ... Curve output at rated conditions = 1.136
-   ** Warning ** GetVRFInput: AirConditioner:VariableRefrigerantFlow="VRF OUTDOOR UNIT_BLOCK1:ZONE1" curve values
-   **   ~~~   ** ... Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name = VRFCOOLCAPFT output is not equal to 1.0 (+ or - 10%) at rated conditions.
-   **   ~~~   ** ... Curve output at rated conditions = 1.136
-   ** Warning ** GetDXCoils: Coil:Cooling:DX:VariableRefrigerantFlow="BLOCK1:ZONE2 VRF INDOOR UNIT DX COOLING COIL" curve values
-   **   ~~~   ** ... Cooling Capacity Ratio Modifier Function of Temperature Curve Name = VRFTUCOOLCAPFT output is not equal to 1.0 (+ or - 10%) at rated conditions.
-   **   ~~~   ** ... Curve output at rated conditions = 1.136
-   ** Warning ** GetDXCoils: Coil:Cooling:DX:VariableRefrigerantFlow="BLOCK1:ZONE1 VRF INDOOR UNIT DX COOLING COIL" curve values
-   **   ~~~   ** ... Cooling Capacity Ratio Modifier Function of Temperature Curve Name = VRFTUCOOLCAPFT output is not equal to 1.0 (+ or - 10%) at rated conditions.
-   **   ~~~   ** ... Curve output at rated conditions = 1.136
-   ** Warning ** ZoneTerminalUnitList "VRF OUTDOOR UNIT_BLOCK1:ZONE2 ZONE LIST"
-   ** Warning ** ...Only 1 Terminal Unit connected to system and heat recovery is selected.
-   **   ~~~   ** ...Heat recovery will be disabled.
-   ************* Testing Individual Branch Integrity
-   ************* All Branches passed integrity testing
-   ************* Testing Individual Supply Air Path Integrity
-   ************* All Supply Air Paths passed integrity testing
-   ************* Testing Individual Return Air Path Integrity
-   ************* All Return Air Paths passed integrity testing
-   ************* No node connection errors were found.
-   ************* Beginning Simulation
-   ** Warning ** Processing Monthly Tabular Reports: Variable names not valid for this simulation
-   **   ~~~   ** ...use Output:Diagnostics,DisplayExtraWarnings; to show more details on individual variables.
-   ************* Simulation Error Summary *************
-   ** Warning ** The following Report Variables were requested but not generated -- check.rdd file
-   **   ~~~   ** Either the IDF did not contain these elements, the variable name is misspelled,
-   **   ~~~   ** or the requested variable is an advanced output which requires Output : Diagnostics, DisplayAdvancedReportVariables;
-   ************* Key=*, VarName=FACILITY TOTAL HVAC ELECTRIC DEMAND POWER, Frequency=Hourly
-   ************* Key=*, VarName=AFN ZONE VENTILATION AIR CHANGE RATE, Frequency=Hourly
-   ************* Key=*, VarName=AFN ZONE VENTILATION VOLUME, Frequency=Hourly
-   ** Severe  ** Orphaned ZoneHVAC object found.  This was object never referenced in the input, and was not used.
-   **   ~~~   **  -- Object type: ZoneHVAC:IdealLoadsAirSystem
-   **   ~~~   **  -- Object name: Block1:Zone1 Ideal Loads Air
-   ** Severe  ** Orphaned ZoneHVAC object found.  This was object never referenced in the input, and was not used.
-   **   ~~~   **  -- Object type: ZoneHVAC:IdealLoadsAirSystem
-   **   ~~~   **  -- Object name: Block1:Zone2 Ideal Loads Air
-   ************* There are 4 unused objects in input.
-   ************* Use Output:Diagnostics,DisplayUnusedObjects; to see them.
-   ************* There are 26 unused schedules in input.
-   ************* There are 5 unused week schedules in input.
-   ************* There are 7 unused day schedules in input.
-   ************* Use Output:Diagnostics,DisplayUnusedSchedules; to see them.
+   ** Severe  ** EnergyManagementSystem:Sensor="PMV_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:Sensor="PMV_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:Sensor="PEOPLE_OCCUPANT_COUNT_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:Sensor="PEOPLE_OCCUPANT_COUNT_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:Actuator="PMV_H_SP_ACT_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:Actuator="PMV_H_SP_ACT_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:Actuator="PMV_C_SP_ACT_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:Actuator="PMV_C_SP_ACT_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_COOLING_SP_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_COOLING_SP_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_COOLING_SP_COOLING_SEASON_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_COOLING_SP_COOLING_SEASON_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_COOLING_SP_HEATING_SEASON_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_COOLING_SP_HEATING_SEASON_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_HEATING_SP_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_HEATING_SP_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_HEATING_SP_COOLING_SEASON_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_HEATING_SP_COOLING_SEASON_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_HEATING_SP_HEATING_SEASON_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_HEATING_SP_HEATING_SEASON_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="ADAP_COEFF_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="ADAP_COEFF_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="ADAP_COEFF_HEATING_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="ADAP_COEFF_HEATING_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="ADAP_COEFF_COOLING_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="ADAP_COEFF_COOLING_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="PMV_HEATING_SP_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="PMV_HEATING_SP_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="PMV_COOLING_SP_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="PMV_COOLING_SP_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="COMFHOUR_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="COMFHOUR_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="DISCOMFHOUR_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="DISCOMFHOUR_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="DISCOMFHOUR_HEAT_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="DISCOMFHOUR_HEAT_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="DISCOMFHOUR_COLD_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="DISCOMFHOUR_COLD_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="OCCUPIED_HOUR_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="OCCUPIED_HOUR_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_H_SP_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_H_SP_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_C_SP_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_C_SP_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_H_SP_NOTOL_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_H_SP_NOTOL_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_C_SP_NOTOL_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_C_SP_NOTOL_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:Program="SET_ZONE_INPUT_DATA_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used for EMS Programs cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:Program="SET_ZONE_INPUT_DATA_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used for EMS Programs cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:Program="APPLY_APMV_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used for EMS Programs cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:Program="APPLY_APMV_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used for EMS Programs cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:Program="MONITOR_APMV_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used for EMS Programs cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:Program="MONITOR_APMV_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used for EMS Programs cannot contain "-" characters.
+   ** Severe  ** EnergyManagementSystem:Program="COUNT_APMV_COMFORT_HOURS_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used for EMS Programs cannot contain spaces
+   ** Severe  ** EnergyManagementSystem:Program="COUNT_APMV_COMFORT_HOURS_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used for EMS Programs cannot contain "-" characters.
+   **  Fatal  ** Errors found in getting EMS Runtime Language input. Preceding condition causes termination.
+   ...Summary of Errors that led to program termination:
+   ..... Reference severe error count=58
+   ..... Last severe error=EnergyManagementSystem:Program="COUNT_APMV_COMFORT_HOURS_RESIDENTIAL - LIVING SPACE", Invalid variable name entered.
+   ************* Warning:  Node connection errors not checked - most system input has not been read (see previous warning).
+   ************* Fatal error -- final processing.  Program exited before simulations began.  See previous error messages.
    *************
    ************* ===== Final Error Summary =====
    ************* The following error categories occurred.  Consider correcting or noting.
@@ -71,5 +136,5 @@ Program Version,EnergyPlus, Version 9.4.0-998c4b761e, YMD=2025.11.25 08:59,
    ************* ..object. You may remove the constructions indicated (when you use the DisplayExtraWarnings option).
    *************
    ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
-   ************* EnergyPlus Sizing Error Summary. During Sizing: 12 Warning; 0 Severe Errors.
-   ************* EnergyPlus Completed Successfully-- 14 Warning; 2 Severe Errors; Elapsed Time=00hr 00min 23.25sec
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 2 Warning; 58 Severe Errors.
+   ************* EnergyPlus Terminated--Fatal Error Detected. 2 Warning; 58 Severe Errors; Elapsed Time=00hr 00min  0.18sec

@@ -13,7 +13,8 @@ sns.set_style("whitegrid")
 # Define file paths
 # idfname = 'TestModel_onlyGeometryForVRFsystem_2zones_CalcVent_V940.idf'
 # idfname = 'TestModel_ALJARAFE CENTER_mod.idf'
-idfname = 'TestModel_V940_VRFsystem_script_mod.idf'
+# idfname = 'TestModel_V940_VRFsystem_script_mod.idf'
+idfname = 'TestModel_TestResidentialUnit_v01_VRF_2.idf'
 epwfile = "Seville.epw"
 
 print(f"IDF File: {idfname}")
@@ -25,8 +26,11 @@ building = ef.get_building(idfname)
 # Ensure zones are always occupied for the demonstration
 apmv.set_zones_always_occupied(building=building)
 
-zones = [i.Zone_or_ZoneList_Name for i in building.idfobjects['people']]
+# zones = [i.Zone_or_ZoneList_Name for i in building.idfobjects['people']]
+zones = [i.Zone_or_ZoneList_or_Space_or_SpaceList_Name for i in building.idfobjects['people']]
 
+
+'Zone_or_ZoneList_or_Space_or_SpaceList_Name'
 print("Building loaded successfully.")
 print(f"Occupied zones found: {zones}")
 
@@ -76,7 +80,7 @@ ep.run_building(
 print("Baseline simulation finished.")
 
 
-# Load Baseline results
+## Load Baseline results
 results_path_base = os.path.join(output_dir_base, 'eplusout.csv')
 df_base = pd.read_csv(results_path_base)
 df_base['Hour'] = df_base.index
