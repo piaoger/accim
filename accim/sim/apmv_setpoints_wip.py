@@ -202,12 +202,19 @@ def apply_apmv_setpoints(
                     print(f"{i}_{zone} Schedule has been added")
 
     comf_fanger_dualsps = [i for i in building.idfobjects['ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint']]
+    if len(comf_fanger_dualsps) > 0:
+        for i in comf_fanger_dualsps:
+            for j in range(len(zones_with_ppl_colon)):
+                if zones_with_ppl_colon[j] in i.Name:
+                    i.Fanger_Thermal_Comfort_Heating_Schedule_Name = f'PMV_H_SP_{zones_with_ppl_underscore[j]}'
+                    i.Fanger_Thermal_Comfort_Cooling_Schedule_Name = f'PMV_C_SP_{zones_with_ppl_underscore[j]}'
+    else:
+        for zone in zones_testing:
+            building.newidfobject(
+                key='ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint',
+                Name='Fanger Thermal Comfort Dual Setpoint - ' + zone,
 
-    for i in comf_fanger_dualsps:
-        for j in range(len(zones_with_ppl_colon)):
-            if zones_with_ppl_colon[j] in i.Name:
-                i.Fanger_Thermal_Comfort_Heating_Schedule_Name = f'PMV_H_SP_{zones_with_ppl_underscore[j]}'
-                i.Fanger_Thermal_Comfort_Cooling_Schedule_Name = f'PMV_C_SP_{zones_with_ppl_underscore[j]}'
+            )
 
     # EMS
 
