@@ -17,22 +17,22 @@ sns.set_style("whitegrid")
 idfname = 'TestModel_TestResidentialUnit_v01_VRF_2.idf'
 epwfile = "Seville.epw"
 
-print(f"IDF File: {idfname}")
-print(f"EPW File: {epwfile}")
+# print(f"IDF File: {idfname}")
+# print(f"EPW File: {epwfile}")
 
 # Load the building model using BESOS
 building = ef.get_building(idfname)
 
 # Ensure zones are always occupied for the demonstration
-apmv.set_zones_always_occupied(building=building)
+# apmv.set_zones_always_occupied(building=building)
 
 # zones = [i.Zone_or_ZoneList_Name for i in building.idfobjects['people']]
-zones = [i.Zone_or_ZoneList_or_Space_or_SpaceList_Name for i in building.idfobjects['people']]
+# zones = [i.Zone_or_ZoneList_or_Space_or_SpaceList_Name for i in building.idfobjects['people']]
 
 
-'Zone_or_ZoneList_or_Space_or_SpaceList_Name'
-print("Building loaded successfully.")
-print(f"Occupied zones found: {zones}")
+# 'Zone_or_ZoneList_or_Space_or_SpaceList_Name'
+# print("Building loaded successfully.")
+# print(f"Occupied zones found: {zones}")
 
 
 # Helper function to find columns dynamically (used in both parts)
@@ -49,7 +49,7 @@ def get_columns(df, zone_name_part):
 # Create a copy of the building for the baseline simulation
 building_pmv = ef.get_building(idfname)
 # apmv.add_vrf_system(building=building_pmv, SupplyAirTempInputMethod='temperature difference')
-apmv.set_zones_always_occupied(building=building_pmv)
+# apmv.set_zones_always_occupied(building=building_pmv)
 
 # saveas_name = idfname.split('.idf')[0] + '_VRFsystem_script.idf'
 # building_pmv.saveas(saveas_name)
@@ -68,35 +68,36 @@ building_with_pmv = apmv.apply_apmv_setpoints(
     # tolerance_cooling_sp_heating_season=-0.15
 )
 
-# Run simulation
-output_dir_base = 'sim_results_pmv'
-print(f"Running baseline simulation in: {output_dir_base}...")
+## Run simulation
 
-ep.run_building(
-    building=building_with_pmv,
-    out_dir=output_dir_base,
-    epw=epwfile
-)
-print("Baseline simulation finished.")
+# output_dir_base = 'sim_results_pmv'
+# print(f"Running baseline simulation in: {output_dir_base}...")
+#
+# ep.run_building(
+#     building=building_with_pmv,
+#     out_dir=output_dir_base,
+#     epw=epwfile
+# )
+# print("Baseline simulation finished.")
 
 
 ## Load Baseline results
-results_path_base = os.path.join(output_dir_base, 'eplusout.csv')
-df_base = pd.read_csv(results_path_base)
-df_base['Hour'] = df_base.index
-
-# Get columns
-
-z1_apmv_b, z1_cool_b, z1_heat_b = get_columns(df_base, 'Block1_Zone2')
-
-# Visualize Baseline
-plt.figure()
-sns.lineplot(data=df_base, x='Hour', y=z1_apmv_b, color='gray', linewidth=0.5, label='PMV (Lambda=0)')
-sns.lineplot(data=df_base, x='Hour', y=z1_cool_b, color='blue', linestyle='--', label='Cooling SP (0.5)')
-sns.lineplot(data=df_base, x='Hour', y=z1_heat_b, color='red', linestyle='--', label='Heating SP (-0.5)')
-
-plt.title('Zone 1: Baseline (Standard Fanger)')
-plt.ylabel('PMV / aPMV')
-plt.xlabel('Hours of the Year')
-plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.12), frameon=True)
-plt.show()
+# results_path_base = os.path.join(output_dir_base, 'eplusout.csv')
+# df_base = pd.read_csv(results_path_base)
+# df_base['Hour'] = df_base.index
+#
+# # Get columns
+#
+# z1_apmv_b, z1_cool_b, z1_heat_b = get_columns(df_base, 'Block1_Zone2')
+#
+# # Visualize Baseline
+# plt.figure()
+# sns.lineplot(data=df_base, x='Hour', y=z1_apmv_b, color='gray', linewidth=0.5, label='PMV (Lambda=0)')
+# sns.lineplot(data=df_base, x='Hour', y=z1_cool_b, color='blue', linestyle='--', label='Cooling SP (0.5)')
+# sns.lineplot(data=df_base, x='Hour', y=z1_heat_b, color='red', linestyle='--', label='Heating SP (-0.5)')
+#
+# plt.title('Zone 1: Baseline (Standard Fanger)')
+# plt.ylabel('PMV / aPMV')
+# plt.xlabel('Hours of the Year')
+# plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.12), frameon=True)
+# plt.show()
