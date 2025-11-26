@@ -24,6 +24,7 @@ from besos.IDF_class import IDF
 import besos
 from os import PathLike
 from unidecode import unidecode
+from typing import List, Literal
 
 from accim import lists
 
@@ -433,3 +434,76 @@ def get_idd_path_from_ep_version(EnergyPlus_version: str):
         iddfile = 'not-supported'
 
     return iddfile
+
+
+def get_available_fields(
+        idf_instance: besos.IDF_class.IDF,
+        object_name: str,
+        source: Literal['idd', 'idf'] = 'idd',
+        separator: str = '_'
+) -> List[str]:
+    """
+    Retrieves the available fields for an EnergyPlus object using an eppy IDF instance.
+    It automatically removes colons (':') from field names.
+
+    Args:
+        idf_instance (IDF): The eppy IDF class instance (e.g., from besos.get_building()).
+        object_name (str): The type of the object (e.g., 'Zone', 'Material').
+        source (str, optional): The source of the field definitions.
+            - 'idd': (Default) Extracts the full schema from the EnergyPlus dictionary.
+            - 'idf': Extracts fields from the first existing instance in the model.
+        separator (str, optional): Character to replace spaces with. Default is '_'.
+                                   If " " is passed, the original spaces are kept.
+
+    Returns:
+        List[str]: A list of formatted field names. Returns an empty list if an error occurs.
+
+    Raises:
+        ValueError: If 'source' is not 'idd' or 'idf'.
+    """
+
+    # 1. Normalize object name to uppercase (eppy internal format)
+    obj_upper = object_name.upper()
+    raw_fields: List[str] = []
+
+    # --- CASE 1: Extract from IDD (Theoretical Schema) ---
+    if source == 'idd':
+        # Check if the object TYPE exists in the EnergyPlus dictionary
+        if obj_upper in idf_instance.model.dtls:
+            idx = idf_instance.model.dtls.index(obj_upper)
+            raw_info = idf_instance.idd_info[idx]
+            # Extract only the items that are fields
+            raw_fields = [item['field'][0] for item in raw_info if 'field' in item]
+        else:
+            warnings.warn(f"Object type '{object_name}' not found in the loaded IDD.")
+            return []
+
+    # --- CASE 2: Extract from IDF (Existing Instance) ---
+    elif source == 'idf':
+        # Check if there are any created objects of this type
+        objects = idf_instance.idfobjects[obj_upper]
+
+        if len(objects) > 0:
+            # Take the first object to extract its fields
+            raw_fields = objects[0].fieldnames
+        else:
+            warnings.warn(f"No instances of '{object_name}' found in the current IDF model.")
+            return []
+
+    else:
+        raise ValueError("Parameter 'source' must be either 'idd' or 'idf'.")
+
+    # --- FINAL FORMATTING ---
+    formatted_fields: List[str] = []
+
+    for field in raw_fields:
+        # 1. Remove colons (e.g., 'Output:Variable' -> 'OutputVariable')
+        clean_field = field.replace(":", "")
+
+        # 2. Replace spaces with the specified separator
+        if separator != " ":
+            clean_field = clean_field.replace(" ", separator)
+
+        formatted_fields.append(clean_field)
+
+    return formatted_fields

@@ -142,11 +142,16 @@ def apply_apmv_setpoints(
             except eppy.bunch_subclass.BadEPFieldError:
                 print('Zone_Name field not found in People object.')
 
-    zones_with_ppl_colon = [ppl[0] for ppl in ppl_temp]
-    ppl_names = [ppl[1] for ppl in ppl_temp]
-    zones_with_ppl_underscore = [z.replace(':', '_') for z in zones_with_ppl_colon]
-
     hierarchy_dict = get_idf_hierarchy(idf=building)
+
+    # zones_with_ppl_colon = [ppl[0] for ppl in ppl_temp]
+    ppl_names = [ppl[1] for ppl in ppl_temp]
+    # zones_with_ppl_underscore = [z.replace(':', '_') for z in zones_with_ppl_colon]
+
+    zones_with_ppl_underscore = [i for i in hierarchy_dict['zones'].keys()]
+    spaces = get_spaces_from_spacelist(idf=building, spacelist_name='Residential - Living Space')
+    zones_with_ppl_colon = [i for i in hierarchy_dict['zones'].keys()]
+
 
     # Managing cooling season start user input: transform dd/mm date into number if needed
 
@@ -182,10 +187,10 @@ def apply_apmv_setpoints(
     # Adding Schedule:Compact objects for PMV setpoints
 
     sch_comp_objs = [i.Name for i in building.idfobjects['Schedule:Compact']]
-    zones_testing = [i for i in hierarchy_dict['zones'].keys()]
+
 
     for i in ['PMV_H_SP', 'PMV_C_SP']:
-        for zone in zones_testing:
+        for zone in zones_with_ppl_underscore:
             if f'{i}_{zone}' in sch_comp_objs:
                 if verboseMode:
                     print(f"{i}_{zone} Schedule already was in the model")
@@ -204,16 +209,17 @@ def apply_apmv_setpoints(
     comf_fanger_dualsps = [i for i in building.idfobjects['ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint']]
     if len(comf_fanger_dualsps) > 0:
         for i in comf_fanger_dualsps:
-            for j in range(len(zones_with_ppl_colon)):
+            for j in range(len(zones_with_ppl_underscore)):
                 if zones_with_ppl_colon[j] in i.Name:
                     i.Fanger_Thermal_Comfort_Heating_Schedule_Name = f'PMV_H_SP_{zones_with_ppl_underscore[j]}'
                     i.Fanger_Thermal_Comfort_Cooling_Schedule_Name = f'PMV_C_SP_{zones_with_ppl_underscore[j]}'
     else:
-        for zone in zones_testing:
+        for zone in zones_with_ppl_underscore:
             building.newidfobject(
                 key='ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint',
                 Name='Fanger Thermal Comfort Dual Setpoint - ' + zone,
-
+                Fanger_Thermal_Comfort_Heating_Schedule_Name=f'PMV_H_SP_{zone}',
+                Fanger_Thermal_Comfort_Cooling_Schedule_Name=f'PMV_C_SP_{zone}'
             )
 
     # EMS
@@ -229,7 +235,15 @@ def apply_apmv_setpoints(
             building.newidfobject(
                 'EnergyManagementSystem:Sensor',
                 Name=f'PMV_{zones_with_ppl_underscore[i]}',
-                OutputVariable_or_OutputMeter_Index_Key_Name=ppl_names[i],
+                # People name not working (RESIDENTIAL LIVING OCCUPANTS)
+                # OutputVariable_or_OutputMeter_Index_Key_Name=ppl_names[0],
+                # Zone name not working (FLOOR_1_ZONE)
+                # OutputVariable_or_OutputMeter_Index_Key_Name=zones_with_ppl_underscore[i],
+                # "People zonename" not working (PEOPLE FLOOR_1_ZONE)
+                # OutputVariable_or_OutputMeter_Index_Key_Name=f'People {zones_with_ppl_underscore[i]}',
+
+                OutputVariable_or_OutputMeter_Index_Key_Name=f'People {spaces[i]}',
+
                 OutputVariable_or_OutputMeter_Name='Zone Thermal Comfort Fanger Model PMV'
             )
             if verboseMode:
@@ -242,7 +256,7 @@ def apply_apmv_setpoints(
             building.newidfobject(
                 'EnergyManagementSystem:Sensor',
                 Name=f'People_Occupant_Count_{zones_with_ppl_underscore[i]}',
-                OutputVariable_or_OutputMeter_Index_Key_Name=ppl_names[i],
+                OutputVariable_or_OutputMeter_Index_Key_Name=ppl_names[0],
                 OutputVariable_or_OutputMeter_Name='People Occupant Count'
             )
             if verboseMode:
@@ -359,6 +373,7 @@ def apply_apmv_setpoints(
 
     for i in zones_with_ppl_colon:
         zonename = df_arguments.loc[i, 'underscore_zonename']
+        # zonename = i
 
         if f'set_zone_input_data_{zonename}' in programlist:
             if verboseMode:
@@ -794,9 +809,11 @@ def generate_df_from_args(
                 ppl_temp = [[people.Zone_Name, people.Name] for people in building.idfobjects['People']]
             except eppy.bunch_subclass.BadEPFieldError:
                 print('Zone_Name field not found in People object.')
-    zones_with_ppl_colon = [ppl[0] for ppl in ppl_temp]
 
     hierarchy_dict = get_idf_hierarchy(idf=building)
+
+    # zones_with_ppl_colon = [ppl[0] for ppl in ppl_temp]
+    zones_with_ppl_colon = [i for i in hierarchy_dict['zones'].keys()]
 
 
 
@@ -1260,5 +1277,39 @@ def get_idf_hierarchy(idf: besos.IDF_class) -> Dict[str, Any]:
         hierarchy["groups"]["space_lists"][s_list.Name] = members
 
     return hierarchy
+
+
+def get_spaces_from_spacelist(idf: besos.IDF_class.IDF, spacelist_name: str) -> List[str]:
+    """
+    Retrieves the list of Space names belonging to a specific SpaceList object.
+
+    Performs a case-insensitive search for the SpaceList name to ensure robustness.
+
+    Args:
+        idf (Union[IDF, IDF_class]): The IDF model object.
+        spacelist_name (str): The name of the SpaceList to query (e.g. "Residential - Living Space").
+
+    Returns:
+        List[str]: A list of space names contained in that SpaceList.
+                   Returns an empty list [] if the SpaceList is not found.
+    """
+
+    # Normalize the target name to uppercase for case-insensitive comparison
+    target_name_upper = spacelist_name.upper()
+
+    # Iterate through all SPACELIST objects in the IDF
+    for s_list in idf.idfobjects['SPACELIST']:
+
+        # Check if this is the list we are looking for
+        if s_list.Name.upper() == target_name_upper:
+            # In eppy/besos, .obj is a list: ['SpaceList', 'Name', 'Space1', 'Space2'...]
+            # Slicing from index 2 ([2:]) retrieves only the members (the spaces).
+            members = [space_name for space_name in s_list.obj[2:]]
+
+            return members
+
+    # If the loop finishes without finding the list, return an empty list or handle error
+    print(f"WARNING: SpaceList '{spacelist_name}' not found in the IDF.")
+    return []
 
 # todo calculate number of occupied hours from occupancy schedules

@@ -70,15 +70,15 @@ building_with_pmv = apmv.apply_apmv_setpoints(
 
 ## Run simulation
 
-# output_dir_base = 'sim_results_pmv'
-# print(f"Running baseline simulation in: {output_dir_base}...")
-#
-# ep.run_building(
-#     building=building_with_pmv,
-#     out_dir=output_dir_base,
-#     epw=epwfile
-# )
-# print("Baseline simulation finished.")
+output_dir_base = 'sim_results_pmv'
+print(f"Running baseline simulation in: {output_dir_base}...")
+
+ep.run_building(
+    building=building_with_pmv,
+    out_dir=output_dir_base,
+    epw=epwfile
+)
+print("Baseline simulation finished.")
 
 
 ## Load Baseline results

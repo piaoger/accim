@@ -1,4 +1,4 @@
-Program Version,EnergyPlus, Version 25.1.0-68a4a7c774, YMD=2025.11.25 19:25
+Program Version,EnergyPlus, Version 25.1.0-68a4a7c774, YMD=2025.11.26 19:32
 ! <Version>, Version ID
  Version, 25.1
 ! <Timesteps per Hour>, #TimeSteps, Minutes per TimeStep {minutes}
@@ -70,11 +70,86 @@ Surface Heat Transfer Algorithm, CTF - ConductionTransferFunction,200,0.10,1000.
  Zone Internal Gains Nominal, FLOOR_1_ZONE,92.90,2.3,40.000,2.500E-002,16.000,8.600,0.000,0.000,0.000,0.000,24.600,No
  Zone Internal Gains Nominal, FLOOR_2_ZONE,92.90,2.3,40.000,2.500E-002,16.000,8.600,0.000,0.000,0.000,0.000,24.600,No
 ! <People Internal Gains Nominal>,Name,Schedule Name,Zone Name,Zone Floor Area {m2},# Zone Occupants,Number of People {},People/Floor Area {person/m2},Floor Area per person {m2/person},Fraction Radiant,Fraction Convected,Sensible Fraction Calculation,Activity level,ASHRAE 55 Warnings,Carbon Dioxide Generation Rate,Minimum Number of People for All Day Types,Maximum Number of People for All Day Types,Minimum Number of People for Weekdays, Maximum Number of People for Weekdays, Minimum Number of People for Weekends/Holidays, Maximum Number of People for Weekends /Holidays,Minimum Number of People for Summer Design Days, Maximum Number of People for Summer Design Days,Minimum Number of People for Winter Design Days, Maximum Number of People for Winter Design Days,MRT Calculation Type,Work Efficiency, Clothing Insulation Calculation Method,Clothing Insulation Calculation Method Schedule,Clothing,Air Velocity,Fanger Calculation,Pierce Calculation,KSU Calculation,Cooling Effect Calculation,Ankle Draft Calculation
- People Internal Gains Nominal, FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,ON,FLOOR_1_ZONE,92.90,2.3,2.3,2.500E-002,40.000,0.300,0.700,0.500,RESIDENTIAL ACTIVITY SCHEDULE,Yes,3.8200E-008,2.3,2.3,2.3,2.3,2.3,2.3,2.3,2.3,2.3,2.3,Zone Averaged,ALWAYS ON DISCRETE,Clothing Insulation Schedule,N/A,ALWAYS ON DISCRETE,ALWAYS ON DISCRETE,Yes,No,No,No,No
- People Internal Gains Nominal, FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,ON,FLOOR_2_ZONE,92.90,2.3,2.3,2.500E-002,40.000,0.300,0.700,0.500,RESIDENTIAL ACTIVITY SCHEDULE,Yes,3.8200E-008,2.3,2.3,2.3,2.3,2.3,2.3,2.3,2.3,2.3,2.3,Zone Averaged,ALWAYS ON DISCRETE,Clothing Insulation Schedule,N/A,ALWAYS ON DISCRETE,ALWAYS ON DISCRETE,Yes,No,No,No,No
+ People Internal Gains Nominal, FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,RESIDENTIAL OCCUPANCY SCHEDULE,FLOOR_1_ZONE,92.90,2.3,2.3,2.500E-002,40.000,0.300,0.700,0.500,RESIDENTIAL ACTIVITY SCHEDULE,Yes,3.8200E-008,0.7,2.3,0.7,2.3,0.7,2.3,0.7,2.3,0.7,2.3,Zone Averaged,ALWAYS ON DISCRETE,Clothing Insulation Schedule,N/A,ALWAYS ON DISCRETE,ALWAYS ON DISCRETE,Yes,No,No,No,No
+ People Internal Gains Nominal, FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,RESIDENTIAL OCCUPANCY SCHEDULE,FLOOR_2_ZONE,92.90,2.3,2.3,2.500E-002,40.000,0.300,0.700,0.500,RESIDENTIAL ACTIVITY SCHEDULE,Yes,3.8200E-008,0.7,2.3,0.7,2.3,0.7,2.3,0.7,2.3,0.7,2.3,Zone Averaged,ALWAYS ON DISCRETE,Clothing Insulation Schedule,N/A,ALWAYS ON DISCRETE,ALWAYS ON DISCRETE,Yes,No,No,No,No
 ! <Lights Internal Gains Nominal>,Name,Schedule Name,Zone Name,Zone Floor Area {m2},# Zone Occupants,Lighting Level {W},Lights/Floor Area {W/m2},Lights per person {W/person},Fraction Return Air,Fraction Radiant,Fraction Short Wave,Fraction Convected,Fraction Replaceable,End-Use, Minimum Lighting Level for All Day Types {W},Maximum Lighting Level for All Day Types {W},Minimum Lighting Level for Weekdays {W}, Maximum Lighting Level for Weekdays {W},Minimum Lighting Level for Weekends/Holidays {W}, Maximum Lighting Level for Weekends /Holidays {W},Minimum Lighting Level for Summer Design Days {W}, Maximum Lighting Level for Summer Design Days {W},Minimum Lighting Level for Winter Design Days {W}, Maximum Lighting Level for Winter Design Days {W}
  Lights Internal Gains Nominal, FLOOR_1 RESIDENTIAL LIVING LIGHTS,RESIDENTIAL LIGHTING SCHEDULE,FLOOR_1_ZONE,92.90,2.3,1486.449,16.000,640.000,0.000,0.000,0.000,1.000,1.000,General,148.645,1040.514,148.645,1040.5,148.645,1040.514,148.645,1040.514,148.645,1040.514
  Lights Internal Gains Nominal, FLOOR_2 RESIDENTIAL LIVING LIGHTS,RESIDENTIAL LIGHTING SCHEDULE,FLOOR_2_ZONE,92.90,2.3,1486.449,16.000,640.000,0.000,0.000,0.000,1.000,1.000,General,148.645,1040.514,148.645,1040.5,148.645,1040.514,148.645,1040.514,148.645,1040.514
 ! <ElectricEquipment Internal Gains Nominal>,Name,Schedule Name,Zone Name,Zone Floor Area {m2},# Zone Occupants,Equipment Level {W},Equipment/Floor Area {W/m2},Equipment per person {W/person},Fraction Latent,Fraction Radiant,Fraction Lost,Fraction Convected,End-Use SubCategory,Minimum Equipment Level for All Day Types {W},Maximum Equipment Level for All Day Types {W},Minimum Equipment Level for Weekdays {W}, Maximum Equipment Level for Weekdays {W},Minimum Equipment Level for Weekends/Holidays {W}, Maximum Equipment Level for Weekends /Holidays {W},Minimum Equipment Level for Summer Design Days {W}, Maximum Equipment Level for Summer Design Days {W},Minimum Equipment Level for Winter Design Days {W}, Maximum Equipment Level for Winter Design Days {W}
  ElectricEquipment Internal Gains Nominal, FLOOR_1 RESIDENTIAL LIVING PLUG LOADS,RESIDENTIAL EQUIPMENT SCHEDULE,FLOOR_1_ZONE,92.90,2.3,798.966,8.600,344.000,0.000,0.000,0.000,1.000,General,399.483,639.173,399.483,639.173,399.483,639.173,399.483,639.173,399.483,639.173
  ElectricEquipment Internal Gains Nominal, FLOOR_2 RESIDENTIAL LIVING PLUG LOADS,RESIDENTIAL EQUIPMENT SCHEDULE,FLOOR_2_ZONE,92.90,2.3,798.966,8.600,344.000,0.000,0.000,0.000,1.000,General,399.483,639.173,399.483,639.173,399.483,639.173,399.483,639.173,399.483,639.173
+! <Water Heater Information>,Type,Name,Volume {m3},Maximum Capacity {W},Standard Rated Recovery Efficiency, Standard Rated Energy Factor
+! <ZoneInfiltration Airflow Stats Nominal>,Name,Schedule Name,Zone Name, Zone Floor Area {m2}, # Zone Occupants,Design Volume Flow Rate {m3/s},Volume Flow Rate/Floor Area {m3/s-m2},Volume Flow Rate/Exterior Surface Area {m3/s-m2},ACH - Air Changes per Hour,Equation A - Constant Term Coefficient {},Equation B - Temperature Term Coefficient {1/C},Equation C - Velocity Term Coefficient {s/m}, Equation D - Velocity Squared Term Coefficient {s2/m2}
+ ZoneInfiltration Airflow Stats Nominal, FLOOR_1 RESIDENTIAL LIVING INFILTRATION,RESIDENTIAL INFILTRATION SCHEDULE,FLOOR_1_ZONE,92.90,2.3,2.915E-002,3.138E-004,1.437E-004,0.412,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, FLOOR_2 RESIDENTIAL LIVING INFILTRATION,RESIDENTIAL INFILTRATION SCHEDULE,FLOOR_2_ZONE,92.90,2.3,2.915E-002,3.138E-004,1.451E-004,0.412,1.000,0.000,0.000,0.000
+! <AirFlow Model>, Simple
+ AirFlow Model, Simple
+! <RoomAir Model>, Zone Name, Mixing/Mundt/UCSDDV/UCSDCV/UCSDUFI/UCSDUFE/User Defined
+RoomAir Model,FLOOR_1_ZONE,Mixing/Well-Stirred
+RoomAir Model,FLOOR_2_ZONE,Mixing/Well-Stirred
+! <AirflowNetwork Model:Control>, No Multizone or Distribution/Multizone with Distribution/Multizone without Distribution/Multizone with Distribution only during Fan Operation
+AirflowNetwork Model:Control,NoMultizoneOrDistribution
+! <Zone Volume Capacitance Multiplier>, Sensible Heat Capacity Multiplier, Moisture Capacity Multiplier, Carbon Dioxide Capacity Multiplier, Generic Contaminant Capacity Multiplier
+Zone Volume Capacitance Multiplier,   1.000 ,   1.000,   1.000,   1.000
+! <Load Timesteps in Zone Design Calculation Averaging Window>, Value
+ Load Timesteps in Zone Design Calculation Averaging Window,    6
+! <Heating Sizing Factor Information>, Sizing Factor ID, Value
+ Heating Sizing Factor Information, Global,   1.2500    
+ Heating Sizing Factor Information, Zone FLOOR_1_ZONE,   1.2500    
+ Heating Sizing Factor Information, Zone FLOOR_2_ZONE,   1.2500    
+! <Cooling Sizing Factor Information>, Sizing Factor ID, Value
+ Cooling Sizing Factor Information, Global,   1.1500    
+ Cooling Sizing Factor Information, Zone FLOOR_1_ZONE,   1.1500    
+ Cooling Sizing Factor Information, Zone FLOOR_2_ZONE,   1.1500    
+! <Zone Sizing Information>, Zone Name, Load Type, Calc Des Load {W}, User Des Load {W}, Calc Des Air Flow Rate {m3/s}, User Des Air Flow Rate {m3/s}, Design Day Name, Date/Time of Peak, Temperature at Peak {C}, Humidity Ratio at Peak {kgWater/kgDryAir}, Floor Area {m2}, # Occupants, Calc Outdoor Air Flow Rate {m3/s}, Calc DOAS Heat Addition Rate {W}
+ Zone Sizing Information, FLOOR_1_ZONE, Cooling, 4948.67552, 5690.97685, 0.39360, 0.45265, SEVILLA ANN CLG .4% CONDNS DB=>MWB, 7/21 18:00:00, 35.96400, 1.20223E-002, 92.90304, 2.32258, 2.19251E-002, 0.00000
+ Zone Sizing Information, FLOOR_1_ZONE, Heating, 1805.92868, 2257.41086, 7.24532E-002, 9.05666E-002, SEVILLA ANN HTG 99.6% CONDNS DB, 1/21 07:00:00, 1.30000, 4.16432E-003, 92.90304, 2.32258, 2.19251E-002, 0.00000
+ Zone Sizing Information, FLOOR_2_ZONE, Cooling, 5056.92232, 5815.46067, 0.40239, 0.46275, SEVILLA ANN CLG .4% CONDNS DB=>MWB, 7/21 18:00:00, 35.96400, 1.20223E-002, 92.90304, 2.32258, 2.19251E-002, 0.00000
+ Zone Sizing Information, FLOOR_2_ZONE, Heating, 1781.92118, 2227.40147, 7.14734E-002, 8.93418E-002, SEVILLA ANN HTG 99.6% CONDNS DB, 1/21 07:00:00, 1.30000, 4.16432E-003, 92.90304, 2.32258, 2.19251E-002, 0.00000
+! <Component Sizing Information>, Component Type, Component Name, Input Field Description, Value
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size Cooling Supply Air Flow Rate [m3/s], 0.45265
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size Heating Supply Air Flow Rate [m3/s], 0.45265
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size No Cooling Supply Air Flow Rate [m3/s], 0.45265
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size No Heating Supply Air Flow Rate [m3/s], 0.45265
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size Outdoor Air Flow Rate During Cooling Operation [m3/s], 2.19251E-002
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size Outdoor Air Flow Rate During Heating Operation [m3/s], 2.19251E-002
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size Outdoor Air Flow Rate When No Cooling or Heating is Needed [m3/s], 2.19251E-002
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL, Design Size Rated Air Flow Rate [m3/s], 0.45265
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL, Design Size Gross Rated Total Cooling Capacity [W], 7492.88755
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL, Design Size Gross Rated Sensible Heat Ratio, 0.80066
+ Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL HEATING COIL, Design Size Rated Air Flow Rate [m3/s], 0.45265
+ Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL HEATING COIL, Design Size Gross Rated Heating Capacity [W], 7492.88755
+ Component Sizing Information, Fan:OnOff, VRF ZONE TERMINAL FAN, Design Size Maximum Flow Rate [m3/s], 0.45265
+ Component Sizing Information, Fan:OnOff, VRF ZONE TERMINAL FAN, Design Electric Power Consumption [W], 226.32267
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size Cooling Supply Air Flow Rate [m3/s], 0.46275
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size Heating Supply Air Flow Rate [m3/s], 0.46275
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size No Cooling Supply Air Flow Rate [m3/s], 0.46275
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size No Heating Supply Air Flow Rate [m3/s], 0.46275
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size Outdoor Air Flow Rate During Cooling Operation [m3/s], 2.19251E-002
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size Outdoor Air Flow Rate During Heating Operation [m3/s], 2.19251E-002
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size Outdoor Air Flow Rate When No Cooling or Heating is Needed [m3/s], 2.19251E-002
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL 1, Design Size Rated Air Flow Rate [m3/s], 0.46275
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL 1, Design Size Gross Rated Total Cooling Capacity [W], 7660.21802
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL 1, Design Size Gross Rated Sensible Heat Ratio, 0.80066
+ Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL HEATING COIL 1, Design Size Rated Air Flow Rate [m3/s], 0.46275
+ Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL HEATING COIL 1, Design Size Gross Rated Heating Capacity [W], 7660.21802
+ Component Sizing Information, Fan:OnOff, VRF ZONE TERMINAL FAN 1, Design Size Maximum Flow Rate [m3/s], 0.46275
+ Component Sizing Information, Fan:OnOff, VRF ZONE TERMINAL FAN 1, Design Electric Power Consumption [W], 231.37689
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Rated Total Cooling Capacity (gross) [W], 15153.10557
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Rated Total Heating Capacity [W], 15153.10557
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Resistive Defrost Heater Capacity [W], 15153.10557
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, User-Specified Resistive Defrost Heater Capacity, 1.00000E-007
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Evaporative Condenser Air Flow Rate [m3/s], 1.72745
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Evaporative Condenser Pump Rated Power Consumption [W], 64.64315
+! <VRF System Information>, VRF System Type, VRF System Name, VRF System Cooling Combination Ratio, VRF System Heating Combination Ratio, VRF System Cooling Piping Correction Factor, VRF System Heating Piping Correction Factor
+ VRF System Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, 1.00000, 1.00000, 0.94689, 1.00000
+Water Heater Information,WaterHeater:Mixed,GAS STORAGE WATER HEATER,0.1900,10000.0,0.605,0.4361
+ Component Sizing Information, PlantLoop, DOMESTIC HOT WATER LOOP, Maximum Loop Flow Rate [m3/s], 1.20000E-004
+ Component Sizing Information, PlantLoop, DOMESTIC HOT WATER LOOP, Plant Loop Volume [m3], 1.44000E-002
+ Component Sizing Information, PlantLoop, DOMESTIC HOT WATER LOOP, Design Supply Temperature [C], 82.00000
+ Component Sizing Information, PlantLoop, DOMESTIC HOT WATER LOOP, Design Return Temperature [C], 71.00000
+ Component Sizing Information, PlantLoop, DOMESTIC HOT WATER LOOP, Sizing option (Coincident/NonCoincident), 1.00000
+ Component Sizing Information, PlantLoop, DOMESTIC HOT WATER LOOP, Minimum Loop Flow Rate [m3/s], 0.00000
+ Component Sizing Information, PlantLoop, DOMESTIC HOT WATER LOOP, Design Capacity [W], 5540.70239
+ Component Sizing Information, Pump:ConstantSpeed, DHW CIRCULATION PUMP, Design Power Consumption [W], 45.08446
+ Component Sizing Information, WaterHeater:Mixed, GAS STORAGE WATER HEATER, Use Side Design Flow Rate [m3/s], 1.20000E-004
