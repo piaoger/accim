@@ -26,6 +26,7 @@ import eppy
 import sys
 from typing import Dict, Any, List, Union
 
+from accim.utils import get_idf_hierarchy, get_spaces_from_spacelist, get_people_names_for_ems
 # 1. Import standard Eppy class
 from eppy.modeleditor import IDF
 
@@ -143,9 +144,10 @@ def apply_apmv_setpoints(
                 print('Zone_Name field not found in People object.')
 
     hierarchy_dict = get_idf_hierarchy(idf=building)
+    ppl_names = get_people_names_for_ems(idf=building)
 
     # zones_with_ppl_colon = [ppl[0] for ppl in ppl_temp]
-    ppl_names = [ppl[1] for ppl in ppl_temp]
+    # ppl_names = [ppl[1] for ppl in ppl_temp]
     # zones_with_ppl_underscore = [z.replace(':', '_') for z in zones_with_ppl_colon]
 
     zones_with_ppl_underscore = [i for i in hierarchy_dict['zones'].keys()]
@@ -227,7 +229,7 @@ def apply_apmv_setpoints(
     # Adding sensors
     sensornamelist = ([sensor.Name for sensor in building.idfobjects['EnergyManagementSystem:Sensor']])
 
-    for i in range(len(zones_with_ppl_underscore)):
+    for i in range(len(ppl_names)):
         if f'PMV_{zones_with_ppl_underscore[i]}' in sensornamelist:
             if verboseMode:
                 print(f'Not added - PMV_{zones_with_ppl_underscore[i]} Sensor')
@@ -1178,138 +1180,5 @@ def add_vrf_system(
     # del ZCTlist
 
 
-def get_idf_hierarchy(idf: besos.IDF_class) -> Dict[str, Any]:
-    """
-    Parses an EnergyPlus IDF model object (from eppy or besos) to extract the
-    hierarchical relationship between Zones and Spaces, as well as grouping lists.
-
-    This function is designed to be Case-Preserving for output keys (keeping the
-    original IDF capitalization) while remaining Case-Insensitive for internal
-    logic (robustly linking Spaces to Zones regardless of capitalization).
-
-    Args:
-        idf (Union[IDF, IDF_class]): The IDF model object to be parsed.
-                                     Accepts both eppy's IDF and besos's IDF_class.
-
-    Returns:
-        Dict[str, Any]: A dictionary representing the model structure:
-            {
-                "zones": {
-                    "ZoneName_Original": {
-                        "object_type": "Zone",
-                        "spaces": ["Space1", "Space2"]
-                    },
-                    ...
-                },
-                "groups": {
-                    "zone_lists": { "ListName": ["Zone1", "Zone2"] },
-                    "space_lists": { "ListName": ["Space1", "Space2"] }
-                }
-            }
-    """
-
-    # Initialize the master dictionary structure to hold the results
-    hierarchy: Dict[str, Any] = {
-        "zones": {},
-        "groups": {
-            "zone_lists": {},
-            "space_lists": {}
-        }
-    }
-
-    # Internal lookup map to handle EnergyPlus case-insensitivity.
-    # Structure: { "UPPERCASE_NAME": "Original_Name" }
-    zone_lookup_map: Dict[str, str] = {}
-
-    # --- 1. Process ZONES (Parent Objects) ---
-    # Both eppy and besos allow accessing objects via .idfobjects['TYPE']
-    zones = idf.idfobjects['ZONE']
-
-    for zone in zones:
-        z_name_original = zone.Name
-
-        # We store the UPPERCASE version to allow robust searching later,
-        # ensuring "Zone1" matches "zone1" as EnergyPlus expects.
-        z_name_upper = str(z_name_original).upper()
-        zone_lookup_map[z_name_upper] = z_name_original
-
-        # Initialize the entry in the result dict using the ORIGINAL name for readability
-        hierarchy["zones"][z_name_original] = {
-            "object_type": "Zone",
-            "spaces": []  # List to hold children (Spaces)
-        }
-
-    # --- 2. Process SPACES (Child Objects) ---
-    spaces = idf.idfobjects['SPACE']
-
-    # Note: If 'spaces' is empty, it might be a legacy IDF (pre-v9.6) or a simplified model.
-    for space in spaces:
-        s_name = space.Name
-
-        # Get the reference to the parent Zone.
-        # We convert to string and uppercase to query our lookup map safely.
-        parent_ref_upper = str(space.Zone_Name).upper()
-
-        # Link Space to Zone using the lookup map
-        if parent_ref_upper in zone_lookup_map:
-            # Retrieve the correct original casing of the zone name
-            real_zone_name = zone_lookup_map[parent_ref_upper]
-
-            # Append the space name to the correct zone entry
-            hierarchy["zones"][real_zone_name]["spaces"].append(s_name)
-        else:
-            # Log warning for orphan spaces (spaces pointing to non-existent zones)
-            print(f"WARNING: Space '{s_name}' references an unknown Zone: '{space.Zone_Name}'")
-
-    # --- 3. Process Grouping Lists (ZoneList & SpaceList) ---
-
-    # Process ZoneList
-    for z_list in idf.idfobjects['ZONELIST']:
-        # In eppy/besos, the .obj property is a list: ['ZoneList', 'Name', 'Member1', 'Member2'...]
-        # Slicing from index 2 ([2:]) retrieves all members dynamically, regardless of list length.
-        members: List[str] = [m for m in z_list.obj[2:]]
-        hierarchy["groups"]["zone_lists"][z_list.Name] = members
-
-    # Process SpaceList
-    for s_list in idf.idfobjects['SPACELIST']:
-        # Same logic applied to SpaceLists
-        members: List[str] = [m for m in s_list.obj[2:]]
-        hierarchy["groups"]["space_lists"][s_list.Name] = members
-
-    return hierarchy
-
-
-def get_spaces_from_spacelist(idf: besos.IDF_class.IDF, spacelist_name: str) -> List[str]:
-    """
-    Retrieves the list of Space names belonging to a specific SpaceList object.
-
-    Performs a case-insensitive search for the SpaceList name to ensure robustness.
-
-    Args:
-        idf (Union[IDF, IDF_class]): The IDF model object.
-        spacelist_name (str): The name of the SpaceList to query (e.g. "Residential - Living Space").
-
-    Returns:
-        List[str]: A list of space names contained in that SpaceList.
-                   Returns an empty list [] if the SpaceList is not found.
-    """
-
-    # Normalize the target name to uppercase for case-insensitive comparison
-    target_name_upper = spacelist_name.upper()
-
-    # Iterate through all SPACELIST objects in the IDF
-    for s_list in idf.idfobjects['SPACELIST']:
-
-        # Check if this is the list we are looking for
-        if s_list.Name.upper() == target_name_upper:
-            # In eppy/besos, .obj is a list: ['SpaceList', 'Name', 'Space1', 'Space2'...]
-            # Slicing from index 2 ([2:]) retrieves only the members (the spaces).
-            members = [space_name for space_name in s_list.obj[2:]]
-
-            return members
-
-    # If the loop finishes without finding the list, return an empty list or handle error
-    print(f"WARNING: SpaceList '{spacelist_name}' not found in the IDF.")
-    return []
 
 # todo calculate number of occupied hours from occupancy schedules

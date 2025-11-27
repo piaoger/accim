@@ -24,7 +24,7 @@ from besos.IDF_class import IDF
 import besos
 from os import PathLike
 from unidecode import unidecode
-from typing import List, Literal
+from typing import List, Literal, Dict, Any, Union
 
 from accim import lists
 
@@ -507,3 +507,285 @@ def get_available_fields(
         formatted_fields.append(clean_field)
 
     return formatted_fields
+
+
+def get_people_hierarchy(idf: besos.IDF_class.IDF) -> Dict[str, Any]:
+    """
+    Extracts the relationship between People objects and the physical Spaces they occupy.
+
+    Since a 'People' object can reference a Zone, a ZoneList, a Space, or a SpaceList,
+    this function resolves all these references down to a list of specific Space names.
+
+    Args:
+        idf (Union[IDF, IDF_class]): The IDF model object.
+
+    Returns:
+        Dict[str, Any]: A dictionary where keys are People object names and values
+                        contain the target reference and the resolved list of spaces.
+                        Example:
+                        {
+                            "Residential Living Occupants": {
+                                "target_ref": "Residential - Living Space",
+                                "target_type": "SpaceList",  (inferred)
+                                "affected_spaces": ["Floor_1", "Floor_2"]
+                            }
+                        }
+    """
+
+    # 1. BUILD A RESOLVER MAP (Key: UpperName -> Value: List of Space Names)
+    # We need a unified dictionary to look up any name (Zone, Space, List)
+    # and immediately get the list of spaces it represents.
+    resolver_map: Dict[str, List[str]] = {}
+
+    # Helper to track what type the name refers to (for info purposes)
+    type_map: Dict[str, str] = {}
+
+    # --- A. Index Single SPACES ---
+    # A Space references itself.
+    spaces = idf.idfobjects['SPACE']
+    for s in spaces:
+        s_upper = s.Name.upper()
+        resolver_map[s_upper] = [s.Name]
+        type_map[s_upper] = "Space"
+
+    # --- B. Index ZONES (Zone -> Spaces) ---
+    # We map Zones to the Spaces they contain.
+    # We iterate through spaces to find their parent Zone.
+    zone_to_spaces_temp: Dict[str, List[str]] = {}
+
+    for s in spaces:
+        z_ref_upper = str(s.Zone_Name).upper()
+        if z_ref_upper not in zone_to_spaces_temp:
+            zone_to_spaces_temp[z_ref_upper] = []
+        zone_to_spaces_temp[z_ref_upper].append(s.Name)
+
+    # Add to main resolver
+    for z_upper, s_list in zone_to_spaces_temp.items():
+        resolver_map[z_upper] = s_list
+        type_map[z_upper] = "Zone"
+
+    # --- C. Index SPACELISTS ---
+    for sl in idf.idfobjects['SPACELIST']:
+        sl_upper = sl.Name.upper()
+        # Get members (fields starting from index 2)
+        members = [m for m in sl.obj[2:]]
+        resolver_map[sl_upper] = members
+        type_map[sl_upper] = "SpaceList"
+
+    # --- D. Index ZONELISTS ---
+    # A ZoneList contains Zones, which contain Spaces. We need to chain this.
+    for zl in idf.idfobjects['ZONELIST']:
+        zl_upper = zl.Name.upper()
+        z_members = [m.upper() for m in zl.obj[2:]]
+
+        # Collect all spaces from all zones in this list
+        all_spaces_in_list = []
+        for z_name in z_members:
+            if z_name in zone_to_spaces_temp:
+                all_spaces_in_list.extend(zone_to_spaces_temp[z_name])
+
+        resolver_map[zl_upper] = all_spaces_in_list
+        type_map[zl_upper] = "ZoneList"
+
+    # 2. PROCESS PEOPLE OBJECTS
+    people_hierarchy = {}
+
+    for person in idf.idfobjects['PEOPLE']:
+        p_name = person.Name
+        # The critical field that links People to Geometry
+        target_name = person.Zone_or_ZoneList_or_Space_or_SpaceList_Name
+        target_upper = str(target_name).upper()
+
+        # Resolve the spaces using our map
+        # Default to empty list if target is invalid/missing
+        affected_spaces = resolver_map.get(target_upper, [])
+        inferred_type = type_map.get(target_upper, "Unknown")
+
+        people_hierarchy[p_name] = {
+            "target_ref": target_name,
+            "inferred_type": inferred_type,
+            "affected_spaces": affected_spaces
+        }
+
+    return people_hierarchy
+
+
+def get_people_names_for_ems(
+        idf: besos.IDF_class.IDF,
+        output_format: str = 'list'
+) -> Union[List[str], Dict[str, List[str]]]:
+    """
+    Generates unique instance names for People objects applied to spaces.
+
+    Naming Pattern: "{SpaceName} {PeopleName}"
+    Example: "Floor_1 Residential Living Occupants"
+
+    Args:
+        idf (besos.IDF_class.IDF): The BESOS IDF model object.
+        output_format (str): Controls the structure of the return value.
+                             - 'list' (Default): Returns a flat list of all generated names.
+                             - 'dict': Returns a dictionary {PeopleName: [GeneratedNames]}.
+
+    Returns:
+        Union[List[str], Dict[str, List[str]]]: A flat list or a dictionary depending on output_format.
+    """
+
+    # 1. Get the raw hierarchy data
+    hierarchy_data = get_people_hierarchy(idf)
+
+    # Initialize containers
+    expanded_names_dict: Dict[str, List[str]] = {}
+    flat_list: List[str] = []
+
+    # 2. Iterate and generate names
+    for people_name, data in hierarchy_data.items():
+        affected_spaces = data.get("affected_spaces", [])
+
+        # Generate names: Space Name + People Name
+        generated_names = [f"{space.strip()} {people_name.strip()}" for space in affected_spaces]
+
+        if output_format == 'dict':
+            expanded_names_dict[people_name] = generated_names
+        else:
+            # If list mode, extend the master list
+            flat_list.extend(generated_names)
+
+    # 3. Return based on requested format
+    if output_format == 'dict':
+        return expanded_names_dict
+    else:
+        return flat_list
+
+def get_idf_hierarchy(idf: besos.IDF_class) -> Dict[str, Any]:
+    """
+    Parses an EnergyPlus IDF model object (from eppy or besos) to extract the
+    hierarchical relationship between Zones and Spaces, as well as grouping lists.
+
+    This function is designed to be Case-Preserving for output keys (keeping the
+    original IDF capitalization) while remaining Case-Insensitive for internal
+    logic (robustly linking Spaces to Zones regardless of capitalization).
+
+    Args:
+        idf (Union[IDF, IDF_class]): The IDF model object to be parsed.
+                                     Accepts both eppy's IDF and besos's IDF_class.
+
+    Returns:
+        Dict[str, Any]: A dictionary representing the model structure:
+            {
+                "zones": {
+                    "ZoneName_Original": {
+                        "object_type": "Zone",
+                        "spaces": ["Space1", "Space2"]
+                    },
+                    ...
+                },
+                "groups": {
+                    "zone_lists": { "ListName": ["Zone1", "Zone2"] },
+                    "space_lists": { "ListName": ["Space1", "Space2"] }
+                }
+            }
+    """
+
+    # Initialize the master dictionary structure to hold the results
+    hierarchy: Dict[str, Any] = {
+        "zones": {},
+        "groups": {
+            "zone_lists": {},
+            "space_lists": {}
+        }
+    }
+
+    # Internal lookup map to handle EnergyPlus case-insensitivity.
+    # Structure: { "UPPERCASE_NAME": "Original_Name" }
+    zone_lookup_map: Dict[str, str] = {}
+
+    # --- 1. Process ZONES (Parent Objects) ---
+    # Both eppy and besos allow accessing objects via .idfobjects['TYPE']
+    zones = idf.idfobjects['ZONE']
+
+    for zone in zones:
+        z_name_original = zone.Name
+
+        # We store the UPPERCASE version to allow robust searching later,
+        # ensuring "Zone1" matches "zone1" as EnergyPlus expects.
+        z_name_upper = str(z_name_original).upper()
+        zone_lookup_map[z_name_upper] = z_name_original
+
+        # Initialize the entry in the result dict using the ORIGINAL name for readability
+        hierarchy["zones"][z_name_original] = {
+            "object_type": "Zone",
+            "spaces": []  # List to hold children (Spaces)
+        }
+
+    # --- 2. Process SPACES (Child Objects) ---
+    spaces = idf.idfobjects['SPACE']
+
+    # Note: If 'spaces' is empty, it might be a legacy IDF (pre-v9.6) or a simplified model.
+    for space in spaces:
+        s_name = space.Name
+
+        # Get the reference to the parent Zone.
+        # We convert to string and uppercase to query our lookup map safely.
+        parent_ref_upper = str(space.Zone_Name).upper()
+
+        # Link Space to Zone using the lookup map
+        if parent_ref_upper in zone_lookup_map:
+            # Retrieve the correct original casing of the zone name
+            real_zone_name = zone_lookup_map[parent_ref_upper]
+
+            # Append the space name to the correct zone entry
+            hierarchy["zones"][real_zone_name]["spaces"].append(s_name)
+        else:
+            # Log warning for orphan spaces (spaces pointing to non-existent zones)
+            print(f"WARNING: Space '{s_name}' references an unknown Zone: '{space.Zone_Name}'")
+
+    # --- 3. Process Grouping Lists (ZoneList & SpaceList) ---
+
+    # Process ZoneList
+    for z_list in idf.idfobjects['ZONELIST']:
+        # In eppy/besos, the .obj property is a list: ['ZoneList', 'Name', 'Member1', 'Member2'...]
+        # Slicing from index 2 ([2:]) retrieves all members dynamically, regardless of list length.
+        members: List[str] = [m for m in z_list.obj[2:]]
+        hierarchy["groups"]["zone_lists"][z_list.Name] = members
+
+    # Process SpaceList
+    for s_list in idf.idfobjects['SPACELIST']:
+        # Same logic applied to SpaceLists
+        members: List[str] = [m for m in s_list.obj[2:]]
+        hierarchy["groups"]["space_lists"][s_list.Name] = members
+
+    return hierarchy
+
+
+def get_spaces_from_spacelist(idf: besos.IDF_class.IDF, spacelist_name: str) -> List[str]:
+    """
+    Retrieves the list of Space names belonging to a specific SpaceList object.
+
+    Performs a case-insensitive search for the SpaceList name to ensure robustness.
+
+    Args:
+        idf (Union[IDF, IDF_class]): The IDF model object.
+        spacelist_name (str): The name of the SpaceList to query (e.g. "Residential - Living Space").
+
+    Returns:
+        List[str]: A list of space names contained in that SpaceList.
+                   Returns an empty list [] if the SpaceList is not found.
+    """
+
+    # Normalize the target name to uppercase for case-insensitive comparison
+    target_name_upper = spacelist_name.upper()
+
+    # Iterate through all SPACELIST objects in the IDF
+    for s_list in idf.idfobjects['SPACELIST']:
+
+        # Check if this is the list we are looking for
+        if s_list.Name.upper() == target_name_upper:
+            # In eppy/besos, .obj is a list: ['SpaceList', 'Name', 'Space1', 'Space2'...]
+            # Slicing from index 2 ([2:]) retrieves only the members (the spaces).
+            members = [space_name for space_name in s_list.obj[2:]]
+
+            return members
+
+    # If the loop finishes without finding the list, return an empty list or handle error
+    print(f"WARNING: SpaceList '{spacelist_name}' not found in the IDF.")
+    return []
