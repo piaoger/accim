@@ -144,10 +144,12 @@ def apply_apmv_setpoints(
                 print('Zone_Name field not found in People object.')
 
     hierarchy_dict = get_idf_hierarchy(idf=building)
-    ppl_names = get_people_names_for_ems(idf=building)
+    space_ppl_names = get_people_names_for_ems(idf=building)
+    space_ppl_names_underscore = [i.replace(' ', '_') for i in space_ppl_names]
+    space_ppl_dict = [{'original': space_ppl_names[i], 'underscore': space_ppl_names_underscore[i]} for i in range(len(space_ppl_names))]
 
     # zones_with_ppl_colon = [ppl[0] for ppl in ppl_temp]
-    # ppl_names = [ppl[1] for ppl in ppl_temp]
+    # space_ppl_names = [ppl[1] for ppl in ppl_temp]
     # zones_with_ppl_underscore = [z.replace(':', '_') for z in zones_with_ppl_colon]
 
     zones_with_ppl_underscore = [i for i in hierarchy_dict['zones'].keys()]
@@ -192,36 +194,36 @@ def apply_apmv_setpoints(
 
 
     for i in ['PMV_H_SP', 'PMV_C_SP']:
-        for zone in zones_with_ppl_underscore:
-            if f'{i}_{zone}' in sch_comp_objs:
+        for space_ppl in space_ppl_names_underscore:
+            if f'{i}_{space_ppl}' in sch_comp_objs:
                 if verboseMode:
-                    print(f"{i}_{zone} Schedule already was in the model")
+                    print(f"{i}_{space_ppl} Schedule already was in the model")
             else:
                 building.newidfobject(
                     'Schedule:Compact',
-                    Name=f'{i}_{zone}',
+                    Name=f'{i}_{space_ppl}',
                     Schedule_Type_Limits_Name="Any Number",
                     Field_1='Through: 12/31',
                     Field_2='For: AllDays',
                     Field_3='Until: 24:00,1'
                 )
                 if verboseMode:
-                    print(f"{i}_{zone} Schedule has been added")
+                    print(f"{i}_{space_ppl} Schedule has been added")
 
     comf_fanger_dualsps = [i for i in building.idfobjects['ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint']]
     if len(comf_fanger_dualsps) > 0:
         for i in comf_fanger_dualsps:
-            for j in range(len(zones_with_ppl_underscore)):
+            for space_ppl in space_ppl_names_underscore:
                 if zones_with_ppl_colon[j] in i.Name:
-                    i.Fanger_Thermal_Comfort_Heating_Schedule_Name = f'PMV_H_SP_{zones_with_ppl_underscore[j]}'
-                    i.Fanger_Thermal_Comfort_Cooling_Schedule_Name = f'PMV_C_SP_{zones_with_ppl_underscore[j]}'
+                    i.Fanger_Thermal_Comfort_Heating_Schedule_Name = f'PMV_H_SP_{space_ppl}'
+                    i.Fanger_Thermal_Comfort_Cooling_Schedule_Name = f'PMV_C_SP_{space_ppl}'
     else:
-        for zone in zones_with_ppl_underscore:
+        for i in range(len(space_ppl_dict)):
             building.newidfobject(
                 key='ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint',
-                Name='Fanger Thermal Comfort Dual Setpoint - ' + zone,
-                Fanger_Thermal_Comfort_Heating_Schedule_Name=f'PMV_H_SP_{zone}',
-                Fanger_Thermal_Comfort_Cooling_Schedule_Name=f'PMV_C_SP_{zone}'
+                Name='Fanger Thermal Comfort Dual Setpoint - ' + space_ppl_dict[i]['underscore'],
+                Fanger_Thermal_Comfort_Heating_Schedule_Name='PMV_H_SP_' + space_ppl_dict[i]['underscore'],
+                Fanger_Thermal_Comfort_Cooling_Schedule_Name='PMV_C_SP_' + space_ppl_dict[i]['underscore'],
             )
 
     # EMS
@@ -229,7 +231,7 @@ def apply_apmv_setpoints(
     # Adding sensors
     sensornamelist = ([sensor.Name for sensor in building.idfobjects['EnergyManagementSystem:Sensor']])
 
-    for i in range(len(ppl_names)):
+    for i in range(len(space_ppl_names_underscore)):
         if f'PMV_{zones_with_ppl_underscore[i]}' in sensornamelist:
             if verboseMode:
                 print(f'Not added - PMV_{zones_with_ppl_underscore[i]} Sensor')
@@ -238,7 +240,7 @@ def apply_apmv_setpoints(
                 'EnergyManagementSystem:Sensor',
                 Name=f'PMV_{zones_with_ppl_underscore[i]}',
                 # People name not working (RESIDENTIAL LIVING OCCUPANTS)
-                # OutputVariable_or_OutputMeter_Index_Key_Name=ppl_names[0],
+                # OutputVariable_or_OutputMeter_Index_Key_Name=space_ppl_names[0],
                 # Zone name not working (FLOOR_1_ZONE)
                 # OutputVariable_or_OutputMeter_Index_Key_Name=zones_with_ppl_underscore[i],
                 # "People zonename" not working (PEOPLE FLOOR_1_ZONE)
@@ -258,7 +260,7 @@ def apply_apmv_setpoints(
             building.newidfobject(
                 'EnergyManagementSystem:Sensor',
                 Name=f'People_Occupant_Count_{zones_with_ppl_underscore[i]}',
-                OutputVariable_or_OutputMeter_Index_Key_Name=ppl_names[0],
+                OutputVariable_or_OutputMeter_Index_Key_Name=space_ppl_names[0],
                 OutputVariable_or_OutputMeter_Name='People Occupant Count'
             )
             if verboseMode:
@@ -815,7 +817,9 @@ def generate_df_from_args(
     hierarchy_dict = get_idf_hierarchy(idf=building)
 
     # zones_with_ppl_colon = [ppl[0] for ppl in ppl_temp]
-    zones_with_ppl_colon = [i for i in hierarchy_dict['zones'].keys()]
+    # zones_with_ppl_colon = [i for i in hierarchy_dict['zones'].keys()]
+    space_ppl_names = get_people_names_for_ems(idf=building)
+    space_ppl_names_underscore = [i.replace(' ', '_') for i in space_ppl_names]
 
 
 
@@ -847,7 +851,7 @@ def generate_df_from_args(
             # 3 iterating through the zones to drop the dictionary entry
             # if the zone is not found among idf's occupied zones
             for zone in j['zone list']:
-                if zone not in zones_with_ppl_colon:
+                if zone not in space_ppl_names:
                     i.pop(zone)
                     j['dropped keys'].append(zone)
             # 1.4 warning the user in case some dictionary entry has been dropped
@@ -860,7 +864,7 @@ def generate_df_from_args(
             j.update({'default values': {}})
             # 5 iterating through occupied zones in the idf which were missing in the dictionary entries
             # specified by the user in the arguments
-            for zone in zones_with_ppl_colon:
+            for zone in space_ppl_names:
                 if zone not in j['zone list']:
                     i.update({zone: l})
                     j['default values'].update({zone: l})
@@ -874,7 +878,7 @@ def generate_df_from_args(
             # 7 individual pd.Series for each argument
             j.update({'series': pd.Series(i, name=k)})
         elif type(i) is float or int:
-            j.update({'series': pd.Series(i, name=k, index=zones_with_ppl_colon)})
+            j.update({'series': pd.Series(i, name=k, index=space_ppl_names)})
 
     # concatenating series into dataframe
 
@@ -891,7 +895,7 @@ def generate_df_from_args(
         ],
         axis=1
     )
-    df_arguments['underscore_zonename'] = [i.replace(':', '_') for i in df_arguments.index]
+    df_arguments['underscore_zonename'] = [i.replace(' ', '_') for i in df_arguments.index]
 
     return df_arguments
 

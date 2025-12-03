@@ -789,3 +789,186 @@ def get_spaces_from_spacelist(idf: besos.IDF_class.IDF, spacelist_name: str) -> 
     # If the loop finishes without finding the list, return an empty list or handle error
     print(f"WARNING: SpaceList '{spacelist_name}' not found in the IDF.")
     return []
+
+
+import besos.IDF_class
+from typing import List
+
+
+def convert_standard_to_comfort_thermostats(
+        idf: besos.IDF_class.IDF,
+        pmv_heating_schedule_name: str,
+        pmv_cooling_schedule_name: str,
+        comfort_control_type_schedule_name: str
+) -> List[str]:
+    """
+    Maps and substitutes standard DualSetpoint thermostats with Thermal Comfort Fanger thermostats.
+
+    Args:
+        idf (besos.IDF_class.IDF): The BESOS IDF model object.
+        pmv_heating_schedule_name (str): Name of the Schedule defining the PMV lower limit for heating.
+        pmv_cooling_schedule_name (str): Name of the Schedule defining the PMV upper limit for cooling.
+        comfort_control_type_schedule_name (str): Name of the Schedule that defines the control type.
+
+    Returns:
+        List[str]: A list of Zone names that were successfully converted.
+    """
+
+    converted_zones = []
+
+    thermostats_to_remove = []
+    setpoints_to_remove = []
+
+    # 1. FIND STANDARD THERMOSTATS
+    standard_thermostats = idf.idfobjects['ZONECONTROL:THERMOSTAT']
+
+    for thermostat in standard_thermostats:
+
+        ctrl_obj_type = str(thermostat.Control_1_Object_Type).upper()
+
+        if ctrl_obj_type == 'THERMOSTATSETPOINT:DUALSETPOINT':
+
+            setpoint_name = thermostat.Control_1_Name
+
+            # Find the actual Setpoint Object
+            old_setpoint_obj = next(
+                (sp for sp in idf.idfobjects['THERMOSTATSETPOINT:DUALSETPOINT']
+                 if sp.Name.upper() == setpoint_name.upper()),
+                None
+            )
+
+            if old_setpoint_obj:
+                # --- DATA EXTRACTION ---
+                zone_name = thermostat.Zone_or_ZoneList_Name
+                heating_sch = old_setpoint_obj.Heating_Setpoint_Temperature_Schedule_Name
+                cooling_sch = old_setpoint_obj.Cooling_Setpoint_Temperature_Schedule_Name
+
+                # Generate new names
+                new_setpoint_name = f"Fanger Setpoint {zone_name}"
+                new_control_name = f"Comfort Control {zone_name}"
+
+                # --- CREATION OF NEW OBJECTS ---
+
+                # 1. Create ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint
+                idf.newidfobject(
+                    'THERMOSTATSETPOINT:THERMALCOMFORT:FANGER:DUALSETPOINT',
+                    Name=new_setpoint_name,
+                    Fanger_Thermal_Comfort_Heating_Schedule_Name=pmv_heating_schedule_name,
+                    Fanger_Thermal_Comfort_Cooling_Schedule_Name=pmv_cooling_schedule_name,
+                    Heating_Setpoint_Temperature_Schedule_Name=heating_sch,
+                    Cooling_Setpoint_Temperature_Schedule_Name=cooling_sch
+                )
+
+                # 2. Create ZoneControl:Thermostat:ThermalComfort
+                idf.newidfobject(
+                    'ZONECONTROL:THERMOSTAT:THERMALCOMFORT',
+                    Name=new_control_name,
+                    Zone_or_ZoneList_Name=zone_name,
+                    Averaging_Method='PeopleAverage',
+                    Specific_People_Name='',
+                    Minimum_DryBulb_Temperature_Setpoint=12.0,
+                    Maximum_DryBulb_Temperature_Setpoint=40.0,
+                    Thermal_Comfort_Control_Type_Schedule_Name=comfort_control_type_schedule_name,
+                    Thermal_Comfort_Control_1_Object_Type='ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint',
+                    Thermal_Comfort_Control_1_Name=new_setpoint_name
+                )
+
+                # --- MARK FOR DELETION ---
+                thermostats_to_remove.append(thermostat)
+
+                if old_setpoint_obj not in setpoints_to_remove:
+                    setpoints_to_remove.append(old_setpoint_obj)
+
+                converted_zones.append(zone_name)
+
+    # 2. DELETE OLD OBJECTS
+    for th in thermostats_to_remove:
+        idf.removeidfobject(th)
+
+    for sp in setpoints_to_remove:
+        try:
+            idf.removeidfobject(sp)
+        except ValueError:
+            pass
+
+    return converted_zones
+
+
+def inspect_thermostat_objects(idf: besos.IDF_class.IDF) -> Dict[str, List[Dict[str, Any]]]:
+    """
+    Inspects and retrieves key data from thermostat and setpoint objects in the IDF.
+
+    Target Objects:
+      1. ZoneControl:Thermostat
+      2. ZoneControl:Thermostat:ThermalComfort
+      3. ThermostatSetpoint:DualSetpoint
+      4. ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint
+
+    Args:
+        idf (besos.IDF_class.IDF): The BESOS IDF model object.
+
+    Returns:
+        Dict[str, List[Dict[str, Any]]]: A dictionary where keys are the IDF Object Types
+                                         and values are lists of dictionaries containing
+                                         the properties of each instance found.
+    """
+
+    # Define the specific types we want to inspect
+    target_types = [
+        'Zone',
+        'Space',
+        'ZoneList',
+        'SpaceList',
+        'ZoneControl:Thermostat',
+        'ZoneControl:Thermostat:ThermalComfort',
+        'ThermostatSetpoint:DualSetpoint',
+        'ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint'
+    ]
+
+    inspection_results = {}
+
+    for obj_type in target_types:
+        # Eppy keys are uppercase
+        idf_objs = [i for i in idf.idfobjects[obj_type.upper()]]
+
+        inspection_results.update({obj_type: idf_objs})
+        # fields = get_available_fields(idf_instance=idf, object_name=obj_type)
+
+        # Initialize list for this type
+        # obj_list = []
+        #
+        # for obj in idf_objs:
+        #     # Basic info common to all
+        #     data = {'Name': obj.Name}
+        #
+        #
+        #
+        #
+        #     # Extract specific fields based on the type for better readability
+        #     if obj_type == 'ZoneControl:Thermostat':
+        #         data['Zone'] = obj.Zone_or_ZoneList_Name
+        #         data['Control_Type'] = obj.Control_1_Object_Type
+        #         data['Control_Name'] = obj.Control_1_Name
+        #
+        #     elif obj_type == 'ZoneControl:Thermostat:ThermalComfort':
+        #         data['Zone'] = obj.Zone_or_ZoneList_Name
+        #         data['Control_Type'] = obj.Thermal_Comfort_Control_1_Object_Type
+        #         data['Control_Name'] = obj.Thermal_Comfort_Control_1_Name
+        #         data['Avg_Method'] = obj.Averaging_Method
+        #
+        #     elif obj_type == 'ThermostatSetpoint:DualSetpoint':
+        #         data['Heating_Sch'] = obj.Heating_Setpoint_Temperature_Schedule_Name
+        #         data['Cooling_Sch'] = obj.Cooling_Setpoint_Temperature_Schedule_Name
+        #
+        #     elif obj_type == 'ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint':
+        #         data['PMV_Heating_Sch'] = obj.Fanger_Thermal_Comfort_Heating_Schedule_Name
+        #         data['PMV_Cooling_Sch'] = obj.Fanger_Thermal_Comfort_Cooling_Schedule_Name
+        #         data['Temp_Heating_Sch'] = obj.Heating_Setpoint_Temperature_Schedule_Name
+        #         data['Temp_Cooling_Sch'] = obj.Cooling_Setpoint_Temperature_Schedule_Name
+        #
+        #     obj_list.append(data)
+        #
+        # # Store in master dictionary
+        # inspection_results[obj_type] = obj_list
+
+    return inspection_results
