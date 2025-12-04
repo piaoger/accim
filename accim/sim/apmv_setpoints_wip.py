@@ -26,7 +26,8 @@ import eppy
 import sys
 from typing import Dict, Any, List, Union
 
-from accim.utils import get_idf_hierarchy, get_spaces_from_spacelist, get_people_names_for_ems
+from accim.utils import get_idf_hierarchy, get_spaces_from_spacelist, get_people_names_for_ems, inspect_thermostat_objects, get_people_hierarchy
+import accim.utils as utils
 # 1. Import standard Eppy class
 from eppy.modeleditor import IDF
 
@@ -128,33 +129,113 @@ def apply_apmv_setpoints(
     :param verboseMode: True to print on screen all actions performed.
     :return:
     """
-    # Mapping occupied zones (i.e. zones that have a related people object)
 
-    try:
-        ppl_temp = [[people.Zone_or_ZoneList_Name, people.Name] for people in building.idfobjects['People']]
-    except eppy.bunch_subclass.BadEPFieldError:
-        print('Zone_or_ZoneList_Name field not found in People object.')
-        try:
-            ppl_temp = [[people.Zone_or_ZoneList_or_Space_or_SpaceList_Name, people.Name] for people in building.idfobjects['People']]
-        except eppy.bunch_subclass.BadEPFieldError:
-            print('Zone_or_ZoneList_or_Space_or_SpaceList_Name field not found in People object.')
-            try:
-                ppl_temp = [[people.Zone_Name, people.Name] for people in building.idfobjects['People']]
-            except eppy.bunch_subclass.BadEPFieldError:
-                print('Zone_Name field not found in People object.')
+    instance = inspect_thermostat_objects(idf=building)
+
+    # idf_zones = [i for i in building.idfobjects['zone']]
+    for i in range(len(instance['ZoneControl:Thermostat'])):
+        zone_name = instance['ZoneControl:Thermostat'][i]['Zone_or_ZoneList_Name']
+        for mode, value in (['Heating', -0.5], ['Cooling', 0.5]):
+            building.newidfobject(
+                key='Schedule:Compact',
+                Name=f'Fanger {mode} Setpoint {zone_name}',
+                Schedule_Type_Limits_Name="Any Number",
+                Field_1='Through: 12/31',
+                Field_2='For: AllDays',
+                Field_3=f'Until: 24:00, {value}'
+            )
+
+    # Si todos los thermostats tienen un control de temperatura, pero no tiene un control de thermal comfort:
+    if len(instance['ZoneControl:Thermostat']) > 0 and len(instance['ZoneControl:Thermostat:ThermalComfort']) == 0:
+        for i in range(len(instance['ZoneControl:Thermostat'])):
+            zone_name = instance['ZoneControl:Thermostat'][i]['Zone_or_ZoneList_Name']
+
+            building.newidfobject(
+                key='Schedule:Compact',
+                Name=f'Thermal Comfort Control Type Schedule Name {zone_name}',
+                Schedule_Type_Limits_Name="Any Number",
+                Field_1='Through: 12/31',
+                Field_2='For: AllDays',
+                Field_3='Until: 24:00,4'
+            )
+
+            building.newidfobject(
+                key='ZoneControl:Thermostat:ThermalComfort',
+                Name=f'Thermostat Setpoint Dual Setpoint {zone_name}',
+                Zone_or_ZoneList_Name=zone_name,
+                Thermal_Comfort_Control_1_Object_Type='ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint',
+                Thermal_Comfort_Control_1_Name=f'Fanger Setpoint {zone_name}'
+            )
+
+            building.newidfobject(
+                key='ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint',
+                Name=f'Fanger Setpoint {zone_name}',
+                Fanger_Thermal_Comfort_Heating_Schedule_Name=f'Fanger Heating Setpoint {zone_name}',
+                Fanger_Thermal_Comfort_Cooling_Schedule_Name=f'Fanger Cooling Setpoint {zone_name}',
+            )
+            for obj_type in ['ZoneControl:Thermostat', 'ThermostatSetpoint:DualSetpoint']:
+                # building.removeidfobject(building.idfobjects[obj_type][-1])
+                for i in range(len(building.idfobjects[obj_type])):
+                    first_object = building.idfobjects[obj_type][-1]
+                    building.removeidfobject(first_object)
+
+    # Si hay mezcla de termostatos de temperatura y confort térmico:
+    elif len(instance['ZoneControl:Thermostat:ThermalComfort']) > 0:
+        # tc_obj_zones = [i['Zone_or_ZoneList_Name'] for i in instance['ZoneControl:Thermostat:ThermalComfort']]
+        zc_ts_tc_objs = [i for i in building.idfobjects['ZoneControl:Thermostat:ThermalComfort']]
+        # zc_ts_tc_objs_old_names = [i.Name for i in building.idfobjects['ZoneControl:Thermostat:ThermalComfort']]
+        zc_ts_tc_objs_dict_names = {}
+        # for i in range(len(instance['ZoneControl:Thermostat:ThermalComfort'])):
+        for ob in zc_ts_tc_objs:
+            temp_dict = {'old_name': ob.Name}
+
+            zone_name = ob.Zone_or_ZoneList_Name
+            ob.Name = f'Thermostat Setpoint Dual Setpoint {zone_name}'
+            ob.Thermal_Comfort_Control_1_Object_Type = 'ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint'
+            ob.Thermal_Comfort_Control_1_Name = f'Fanger Setpoint {zone_name}'
+
+            temp_dict.update({'new_name': ob.Name})
+            zc_ts_tc_objs_dict_names.update({zone_name: temp_dict})
+
+        # zc_ts_tc_objs_new_names = [i.Name for i in building.idfobjects['ZoneControl:Thermostat:ThermalComfort']]
+        thsp_tc_objs = [i for i in building.idfobjects['ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint']]
+        for ob in thsp_tc_objs:
+            for zone_name, temp_dict in zc_ts_tc_objs_dict_names.items():
+                if temp_dict['old_name'] == ob.Name:
+                    ob.Name = temp_dict['new_name']
+                    ob.Fanger_Thermal_Comfort_Heating_Schedule_Name = f'Fanger Heating Setpoint {zone_name}'
+                    ob.Fanger_Thermal_Comfort_Cooling_Schedule_Name = f'Fanger Cooling Setpoint {zone_name}'
+
+    # # Mapping occupied zones (i.e. zones that have a related people object)
+    #
+    # try:
+    #     ppl_temp = [[people.Zone_or_ZoneList_Name, people.Name] for people in building.idfobjects['People']]
+    # except eppy.bunch_subclass.BadEPFieldError:
+    #     print('Zone_or_ZoneList_Name field not found in People object.')
+    #     try:
+    #         ppl_temp = [[people.Zone_or_ZoneList_or_Space_or_SpaceList_Name, people.Name] for people in building.idfobjects['People']]
+    #     except eppy.bunch_subclass.BadEPFieldError:
+    #         print('Zone_or_ZoneList_or_Space_or_SpaceList_Name field not found in People object.')
+    #         try:
+    #             ppl_temp = [[people.Zone_Name, people.Name] for people in building.idfobjects['People']]
+    #         except eppy.bunch_subclass.BadEPFieldError:
+    #             print('Zone_Name field not found in People object.')
 
     hierarchy_dict = get_idf_hierarchy(idf=building)
+    hierarchy_dict_with_people = utils.get_idf_hierarchy_with_people(idf=building)
+    hierarchy_people_dict = get_people_hierarchy(idf=building)
     space_ppl_names = get_people_names_for_ems(idf=building)
     space_ppl_names_underscore = [i.replace(' ', '_') for i in space_ppl_names]
     space_ppl_dict = [{'original': space_ppl_names[i], 'underscore': space_ppl_names_underscore[i]} for i in range(len(space_ppl_names))]
+
 
     # zones_with_ppl_colon = [ppl[0] for ppl in ppl_temp]
     # space_ppl_names = [ppl[1] for ppl in ppl_temp]
     # zones_with_ppl_underscore = [z.replace(':', '_') for z in zones_with_ppl_colon]
 
-    zones_with_ppl_underscore = [i for i in hierarchy_dict['zones'].keys()]
-    spaces = get_spaces_from_spacelist(idf=building, spacelist_name='Residential - Living Space')
-    zones_with_ppl_colon = [i for i in hierarchy_dict['zones'].keys()]
+    # zones_with_ppl_underscore = [i for i in hierarchy_dict['zones'].keys()]
+    # spaces = get_spaces_from_spacelist(idf=building, spacelist_name='Residential - Living Space')
+    # zones_with_ppl_colon = [i for i in hierarchy_dict['zones'].keys()]
 
 
     # Managing cooling season start user input: transform dd/mm date into number if needed
@@ -188,43 +269,43 @@ def apply_apmv_setpoints(
         dflt_for_tolerance_heating_sp_heating_season=dflt_for_tolerance_heating_sp_heating_season,
     )
 
-    # Adding Schedule:Compact objects for PMV setpoints
-
-    sch_comp_objs = [i.Name for i in building.idfobjects['Schedule:Compact']]
-
-
-    for i in ['PMV_H_SP', 'PMV_C_SP']:
-        for space_ppl in space_ppl_names_underscore:
-            if f'{i}_{space_ppl}' in sch_comp_objs:
-                if verboseMode:
-                    print(f"{i}_{space_ppl} Schedule already was in the model")
-            else:
-                building.newidfobject(
-                    'Schedule:Compact',
-                    Name=f'{i}_{space_ppl}',
-                    Schedule_Type_Limits_Name="Any Number",
-                    Field_1='Through: 12/31',
-                    Field_2='For: AllDays',
-                    Field_3='Until: 24:00,1'
-                )
-                if verboseMode:
-                    print(f"{i}_{space_ppl} Schedule has been added")
-
-    comf_fanger_dualsps = [i for i in building.idfobjects['ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint']]
-    if len(comf_fanger_dualsps) > 0:
-        for i in comf_fanger_dualsps:
-            for space_ppl in space_ppl_names_underscore:
-                if zones_with_ppl_colon[j] in i.Name:
-                    i.Fanger_Thermal_Comfort_Heating_Schedule_Name = f'PMV_H_SP_{space_ppl}'
-                    i.Fanger_Thermal_Comfort_Cooling_Schedule_Name = f'PMV_C_SP_{space_ppl}'
-    else:
-        for i in range(len(space_ppl_dict)):
-            building.newidfobject(
-                key='ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint',
-                Name='Fanger Thermal Comfort Dual Setpoint - ' + space_ppl_dict[i]['underscore'],
-                Fanger_Thermal_Comfort_Heating_Schedule_Name='PMV_H_SP_' + space_ppl_dict[i]['underscore'],
-                Fanger_Thermal_Comfort_Cooling_Schedule_Name='PMV_C_SP_' + space_ppl_dict[i]['underscore'],
-            )
+    # # Adding Schedule:Compact objects for PMV setpoints
+    #
+    # sch_comp_objs = [i.Name for i in building.idfobjects['Schedule:Compact']]
+    #
+    #
+    # for i in ['PMV_H_SP', 'PMV_C_SP']:
+    #     for space_ppl in space_ppl_names_underscore:
+    #         if f'{i}_{space_ppl}' in sch_comp_objs:
+    #             if verboseMode:
+    #                 print(f"{i}_{space_ppl} Schedule already was in the model")
+    #         else:
+    #             building.newidfobject(
+    #                 'Schedule:Compact',
+    #                 Name=f'{i}_{space_ppl}',
+    #                 Schedule_Type_Limits_Name="Any Number",
+    #                 Field_1='Through: 12/31',
+    #                 Field_2='For: AllDays',
+    #                 Field_3='Until: 24:00,1'
+    #             )
+    #             if verboseMode:
+    #                 print(f"{i}_{space_ppl} Schedule has been added")
+    #
+    # comf_fanger_dualsps = [i for i in building.idfobjects['ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint']]
+    # if len(comf_fanger_dualsps) > 0:
+    #     for i in comf_fanger_dualsps:
+    #         for space_ppl in space_ppl_names_underscore:
+    #             if zones_with_ppl_colon[j] in i.Name:
+    #                 i.Fanger_Thermal_Comfort_Heating_Schedule_Name = f'PMV_H_SP_{space_ppl}'
+    #                 i.Fanger_Thermal_Comfort_Cooling_Schedule_Name = f'PMV_C_SP_{space_ppl}'
+    # else:
+    #     for i in range(len(space_ppl_dict)):
+    #         building.newidfobject(
+    #             key='ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint',
+    #             Name='Fanger Thermal Comfort Dual Setpoint - ' + space_ppl_dict[i]['underscore'],
+    #             Fanger_Thermal_Comfort_Heating_Schedule_Name='PMV_H_SP_' + space_ppl_dict[i]['underscore'],
+    #             Fanger_Thermal_Comfort_Cooling_Schedule_Name='PMV_C_SP_' + space_ppl_dict[i]['underscore'],
+    #         )
 
     # EMS
 
@@ -232,13 +313,13 @@ def apply_apmv_setpoints(
     sensornamelist = ([sensor.Name for sensor in building.idfobjects['EnergyManagementSystem:Sensor']])
 
     for i in range(len(space_ppl_names_underscore)):
-        if f'PMV_{zones_with_ppl_underscore[i]}' in sensornamelist:
+        if f'PMV_{space_ppl_names_underscore[i]}' in sensornamelist:
             if verboseMode:
-                print(f'Not added - PMV_{zones_with_ppl_underscore[i]} Sensor')
+                print(f'Not added - PMV_{space_ppl_names_underscore[i]} Sensor')
         else:
             building.newidfobject(
                 'EnergyManagementSystem:Sensor',
-                Name=f'PMV_{zones_with_ppl_underscore[i]}',
+                Name=f'PMV_{space_ppl_names_underscore[i]}',
                 # People name not working (RESIDENTIAL LIVING OCCUPANTS)
                 # OutputVariable_or_OutputMeter_Index_Key_Name=space_ppl_names[0],
                 # Zone name not working (FLOOR_1_ZONE)
@@ -246,31 +327,46 @@ def apply_apmv_setpoints(
                 # "People zonename" not working (PEOPLE FLOOR_1_ZONE)
                 # OutputVariable_or_OutputMeter_Index_Key_Name=f'People {zones_with_ppl_underscore[i]}',
 
-                OutputVariable_or_OutputMeter_Index_Key_Name=f'People {spaces[i]}',
+                OutputVariable_or_OutputMeter_Index_Key_Name=f'People {space_ppl_names[i]}',
 
                 OutputVariable_or_OutputMeter_Name='Zone Thermal Comfort Fanger Model PMV'
             )
             if verboseMode:
-                print(f'Added - PMV_{zones_with_ppl_underscore[i]} Sensor')
+                print(f'Added - PMV_{space_ppl_names_underscore[i]} Sensor')
 
-        if f'People_Occupant_Count_{zones_with_ppl_underscore[i]}' in sensornamelist:
+        if f'People_Occupant_Count_{space_ppl_names_underscore[i]}' in sensornamelist:
             if verboseMode:
-                print(f'Not added - People_Occupant_Count_{zones_with_ppl_underscore[i]} Sensor')
+                print(f'Not added - People_Occupant_Count_{space_ppl_names_underscore[i]} Sensor')
         else:
             building.newidfobject(
                 'EnergyManagementSystem:Sensor',
-                Name=f'People_Occupant_Count_{zones_with_ppl_underscore[i]}',
-                OutputVariable_or_OutputMeter_Index_Key_Name=space_ppl_names[0],
+                Name=f'People_Occupant_Count_{space_ppl_names_underscore[i]}',
+                OutputVariable_or_OutputMeter_Index_Key_Name=space_ppl_names[i],
                 OutputVariable_or_OutputMeter_Name='People Occupant Count'
             )
             if verboseMode:
-                print(f'Added - People_Occupant_Count_{zones_with_ppl_underscore[i]} Sensor')
+                print(f'Added - People_Occupant_Count_{space_ppl_names_underscore[i]} Sensor')
 
     # Adding actuators
     actuatornamelist = [actuator.Name for actuator in building.idfobjects['EnergyManagementSystem:Actuator']]
 
+    # Continuar aqui. Para cada sensor con nombre SpaceName_PeopleName, apuntar a la zona a la que pertenece
+    for zone in hierarchy_dict['zones'].keys():
+        for space in hierarchy_dict['zones'][zone]['spaces']:
+            for i in ['Heating', 'Cooling']:
+                if f'Fanger_{i}_Setpoint_{space["name"]}' in actuatornamelist:
+                    if verboseMode:
+                        print(f'Not added - {i}_{space} Actuator')
+                else:
+                    building.newidfobject(
+                        'EnergyManagementSystem:Actuator',
+                        Name=f'{i}_{space}',
+                        Actuated_Component_Unique_Name=f'{i}_{space}',
+                    )
+
+
     for i in ['PMV_H_SP', 'PMV_C_SP']:
-        for zone in zones_with_ppl_underscore:
+        for zone in space_ppl_names_underscore:
             if f'{i}_act_{zone}' in actuatornamelist:
                 if verboseMode:
                     print(f'Not added - {i}_act_{zone} Actuator')

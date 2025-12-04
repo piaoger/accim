@@ -757,6 +757,159 @@ def get_idf_hierarchy(idf: besos.IDF_class) -> Dict[str, Any]:
     return hierarchy
 
 
+def get_idf_hierarchy_with_people(idf: besos.IDF_class.IDF) -> Dict[str, Any]:
+    """
+    Parses an EnergyPlus IDF model to extract the hierarchy of Zones and Spaces.
+
+    Structure changes in this version:
+    - 'spaces' is a list of dictionaries.
+    - Each space dictionary contains:
+        - "name": The name of the space (str).
+        - "people": The name of the associated People object (str) or None.
+
+    The function resolves the 'People' object assignment regardless of whether
+    it is assigned to a Space, a Zone, a SpaceList, or a ZoneList.
+
+    Args:
+        idf (besos.IDF_class.IDF): The BESOS IDF model object.
+
+    Returns:
+        Dict[str, Any]: Structure:
+            {
+                "zones": {
+                    "ZoneName": {
+                        "object_type": "Zone",
+                        "spaces": [
+                            {
+                                "name": "SpaceName",
+                                "people": "PeopleObjectName" (or None)
+                            },
+                            ...
+                        ]
+                    }
+                },
+                "groups": { ... }
+            }
+    """
+
+    hierarchy: Dict[str, Any] = {
+        "zones": {},
+        "groups": {
+            "zone_lists": {},
+            "space_lists": {}
+        }
+    }
+
+    # --- LOOKUP MAPS (For internal logic) ---
+    # 1. Map UPPERCASE Zone Name -> Original Name
+    zone_name_map: Dict[str, str] = {}
+
+    # 2. Map UPPERCASE Zone Name -> List of Space Dictionaries
+    zone_to_space_objs: Dict[str, List[Dict[str, Any]]] = {}
+
+    # 3. Map UPPERCASE Space Name -> The specific Space Dictionary
+    space_obj_map: Dict[str, Dict[str, Any]] = {}
+
+    # --- STEP 1: PROCESS ZONES ---
+    zones = idf.idfobjects['ZONE']
+    for zone in zones:
+        z_name_original = zone.Name
+        z_name_upper = str(z_name_original).upper()
+
+        zone_name_map[z_name_upper] = z_name_original
+        zone_to_space_objs[z_name_upper] = []
+
+        hierarchy["zones"][z_name_original] = {
+            "object_type": "Zone",
+            "spaces": []
+        }
+
+    # --- STEP 2: PROCESS SPACES ---
+    spaces = idf.idfobjects['SPACE']
+    for space in spaces:
+        s_name = space.Name
+        s_name_upper = str(s_name).upper()
+
+        # Create the Space Dictionary
+        # 'people' is initialized as None. It will be a string if found later.
+        space_dict = {
+            "name": s_name,
+            "people": None
+        }
+
+        # Index it for direct access later
+        space_obj_map[s_name_upper] = space_dict
+
+        # Link to Parent Zone
+        parent_ref_upper = str(space.Zone_Name).upper()
+
+        if parent_ref_upper in zone_name_map:
+            real_zone_name = zone_name_map[parent_ref_upper]
+
+            # Add to the main hierarchy
+            hierarchy["zones"][real_zone_name]["spaces"].append(space_dict)
+
+            # Add to our internal index
+            zone_to_space_objs[parent_ref_upper].append(space_dict)
+        else:
+            print(f"WARNING: Space '{s_name}' references unknown Zone: '{space.Zone_Name}'")
+
+    # --- STEP 3: PROCESS LISTS (For resolving references) ---
+
+    # Map SpaceList Name (Upper) -> List of Space Names (Upper)
+    spacelist_map: Dict[str, List[str]] = {}
+    for sl in idf.idfobjects['SPACELIST']:
+        members = [str(m).upper() for m in sl.obj[2:]]
+        spacelist_map[sl.Name.upper()] = members
+        hierarchy["groups"]["space_lists"][sl.Name] = [m for m in sl.obj[2:]]
+
+    # Map ZoneList Name (Upper) -> List of Zone Names (Upper)
+    zonelist_map: Dict[str, List[str]] = {}
+    for zl in idf.idfobjects['ZONELIST']:
+        members = [str(m).upper() for m in zl.obj[2:]]
+        zonelist_map[zl.Name.upper()] = members
+        hierarchy["groups"]["zone_lists"][zl.Name] = [m for m in zl.obj[2:]]
+
+    # --- STEP 4: PROCESS PEOPLE (Inject into Space Dicts) ---
+    people_objs = idf.idfobjects['PEOPLE']
+
+    for person in people_objs:
+        p_name = person.Name
+        target_name = person.Zone_or_ZoneList_or_Space_or_SpaceList_Name
+        target_upper = str(target_name).upper()
+
+        affected_space_dicts = []
+
+        # LOGIC: Determine what the target is and collect affected space dictionaries
+
+        # Case A: Target is a direct SPACE
+        if target_upper in space_obj_map:
+            affected_space_dicts.append(space_obj_map[target_upper])
+
+        # Case B: Target is a ZONE (Add all spaces in that zone)
+        elif target_upper in zone_to_space_objs:
+            affected_space_dicts.extend(zone_to_space_objs[target_upper])
+
+        # Case C: Target is a SPACELIST
+        elif target_upper in spacelist_map:
+            for member_space_upper in spacelist_map[target_upper]:
+                if member_space_upper in space_obj_map:
+                    affected_space_dicts.append(space_obj_map[member_space_upper])
+
+        # Case D: Target is a ZONELIST
+        elif target_upper in zonelist_map:
+            for member_zone_upper in zonelist_map[target_upper]:
+                if member_zone_upper in zone_to_space_objs:
+                    affected_space_dicts.extend(zone_to_space_objs[member_zone_upper])
+
+        # --- INJECT PEOPLE NAME ---
+        for s_dict in affected_space_dicts:
+            # We assign the string directly.
+            # If multiple people objects point to the same space, the last one processed wins.
+            s_dict["people"] = p_name
+
+    return hierarchy
+
 def get_spaces_from_spacelist(idf: besos.IDF_class.IDF, spacelist_name: str) -> List[str]:
     """
     Retrieves the list of Space names belonging to a specific SpaceList object.
