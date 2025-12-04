@@ -68,17 +68,19 @@ building_with_pmv = apmv.apply_apmv_setpoints(
     # tolerance_cooling_sp_heating_season=-0.15
 )
 
+building_with_pmv.savecopy('TestModel_TestResidentialUnit_v01_VRF_2_with_EMS.idf')
+
 ## Run simulation
 
-output_dir_base = 'sim_results_pmv'
-print(f"Running baseline simulation in: {output_dir_base}...")
-
-ep.run_building(
-    building=building_with_pmv,
-    out_dir=output_dir_base,
-    epw=epwfile
-)
-print("Baseline simulation finished.")
+# output_dir_base = 'sim_results_pmv'
+# print(f"Running baseline simulation in: {output_dir_base}...")
+#
+# ep.run_building(
+#     building=building_with_pmv,
+#     out_dir=output_dir_base,
+#     epw=epwfile
+# )
+# print("Baseline simulation finished.")
 
 
 ## Load Baseline results

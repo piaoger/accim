@@ -135,10 +135,10 @@ def apply_apmv_setpoints(
     # idf_zones = [i for i in building.idfobjects['zone']]
     for i in range(len(instance['ZoneControl:Thermostat'])):
         zone_name = instance['ZoneControl:Thermostat'][i]['Zone_or_ZoneList_Name']
-        for mode, value in (['Heating', -0.5], ['Cooling', 0.5]):
+        for mode, value in (['H', -0.5], ['C', 0.5]):
             building.newidfobject(
                 key='Schedule:Compact',
-                Name=f'Fanger {mode} Setpoint {zone_name}',
+                Name=f'PMV_{mode}_SP_{zone_name}',
                 Schedule_Type_Limits_Name="Any Number",
                 Field_1='Through: 12/31',
                 Field_2='For: AllDays',
@@ -170,8 +170,8 @@ def apply_apmv_setpoints(
             building.newidfobject(
                 key='ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint',
                 Name=f'Fanger Setpoint {zone_name}',
-                Fanger_Thermal_Comfort_Heating_Schedule_Name=f'Fanger Heating Setpoint {zone_name}',
-                Fanger_Thermal_Comfort_Cooling_Schedule_Name=f'Fanger Cooling Setpoint {zone_name}',
+                Fanger_Thermal_Comfort_Heating_Schedule_Name=f'PMV_H_SP_{zone_name}',
+                Fanger_Thermal_Comfort_Cooling_Schedule_Name=f'PMV_C_SP_{zone_name}',
             )
             for obj_type in ['ZoneControl:Thermostat', 'ThermostatSetpoint:DualSetpoint']:
                 # building.removeidfobject(building.idfobjects[obj_type][-1])
@@ -221,8 +221,8 @@ def apply_apmv_setpoints(
     #         except eppy.bunch_subclass.BadEPFieldError:
     #             print('Zone_Name field not found in People object.')
 
-    hierarchy_dict = get_idf_hierarchy(idf=building)
-    hierarchy_dict_with_people = utils.get_idf_hierarchy_with_people(idf=building)
+    # hierarchy_dict = get_idf_hierarchy(idf=building)
+    hierarchy_dict = utils.get_idf_hierarchy_with_people(idf=building)
     hierarchy_people_dict = get_people_hierarchy(idf=building)
     space_ppl_names = get_people_names_for_ems(idf=building)
     space_ppl_names_underscore = [i.replace(' ', '_') for i in space_ppl_names]
@@ -353,33 +353,34 @@ def apply_apmv_setpoints(
     # Continuar aqui. Para cada sensor con nombre SpaceName_PeopleName, apuntar a la zona a la que pertenece
     for zone in hierarchy_dict['zones'].keys():
         for space in hierarchy_dict['zones'][zone]['spaces']:
-            for i in ['Heating', 'Cooling']:
-                if f'Fanger_{i}_Setpoint_{space["name"]}' in actuatornamelist:
+            for i in ['H', 'C']:
+                temp_name = f'PMV_{i}_SP_act_{space["name"]}_{space["people"].replace(" ", "_")}'
+                if temp_name in actuatornamelist:
                     if verboseMode:
-                        print(f'Not added - {i}_{space} Actuator')
+                        print(f'Not added - {temp_name} Actuator')
                 else:
                     building.newidfobject(
                         'EnergyManagementSystem:Actuator',
-                        Name=f'{i}_{space}',
-                        Actuated_Component_Unique_Name=f'{i}_{space}',
+                        Name=temp_name,
+                        Actuated_Component_Unique_Name=f'PMV_{i}_SP_{zone}',
                     )
 
 
-    for i in ['PMV_H_SP', 'PMV_C_SP']:
-        for zone in space_ppl_names_underscore:
-            if f'{i}_act_{zone}' in actuatornamelist:
-                if verboseMode:
-                    print(f'Not added - {i}_act_{zone} Actuator')
-            else:
-                building.newidfobject(
-                    'EnergyManagementSystem:Actuator',
-                    Name=f'{i}_act_{zone}',
-                    Actuated_Component_Unique_Name=f'{i}_{zone}',
-                    Actuated_Component_Type='Schedule:Compact',
-                    Actuated_Component_Control_Type='Schedule Value',
-                )
-                if verboseMode:
-                    print(f'Added - {i}_act_{zone} Actuator')
+    # for i in ['PMV_H_SP', 'PMV_C_SP']:
+    #     for zone in space_ppl_names_underscore:
+    #         if f'{i}_act_{zone}' in actuatornamelist:
+    #             if verboseMode:
+    #                 print(f'Not added - {i}_act_{zone} Actuator')
+    #         else:
+    #             building.newidfobject(
+    #                 'EnergyManagementSystem:Actuator',
+    #                 Name=f'{i}_act_{zone}',
+    #                 Actuated_Component_Unique_Name=f'{i}_{zone}',
+    #                 Actuated_Component_Type='Schedule:Compact',
+    #                 Actuated_Component_Control_Type='Schedule Value',
+    #             )
+    #             if verboseMode:
+    #                 print(f'Added - {i}_act_{zone} Actuator')
 
     # Adding GlobalVariables
 
@@ -414,8 +415,8 @@ def apply_apmv_setpoints(
         'aPMV_H_SP_noTol',
         'aPMV_C_SP_noTol',
     ]:
-        for zone in zones_with_ppl_underscore:
-            globalvariablezonenames.append(f'{i}_{zone}')
+        for spaceppl in space_ppl_names_underscore:
+            globalvariablezonenames.append(f'{i}_{spaceppl}')
 
     allgvs = globalvariablenames + globalvariablezonenames
 
@@ -471,7 +472,7 @@ def apply_apmv_setpoints(
         if verboseMode:
             print(f'Added - set_cooling_season Program')
 
-    for i in zones_with_ppl_colon:
+    for i in space_ppl_names:
         zonename = df_arguments.loc[i, 'underscore_zonename']
         # zonename = i
 
@@ -533,7 +534,7 @@ def apply_apmv_setpoints(
             if verboseMode:
                 print(f'Added - apply_aPMV_{zonename} Program')
 
-    for zonename in zones_with_ppl_underscore:
+    for zonename in space_ppl_names_underscore:
         if 'monitor_aPMV_' + zonename in programlist:
             if verboseMode:
                 print('Not added - monitor_aPMV_' + zonename + ' Program')
@@ -629,7 +630,7 @@ def apply_apmv_setpoints(
     }
 
     for i in EMSOutputVariableZone_dict:
-        for zonename in zones_with_ppl_underscore:
+        for zonename in space_ppl_names_underscore:
             if i + '_' + zonename in outputvariablelist:
                 if verboseMode:
                     print('Not added - ' + i + '_'
@@ -724,17 +725,18 @@ def apply_apmv_setpoints(
                 if verboseMode:
                     print('Added - ' + addittionaloutput + ' Reporting Frequency ' + freq.capitalize() + ' Output:Variable data')
 
-        for i in ['PMV_H_SP', 'PMV_C_SP']:
-            for zone in zones_with_ppl_underscore:
+        for i in ['H', 'C']:
+            for zone in space_ppl_names_underscore:
+                temp_name = f'PMV_{i}_SP_{zone}'
                 building.newidfobject(
                     'Output:Variable',
-                    Key_Value=f'{i}_{zone}',
+                    Key_Value=temp_name,
                     Variable_Name='Schedule Value',
                     Reporting_Frequency=freq.capitalize(),
                     Schedule_Name=''
                 )
                 if verboseMode:
-                    print(f'Added - {i}_' + zone + ' Reporting Frequency ' + freq.capitalize() + ' Output:Variable data')
+                    print(f'Added - {temp_name}' + ' Reporting Frequency ' + freq.capitalize() + ' Output:Variable data')
 
         air_velocity_schs = list(set([i.Air_Velocity_Schedule_Name for i in building.idfobjects['people']]))
 
