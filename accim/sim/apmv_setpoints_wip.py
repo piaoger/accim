@@ -163,6 +163,7 @@ def apply_apmv_setpoints(
                 key='ZoneControl:Thermostat:ThermalComfort',
                 Name=f'Thermostat Setpoint Dual Setpoint {zone_name}',
                 Zone_or_ZoneList_Name=zone_name,
+                Thermal_Comfort_Control_Type_Schedule_Name=f'Thermal Comfort Control Type Schedule Name {zone_name}',
                 Thermal_Comfort_Control_1_Object_Type='ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint',
                 Thermal_Comfort_Control_1_Name=f'Fanger Setpoint {zone_name}'
             )
@@ -327,7 +328,7 @@ def apply_apmv_setpoints(
                 # "People zonename" not working (PEOPLE FLOOR_1_ZONE)
                 # OutputVariable_or_OutputMeter_Index_Key_Name=f'People {zones_with_ppl_underscore[i]}',
 
-                OutputVariable_or_OutputMeter_Index_Key_Name=f'People {space_ppl_names[i]}',
+                OutputVariable_or_OutputMeter_Index_Key_Name=space_ppl_names[i],
 
                 OutputVariable_or_OutputMeter_Name='Zone Thermal Comfort Fanger Model PMV'
             )
@@ -363,6 +364,8 @@ def apply_apmv_setpoints(
                         'EnergyManagementSystem:Actuator',
                         Name=temp_name,
                         Actuated_Component_Unique_Name=f'PMV_{i}_SP_{zone}',
+                        Actuated_Component_Type='Schedule:Compact',
+                        Actuated_Component_Control_Type='Schedule Value',
                     )
 
 
@@ -726,7 +729,7 @@ def apply_apmv_setpoints(
                     print('Added - ' + addittionaloutput + ' Reporting Frequency ' + freq.capitalize() + ' Output:Variable data')
 
         for i in ['H', 'C']:
-            for zone in space_ppl_names_underscore:
+            for zone in hierarchy_dict['zones'].keys():
                 temp_name = f'PMV_{i}_SP_{zone}'
                 building.newidfobject(
                     'Output:Variable',

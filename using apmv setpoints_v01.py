@@ -49,7 +49,8 @@ def get_columns(df, zone_name_part):
 # Create a copy of the building for the baseline simulation
 building_pmv = ef.get_building(idfname)
 # apmv.add_vrf_system(building=building_pmv, SupplyAirTempInputMethod='temperature difference')
-# apmv.set_zones_always_occupied(building=building_pmv)
+#Continuar aqui: re-simular con ocupación constante siempre ocupado
+apmv.set_zones_always_occupied(building=building_pmv)
 
 # saveas_name = idfname.split('.idf')[0] + '_VRFsystem_script.idf'
 # building_pmv.saveas(saveas_name)
@@ -68,19 +69,19 @@ building_with_pmv = apmv.apply_apmv_setpoints(
     # tolerance_cooling_sp_heating_season=-0.15
 )
 
-building_with_pmv.savecopy('TestModel_TestResidentialUnit_v01_VRF_2_with_EMS.idf')
+# building_with_pmv.savecopy('TestModel_TestResidentialUnit_v01_VRF_2_with_EMS.idf')
 
 ## Run simulation
 
-# output_dir_base = 'sim_results_pmv'
-# print(f"Running baseline simulation in: {output_dir_base}...")
-#
-# ep.run_building(
-#     building=building_with_pmv,
-#     out_dir=output_dir_base,
-#     epw=epwfile
-# )
-# print("Baseline simulation finished.")
+output_dir_base = 'sim_results_pmv_wip'
+print(f"Running baseline simulation in: {output_dir_base}...")
+
+ep.run_building(
+    building=building_with_pmv,
+    out_dir=output_dir_base,
+    epw=epwfile
+)
+print("Baseline simulation finished.")
 
 
 ## Load Baseline results

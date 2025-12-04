@@ -1,4 +1,4 @@
-Program Version,EnergyPlus, Version 25.1.0-68a4a7c774, YMD=2025.11.26 19:32
+Program Version,EnergyPlus, Version 25.1.0-68a4a7c774, YMD=2025.12.04 14:17
 ! <Version>, Version ID
  Version, 25.1
 ! <Timesteps per Hour>, #TimeSteps, Minutes per TimeStep {minutes}
@@ -102,45 +102,45 @@ Zone Volume Capacitance Multiplier,   1.000 ,   1.000,   1.000,   1.000
  Cooling Sizing Factor Information, Zone FLOOR_1_ZONE,   1.1500    
  Cooling Sizing Factor Information, Zone FLOOR_2_ZONE,   1.1500    
 ! <Zone Sizing Information>, Zone Name, Load Type, Calc Des Load {W}, User Des Load {W}, Calc Des Air Flow Rate {m3/s}, User Des Air Flow Rate {m3/s}, Design Day Name, Date/Time of Peak, Temperature at Peak {C}, Humidity Ratio at Peak {kgWater/kgDryAir}, Floor Area {m2}, # Occupants, Calc Outdoor Air Flow Rate {m3/s}, Calc DOAS Heat Addition Rate {W}
- Zone Sizing Information, FLOOR_1_ZONE, Cooling, 4948.67552, 5690.97685, 0.39360, 0.45265, SEVILLA ANN CLG .4% CONDNS DB=>MWB, 7/21 18:00:00, 35.96400, 1.20223E-002, 92.90304, 2.32258, 2.19251E-002, 0.00000
- Zone Sizing Information, FLOOR_1_ZONE, Heating, 1805.92868, 2257.41086, 7.24532E-002, 9.05666E-002, SEVILLA ANN HTG 99.6% CONDNS DB, 1/21 07:00:00, 1.30000, 4.16432E-003, 92.90304, 2.32258, 2.19251E-002, 0.00000
- Zone Sizing Information, FLOOR_2_ZONE, Cooling, 5056.92232, 5815.46067, 0.40239, 0.46275, SEVILLA ANN CLG .4% CONDNS DB=>MWB, 7/21 18:00:00, 35.96400, 1.20223E-002, 92.90304, 2.32258, 2.19251E-002, 0.00000
- Zone Sizing Information, FLOOR_2_ZONE, Heating, 1781.92118, 2227.40147, 7.14734E-002, 8.93418E-002, SEVILLA ANN HTG 99.6% CONDNS DB, 1/21 07:00:00, 1.30000, 4.16432E-003, 92.90304, 2.32258, 2.19251E-002, 0.00000
+ Zone Sizing Information, FLOOR_1_ZONE, Cooling, 1641.97139, 1888.26710, 5.13551E-002, 5.90583E-002, SEVILLA ANN CLG .4% CONDNS DB=>MWB, 7/21 18:00:00, 35.96400, 1.20223E-002, 92.90304, 2.32258, 2.19251E-002, 0.00000
+ Zone Sizing Information, FLOOR_1_ZONE, Heating, 4608.86203, 5761.07754, 7.62615, 9.53269, SEVILLA ANN HTG 99.6% CONDNS DB, 1/21 23:00:00, 1.30000, 4.16432E-003, 92.90304, 2.32258, 2.19251E-002, 0.00000
+ Zone Sizing Information, FLOOR_2_ZONE, Cooling, 1719.06686, 1976.92688, 5.39161E-002, 6.20036E-002, SEVILLA ANN CLG .4% CONDNS DB=>MWB, 7/21 18:00:00, 35.96400, 1.20223E-002, 92.90304, 2.32258, 2.19251E-002, 0.00000
+ Zone Sizing Information, FLOOR_2_ZONE, Heating, 4573.56952, 5716.96190, 7.42573, 9.28216, SEVILLA ANN HTG 99.6% CONDNS DB, 1/21 23:00:00, 1.30000, 4.16432E-003, 92.90304, 2.32258, 2.19251E-002, 0.00000
 ! <Component Sizing Information>, Component Type, Component Name, Input Field Description, Value
- Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size Cooling Supply Air Flow Rate [m3/s], 0.45265
- Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size Heating Supply Air Flow Rate [m3/s], 0.45265
- Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size No Cooling Supply Air Flow Rate [m3/s], 0.45265
- Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size No Heating Supply Air Flow Rate [m3/s], 0.45265
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size Cooling Supply Air Flow Rate [m3/s], 9.53269
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size Heating Supply Air Flow Rate [m3/s], 9.53269
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size No Cooling Supply Air Flow Rate [m3/s], 9.53269
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size No Heating Supply Air Flow Rate [m3/s], 9.53269
  Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size Outdoor Air Flow Rate During Cooling Operation [m3/s], 2.19251E-002
  Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size Outdoor Air Flow Rate During Heating Operation [m3/s], 2.19251E-002
  Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL, Design Size Outdoor Air Flow Rate When No Cooling or Heating is Needed [m3/s], 2.19251E-002
- Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL, Design Size Rated Air Flow Rate [m3/s], 0.45265
- Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL, Design Size Gross Rated Total Cooling Capacity [W], 7492.88755
- Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL, Design Size Gross Rated Sensible Heat Ratio, 0.80066
- Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL HEATING COIL, Design Size Rated Air Flow Rate [m3/s], 0.45265
- Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL HEATING COIL, Design Size Gross Rated Heating Capacity [W], 7492.88755
- Component Sizing Information, Fan:OnOff, VRF ZONE TERMINAL FAN, Design Size Maximum Flow Rate [m3/s], 0.45265
- Component Sizing Information, Fan:OnOff, VRF ZONE TERMINAL FAN, Design Electric Power Consumption [W], 226.32267
- Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size Cooling Supply Air Flow Rate [m3/s], 0.46275
- Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size Heating Supply Air Flow Rate [m3/s], 0.46275
- Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size No Cooling Supply Air Flow Rate [m3/s], 0.46275
- Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size No Heating Supply Air Flow Rate [m3/s], 0.46275
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL, Design Size Rated Air Flow Rate [m3/s], 9.53269
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL, Design Size Gross Rated Total Cooling Capacity [W], 236719.37635
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL, Design Size Gross Rated Sensible Heat Ratio, 0.70108
+ Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL HEATING COIL, Design Size Rated Air Flow Rate [m3/s], 9.53269
+ Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL HEATING COIL, Design Size Gross Rated Heating Capacity [W], 236719.37635
+ Component Sizing Information, Fan:OnOff, VRF ZONE TERMINAL FAN, Design Size Maximum Flow Rate [m3/s], 9.53269
+ Component Sizing Information, Fan:OnOff, VRF ZONE TERMINAL FAN, Design Electric Power Consumption [W], 4766.34464
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size Cooling Supply Air Flow Rate [m3/s], 9.28216
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size Heating Supply Air Flow Rate [m3/s], 9.28216
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size No Cooling Supply Air Flow Rate [m3/s], 9.28216
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size No Heating Supply Air Flow Rate [m3/s], 9.28216
  Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size Outdoor Air Flow Rate During Cooling Operation [m3/s], 2.19251E-002
  Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size Outdoor Air Flow Rate During Heating Operation [m3/s], 2.19251E-002
  Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, VRF ZONE TERMINAL 1, Design Size Outdoor Air Flow Rate When No Cooling or Heating is Needed [m3/s], 2.19251E-002
- Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL 1, Design Size Rated Air Flow Rate [m3/s], 0.46275
- Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL 1, Design Size Gross Rated Total Cooling Capacity [W], 7660.21802
- Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL 1, Design Size Gross Rated Sensible Heat Ratio, 0.80066
- Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL HEATING COIL 1, Design Size Rated Air Flow Rate [m3/s], 0.46275
- Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL HEATING COIL 1, Design Size Gross Rated Heating Capacity [W], 7660.21802
- Component Sizing Information, Fan:OnOff, VRF ZONE TERMINAL FAN 1, Design Size Maximum Flow Rate [m3/s], 0.46275
- Component Sizing Information, Fan:OnOff, VRF ZONE TERMINAL FAN 1, Design Electric Power Consumption [W], 231.37689
- Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Rated Total Cooling Capacity (gross) [W], 15153.10557
- Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Rated Total Heating Capacity [W], 15153.10557
- Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Resistive Defrost Heater Capacity [W], 15153.10557
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL 1, Design Size Rated Air Flow Rate [m3/s], 9.28216
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL 1, Design Size Gross Rated Total Cooling Capacity [W], 230498.18642
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL COOLING COIL 1, Design Size Gross Rated Sensible Heat Ratio, 0.70108
+ Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL HEATING COIL 1, Design Size Rated Air Flow Rate [m3/s], 9.28216
+ Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, VRF ZONE TERMINAL HEATING COIL 1, Design Size Gross Rated Heating Capacity [W], 230498.18642
+ Component Sizing Information, Fan:OnOff, VRF ZONE TERMINAL FAN 1, Design Size Maximum Flow Rate [m3/s], 9.28216
+ Component Sizing Information, Fan:OnOff, VRF ZONE TERMINAL FAN 1, Design Electric Power Consumption [W], 4641.08098
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Rated Total Cooling Capacity (gross) [W], 467217.56278
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Rated Total Heating Capacity [W], 467217.56278
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Resistive Defrost Heater Capacity [W], 467217.56278
  Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, User-Specified Resistive Defrost Heater Capacity, 1.00000E-007
- Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Evaporative Condenser Air Flow Rate [m3/s], 1.72745
- Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Evaporative Condenser Pump Rated Power Consumption [W], 64.64315
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Evaporative Condenser Air Flow Rate [m3/s], 53.26280
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, Design Size Evaporative Condenser Pump Rated Power Consumption [W], 1993.15012
 ! <VRF System Information>, VRF System Type, VRF System Name, VRF System Cooling Combination Ratio, VRF System Heating Combination Ratio, VRF System Cooling Piping Correction Factor, VRF System Heating Piping Correction Factor
  VRF System Information, AirConditioner:VariableRefrigerantFlow, VRF SYSTEM, 1.00000, 1.00000, 0.94689, 1.00000
 Water Heater Information,WaterHeater:Mixed,GAS STORAGE WATER HEATER,0.1900,10000.0,0.605,0.4361

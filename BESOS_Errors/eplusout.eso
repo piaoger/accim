@@ -1,63 +1,63 @@
-Program Version,EnergyPlus, Version 25.1.0-68a4a7c774, YMD=2025.11.26 19:32
+Program Version,EnergyPlus, Version 25.1.0-68a4a7c774, YMD=2025.12.04 14:17
 1,5,Environment Title[],Latitude[deg],Longitude[deg],Time Zone[],Elevation[m]
 2,8,Day of Simulation[],Month[],Day of Month[],DST Indicator[1=yes 0=no],Hour[],StartMinute[],EndMinute[],DayType
 3,5,Cumulative Day of Simulation[],Month[],Day of Month[],DST Indicator[1=yes 0=no],DayType  ! When Daily Report Variables Requested
 4,2,Cumulative Days of Simulation[],Month[]  ! When Monthly Report Variables Requested
 5,1,Cumulative Days of Simulation[] ! When Run Period Report Variables Requested
 6,1,Calendar Year of Simulation[] ! When Annual Report Variables Requested
-263,1,EMS,Adaptive Coefficient_Floor_1_Zone [] !Hourly
-264,1,EMS,Adaptive Coefficient_Floor_2_Zone [] !Hourly
-265,1,EMS,aPMV_Floor_1_Zone [] !Hourly
-266,1,EMS,aPMV_Floor_2_Zone [] !Hourly
-267,1,EMS,aPMV Heating Setpoint_Floor_1_Zone [] !Hourly
-268,1,EMS,aPMV Heating Setpoint_Floor_2_Zone [] !Hourly
-269,1,EMS,aPMV Cooling Setpoint_Floor_1_Zone [] !Hourly
-270,1,EMS,aPMV Cooling Setpoint_Floor_2_Zone [] !Hourly
-271,1,EMS,aPMV Heating Setpoint No Tolerance_Floor_1_Zone [] !Hourly
-272,1,EMS,aPMV Heating Setpoint No Tolerance_Floor_2_Zone [] !Hourly
-273,1,EMS,aPMV Cooling Setpoint No Tolerance_Floor_1_Zone [] !Hourly
-274,1,EMS,aPMV Cooling Setpoint No Tolerance_Floor_2_Zone [] !Hourly
-275,1,EMS,Comfortable Hours_Floor_1_Zone [H] !Hourly
-276,1,EMS,Comfortable Hours_Floor_2_Zone [H] !Hourly
-277,1,EMS,Discomfortable Hot Hours_Floor_1_Zone [H] !Hourly
-278,1,EMS,Discomfortable Hot Hours_Floor_2_Zone [H] !Hourly
-279,1,EMS,Discomfortable Cold Hours_Floor_1_Zone [H] !Hourly
-280,1,EMS,Discomfortable Cold Hours_Floor_2_Zone [H] !Hourly
-281,1,EMS,Discomfortable Total Hours_Floor_1_Zone [H] !Hourly
-282,1,EMS,Discomfortable Total Hours_Floor_2_Zone [H] !Hourly
-283,1,EMS,Occupied hours_Floor_1_Zone [H] !Hourly
-284,1,EMS,Occupied hours_Floor_2_Zone [H] !Hourly
-285,1,FLOOR_1_ZONE,Zone Mean Air Temperature [C] !Hourly
-286,1,FLOOR_1_ZONE,Zone Operative Temperature [C] !Hourly
-287,1,FLOOR_2_ZONE,Zone Mean Air Temperature [C] !Hourly
-288,1,FLOOR_2_ZONE,Zone Operative Temperature [C] !Hourly
-289,1,FLOOR_1_ZONE,Zone Air Relative Humidity [%] !Hourly
-424,1,FLOOR_2_ZONE,Zone Air Relative Humidity [%] !Hourly
-683,1,Whole Building,Facility Total HVAC Electricity Demand Rate [W] !Hourly
-684,1,FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Fanger Model PMV [] !Hourly
-685,1,FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Fanger Model PPD [%] !Hourly
-686,1,FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Clothing Surface Temperature [C] !Hourly
-687,1,FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Mean Radiant Temperature [C] !Hourly
-688,1,FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Operative Temperature [C] !Hourly
-689,1,FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Clothing Value [clo] !Hourly
-690,1,FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Fanger Model PMV [] !Hourly
-691,1,FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Fanger Model PPD [%] !Hourly
-692,1,FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Clothing Surface Temperature [C] !Hourly
-693,1,FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Mean Radiant Temperature [C] !Hourly
-694,1,FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Operative Temperature [C] !Hourly
-695,1,FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Clothing Value [clo] !Hourly
-696,1,PMV_H_SP_FLOOR_1_ZONE,Schedule Value [] !Hourly
-697,1,PMV_H_SP_FLOOR_2_ZONE,Schedule Value [] !Hourly
-698,1,PMV_C_SP_FLOOR_1_ZONE,Schedule Value [] !Hourly
-699,1,PMV_C_SP_FLOOR_2_ZONE,Schedule Value [] !Hourly
-700,1,ALWAYS ON DISCRETE,Schedule Value [] !Hourly
-739,1,VRF ZONE TERMINAL COOLING COIL,Cooling Coil Total Cooling Rate [W] !Hourly
-740,1,VRF ZONE TERMINAL COOLING COIL,Cooling Coil Total Cooling Energy [J] !Hourly
-765,1,VRF ZONE TERMINAL COOLING COIL 1,Cooling Coil Total Cooling Rate [W] !Hourly
-766,1,VRF ZONE TERMINAL COOLING COIL 1,Cooling Coil Total Cooling Energy [J] !Hourly
-767,1,VRF ZONE TERMINAL HEATING COIL,Heating Coil Heating Rate [W] !Hourly
-781,1,VRF ZONE TERMINAL HEATING COIL 1,Heating Coil Heating Rate [W] !Hourly
-835,1,VRF SYSTEM,VRF Heat Pump Cooling Electricity Rate [W] !Hourly
-836,1,VRF SYSTEM,VRF Heat Pump Cooling Electricity Energy [J] !Hourly
-837,1,VRF SYSTEM,VRF Heat Pump Heating Electricity Rate [W] !Hourly
-838,1,VRF SYSTEM,VRF Heat Pump Heating Electricity Energy [J] !Hourly
+265,1,EMS,Adaptive Coefficient_Floor_1_Residential_Living_Occupants [] !Hourly
+266,1,EMS,Adaptive Coefficient_Floor_2_Residential_Living_Occupants [] !Hourly
+267,1,EMS,aPMV_Floor_1_Residential_Living_Occupants [] !Hourly
+268,1,EMS,aPMV_Floor_2_Residential_Living_Occupants [] !Hourly
+269,1,EMS,aPMV Heating Setpoint_Floor_1_Residential_Living_Occupants [] !Hourly
+270,1,EMS,aPMV Heating Setpoint_Floor_2_Residential_Living_Occupants [] !Hourly
+271,1,EMS,aPMV Cooling Setpoint_Floor_1_Residential_Living_Occupants [] !Hourly
+272,1,EMS,aPMV Cooling Setpoint_Floor_2_Residential_Living_Occupants [] !Hourly
+273,1,EMS,aPMV Heating Setpoint No Tolerance_Floor_1_Residential_Living_Occupants [] !Hourly
+274,1,EMS,aPMV Heating Setpoint No Tolerance_Floor_2_Residential_Living_Occupants [] !Hourly
+275,1,EMS,aPMV Cooling Setpoint No Tolerance_Floor_1_Residential_Living_Occupants [] !Hourly
+276,1,EMS,aPMV Cooling Setpoint No Tolerance_Floor_2_Residential_Living_Occupants [] !Hourly
+277,1,EMS,Comfortable Hours_Floor_1_Residential_Living_Occupants [H] !Hourly
+278,1,EMS,Comfortable Hours_Floor_2_Residential_Living_Occupants [H] !Hourly
+279,1,EMS,Discomfortable Hot Hours_Floor_1_Residential_Living_Occupants [H] !Hourly
+280,1,EMS,Discomfortable Hot Hours_Floor_2_Residential_Living_Occupants [H] !Hourly
+281,1,EMS,Discomfortable Cold Hours_Floor_1_Residential_Living_Occupants [H] !Hourly
+282,1,EMS,Discomfortable Cold Hours_Floor_2_Residential_Living_Occupants [H] !Hourly
+283,1,EMS,Discomfortable Total Hours_Floor_1_Residential_Living_Occupants [H] !Hourly
+284,1,EMS,Discomfortable Total Hours_Floor_2_Residential_Living_Occupants [H] !Hourly
+285,1,EMS,Occupied hours_Floor_1_Residential_Living_Occupants [H] !Hourly
+286,1,EMS,Occupied hours_Floor_2_Residential_Living_Occupants [H] !Hourly
+287,1,FLOOR_1_ZONE,Zone Mean Air Temperature [C] !Hourly
+288,1,FLOOR_1_ZONE,Zone Operative Temperature [C] !Hourly
+289,1,FLOOR_2_ZONE,Zone Mean Air Temperature [C] !Hourly
+290,1,FLOOR_2_ZONE,Zone Operative Temperature [C] !Hourly
+291,1,FLOOR_1_ZONE,Zone Air Relative Humidity [%] !Hourly
+426,1,FLOOR_2_ZONE,Zone Air Relative Humidity [%] !Hourly
+489,1,FLOOR_1_ZONE,Zone Thermal Comfort Control Fanger Low Setpoint PMV [] !Hourly
+490,1,FLOOR_1_ZONE,Zone Thermal Comfort Control Fanger High Setpoint PMV [] !Hourly
+491,1,FLOOR_2_ZONE,Zone Thermal Comfort Control Fanger Low Setpoint PMV [] !Hourly
+492,1,FLOOR_2_ZONE,Zone Thermal Comfort Control Fanger High Setpoint PMV [] !Hourly
+493,1,FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Fanger Model PMV [] !Hourly
+494,1,FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Fanger Model PPD [%] !Hourly
+495,1,FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Clothing Surface Temperature [C] !Hourly
+496,1,FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Mean Radiant Temperature [C] !Hourly
+497,1,FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Operative Temperature [C] !Hourly
+498,1,FLOOR_1 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Clothing Value [clo] !Hourly
+499,1,FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Fanger Model PMV [] !Hourly
+500,1,FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Fanger Model PPD [%] !Hourly
+501,1,FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Clothing Surface Temperature [C] !Hourly
+502,1,FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Mean Radiant Temperature [C] !Hourly
+503,1,FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Operative Temperature [C] !Hourly
+504,1,FLOOR_2 RESIDENTIAL LIVING OCCUPANTS,Zone Thermal Comfort Clothing Value [clo] !Hourly
+701,1,Whole Building,Facility Total HVAC Electricity Demand Rate [W] !Hourly
+702,1,ALWAYS ON DISCRETE,Schedule Value [] !Hourly
+741,1,VRF ZONE TERMINAL COOLING COIL,Cooling Coil Total Cooling Rate [W] !Hourly
+742,1,VRF ZONE TERMINAL COOLING COIL,Cooling Coil Total Cooling Energy [J] !Hourly
+767,1,VRF ZONE TERMINAL COOLING COIL 1,Cooling Coil Total Cooling Rate [W] !Hourly
+768,1,VRF ZONE TERMINAL COOLING COIL 1,Cooling Coil Total Cooling Energy [J] !Hourly
+769,1,VRF ZONE TERMINAL HEATING COIL,Heating Coil Heating Rate [W] !Hourly
+783,1,VRF ZONE TERMINAL HEATING COIL 1,Heating Coil Heating Rate [W] !Hourly
+837,1,VRF SYSTEM,VRF Heat Pump Cooling Electricity Rate [W] !Hourly
+838,1,VRF SYSTEM,VRF Heat Pump Cooling Electricity Energy [J] !Hourly
+839,1,VRF SYSTEM,VRF Heat Pump Heating Electricity Rate [W] !Hourly
+840,1,VRF SYSTEM,VRF Heat Pump Heating Electricity Energy [J] !Hourly
