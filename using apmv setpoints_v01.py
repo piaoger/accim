@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from besos import eppy_funcs as ef
 from besos import eplus_funcs as ep
-import accim.sim.apmv_setpoints_wip as apmv
+import accim.sim.apmv_setpoints_wip_2 as apmv
 import os
 
 # Visualization setup
@@ -14,7 +14,8 @@ sns.set_style("whitegrid")
 # idfname = 'TestModel_onlyGeometryForVRFsystem_2zones_CalcVent_V940.idf'
 # idfname = 'TestModel_ALJARAFE CENTER_mod.idf'
 # idfname = 'TestModel_V940_VRFsystem_script_mod.idf'
-idfname = 'TestModel_TestResidentialUnit_v01_VRF_2.idf'
+# idfname = 'TestModel_TestResidentialUnit_v01_VRF_2.idf'
+idfname = 'TestModel_TestResidentialUnit_v01_VRF_2_air-veloc-mod.idf'
 epwfile = "Seville.epw"
 
 # print(f"IDF File: {idfname}")
@@ -73,7 +74,7 @@ building_with_pmv = apmv.apply_apmv_setpoints(
 
 ## Run simulation
 
-output_dir_base = 'sim_results_pmv_wip'
+output_dir_base = 'sim_results_pmv_wip_always_occupied_air-veloc-mod'
 print(f"Running baseline simulation in: {output_dir_base}...")
 
 ep.run_building(
