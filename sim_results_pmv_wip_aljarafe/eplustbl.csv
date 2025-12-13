@@ -1,0 +1,708 @@
+Program Version:,EnergyPlus, Version 9.4.0-998c4b761e, YMD=2025.12.13 08:27
+Tabular Output Report in Format: ,Comma
+
+Building:,Building
+Environment:,CICSE ALJARAFE CENTER (01-01:31-12) ** SEVILLA - ESP IWEC Data WMO#=083910
+
+----------------------------------------------------------------------------------------------------
+REPORT:,Annual Building Utility Performance Summary
+FOR:,Entire Facility
+Values gathered over      8760.00 hours
+
+Site and Source Energy
+
+,,Total Energy [kWh],Energy Per Total Building Area [kWh/m2],Energy Per Conditioned Building Area [kWh/m2]
+,Total Site Energy,25943.09,83.05,83.05
+,Net Site Energy,25943.09,83.05,83.05
+,Total Source Energy,82161.78,263.03,263.03
+,Net Source Energy,82161.78,263.03,263.03
+
+
+Site to Source Energy Conversion Factors
+
+,,Site=>Source Conversion Factor
+,Electricity,3.167
+,Natural Gas,1.084
+,District Cooling,1.056
+,District Heating,3.613
+,Steam,0.250
+,Gasoline,1.050
+,Diesel,1.050
+,Coal,1.050
+,Fuel Oil No 1,1.050
+,Fuel Oil No 2,1.050
+,Propane,1.050
+,Other Fuel 1,1.000
+,Other Fuel 2,1.000
+
+
+Building Area
+
+,,Area [m2]
+,Total Building Area,312.37
+,Net Conditioned Building Area,312.37
+,Unconditioned Building Area,0.00
+
+
+End Uses
+
+,,Electricity [kWh],Natural Gas [kWh],Gasoline [kWh],Diesel [kWh],Coal [kWh],Fuel Oil No 1 [kWh],Fuel Oil No 2 [kWh],Propane [kWh],Other Fuel 1 [kWh],Other Fuel 2 [kWh],District Cooling [kWh],District Heating [kWh],Water [m3]
+,Heating,350.04,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Cooling,12079.99,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Interior Lighting,11290.14,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Exterior Lighting,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Interior Equipment,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Exterior Equipment,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Fans,2222.93,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Pumps,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Heat Rejection,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Humidification,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Heat Recovery,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Water Systems,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Refrigeration,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Generators,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,,,,,,,,,,,,,,
+,Total End Uses,25943.09,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+Note: Electricity appears to be the principal heating source based on energy usage.
+
+
+End Uses By Subcategory
+
+,,Subcategory,Electricity [kWh],Natural Gas [kWh],Gasoline [kWh],Diesel [kWh],Coal [kWh],Fuel Oil No 1 [kWh],Fuel Oil No 2 [kWh],Propane [kWh],Other Fuel 1 [kWh],Other Fuel 2 [kWh],District Cooling [kWh],District Heating [kWh],Water [m3]
+,Heating,General,350.04,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Cooling,General,12079.99,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Interior Lighting,ELECTRIC EQUIPMENT#PlantaX08:Office#GeneralLights,11290.14,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Exterior Lighting,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Interior Equipment,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Exterior Equipment,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Fans,General,2222.93,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Pumps,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Heat Rejection,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Humidification,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Heat Recovery,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Water Systems,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Refrigeration,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Generators,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+
+
+Normalized Metrics
+Utility Use Per Conditioned Floor Area
+
+,,Electricity Intensity [kWh/m2],Natural Gas Intensity [kWh/m2],Gasoline Intensity [kWh/m2],Diesel Intensity [kWh/m2],Coal Intensity [kWh/m2],Fuel Oil No 1 Intensity [kWh/m2],Fuel Oil No 2 Intensity [kWh/m2],Propane Intensity [kWh/m2],Other Fuel 1 Intensity [kWh/m2],Other Fuel 2 Intensity [kWh/m2],District Cooling Intensity [kWh/m2],District Heating Intensity [kWh/m2],Water Intensity [m3/m2]
+,Lighting,36.14,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,HVAC,46.91,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Other,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Total,83.05,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+
+
+Utility Use Per Total Floor Area
+
+,,Electricity Intensity [kWh/m2],Natural Gas Intensity [kWh/m2],Gasoline Intensity [kWh/m2],Diesel Intensity [kWh/m2],Coal Intensity [kWh/m2],Fuel Oil No 1 Intensity [kWh/m2],Fuel Oil No 2 Intensity [kWh/m2],Propane Intensity [kWh/m2],Other Fuel 1 Intensity [kWh/m2],Other Fuel 2 Intensity [kWh/m2],District Cooling Intensity [kWh/m2],District Heating Intensity [kWh/m2],Water Intensity [m3/m2]
+,Lighting,36.14,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,HVAC,46.91,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Other,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Total,83.05,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+
+
+Electric Loads Satisfied
+
+,,Electricity [kWh],Percent Electricity [%]
+,Fuel-Fired Power Generation,0.000,0.00
+,High Temperature Geothermal*,0.000,0.00
+,Photovoltaic Power,0.000,0.00
+,Wind Power,0.000,0.00
+,Power Conversion,0.000,0.00
+,Net Decrease in On-Site Storage,0.000,0.00
+,Total On-Site Electric Sources,0.000,0.00
+,,,
+,Electricity Coming From Utility,25943.093,100.00
+,Surplus Electricity Going To Utility,0.000,0.00
+,Net Electricity From Utility,25943.093,100.00
+,,,
+,Total On-Site and Utility Electric Sources,25943.093,100.00
+,Total Electricity End Uses,25943.093,100.00
+
+
+On-Site Thermal Sources
+
+,,Heat [kWh],Percent Heat [%]
+,Water-Side Heat Recovery,0.00,
+,Air to Air Heat Recovery for Cooling,0.00,
+,Air to Air Heat Recovery for Heating,0.00,
+,High-Temperature Geothermal*,0.00,
+,Solar Water Thermal,0.00,
+,Solar Air Thermal,0.00,
+,Total On-Site Thermal Sources,0.00,
+
+
+Water Source Summary
+
+,,Water [m3],Percent Water [%]
+,Rainwater Collection,0.00,-
+,Condensate Collection,0.00,-
+,Groundwater Well,0.00,-
+,Total On Site Water Sources,0.00,-
+,-,-,-
+,Initial Storage,0.00,-
+,Final Storage,0.00,-
+,Change in Storage,0.00,-
+,-,-,-
+,Water Supplied by Utility,0.00,-
+,-,-,-
+,Total On Site, Change in Storage, and Utility Water Sources,0.00,-
+,Total Water End Uses,0.00,-
+
+
+Setpoint Not Met Criteria
+
+,,Degrees [deltaC]
+,Tolerance for Zone Heating Setpoint Not Met Time,1.11
+,Tolerance for Zone Cooling Setpoint Not Met Time,1.11
+
+
+Comfort and Setpoint Not Met Summary
+
+,,Facility [Hours]
+,Time Setpoint Not Met During Occupied Heating,0.00
+,Time Setpoint Not Met During Occupied Cooling,0.00
+,Time Not Comfortable Based on Simple ASHRAE 55-2004,4335.67
+
+
+Note 1: An asterisk (*) indicates that the feature is not yet implemented.
+----------------------------------------------------------------------------------------------------
+REPORT:,Input Verification and Results Summary
+FOR:,Entire Facility
+General
+
+,,Value
+,Program Version and Build,EnergyPlus, Version 9.4.0-998c4b761e, YMD=2025.12.13 08:27
+,RunPeriod,CICSE ALJARAFE CENTER (01-01:31-12)
+,Weather File,SEVILLA - ESP IWEC Data WMO#=083910
+,Latitude [deg],37.42
+,Longitude [deg],-5.9
+,Elevation [m],31.00
+,Time Zone,1.00
+,North Axis Angle [deg],0.00
+,Rotation for Appendix G [deg],0.00
+,Hours Simulated [hrs],8760.00
+
+
+ENVELOPE
+Window-Wall Ratio
+
+,,Total,North (315 to 45 deg),East (45 to 135 deg),South (135 to 225 deg),West (225 to 315 deg)
+,Gross Wall Area [m2],282.14,75.52,93.19,50.23,63.20
+,Above Ground Wall Area [m2],282.14,75.52,93.19,50.23,63.20
+,Window Opening Area [m2],61.76,16.11,26.85,0.00,18.80
+,Gross Window-Wall Ratio [%],21.89,21.33,28.81,0.00,29.74
+,Above Ground Window-Wall Ratio [%],21.89,21.33,28.81,0.00,29.74
+
+
+Conditioned Window-Wall Ratio
+
+,,Total,North (315 to 45 deg),East (45 to 135 deg),South (135 to 225 deg),West (225 to 315 deg)
+,Gross Wall Area [m2],282.14,75.52,93.19,50.23,63.20
+,Above Ground Wall Area [m2],282.14,75.52,93.19,50.23,63.20
+,Window Opening Area [m2],61.76,16.11,26.85,0.00,18.80
+,Gross Window-Wall Ratio [%],21.89,21.33,28.81,0.00,29.74
+,Above Ground Window-Wall Ratio [%],21.89,21.33,28.81,0.00,29.74
+
+
+Skylight-Roof Ratio
+
+,,Total
+,Gross Roof Area [m2],0.00
+,Skylight Area [m2],0.00
+,Skylight-Roof Ratio [%],0.00
+
+
+PERFORMANCE
+Zone Summary
+
+,,Area [m2],Conditioned (Y/N),Part of Total Floor Area (Y/N),Volume [m3],Multipliers,Above Ground Gross Wall Area [m2],Underground Gross Wall Area [m2],Window Glass Area [m2],Opening Area [m2],Lighting [W/m2],People [m2 per person],Plug and Process [W/m2]
+,PLANTAX08:OFFICE,312.37,Yes,Yes,843.63,1.00,282.14,0.00,55.11,61.76,11.5400,9.01,0.0000
+,Total,312.37,,,843.63,,282.14,0.00,55.11,61.76,11.5400,9.01,0.0000
+,Conditioned Total,312.37,,,843.63,,282.14,0.00,55.11,61.76,11.5400,9.01,0.0000
+,Unconditioned Total,0.00,,,0.00,,0.00,0.00,0.00,0.00,,,
+,Not Part of Total,0.00,,,0.00,,0.00,0.00,0.00,0.00,,,
+
+
+----------------------------------------------------------------------------------------------------
+REPORT:,Demand End Use Components Summary
+FOR:,Entire Facility
+End Uses
+
+,,Electricity [W],Natural Gas [W],Gasoline [W],Diesel [W],Coal [W],Fuel Oil No 1 [W],Fuel Oil No 2 [W],Propane [W],Other Fuel 1 [W],Other Fuel 2 [W],District Cooling [W],Steam [W],Water [m3/s]
+,Time of Peak,11-JUL-16:00,-,-,-,-,-,-,-,-,-,-,-,-
+,Heating,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Cooling,7314.41,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Interior Lighting,3604.77,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Exterior Lighting,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Interior Equipment,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Exterior Equipment,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Fans,253.76,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Pumps,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Heat Rejection,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Humidification,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Heat Recovery,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Water Systems,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Refrigeration,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Generators,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,,,,,,,,,,,,,,
+,Total End Uses,11172.94,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+
+
+End Uses By Subcategory
+
+,,Subcategory,Electricity [W],Natural Gas [W],Gasoline [W],Diesel [W],Coal [W],Fuel Oil No 1 [W],Fuel Oil No 2 [W],Propane [W],Other Fuel 1 [W],Other Fuel 2 [W],District Cooling [W],Steam [W],Water [m3/s]
+,Heating,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Cooling,General,7314.41,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Interior Lighting,ELECTRIC EQUIPMENT#PlantaX08:Office#GeneralLights,3604.77,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Exterior Lighting,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Interior Equipment,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Exterior Equipment,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Fans,General,253.76,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Pumps,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Heat Rejection,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Humidification,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Heat Recovery,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Water Systems,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Refrigeration,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+,Generators,General,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+
+
+----------------------------------------------------------------------------------------------------
+REPORT:,Component Sizing Summary
+FOR:,Entire Facility
+ZoneHVAC:TerminalUnit:VariableRefrigerantFlow
+
+,,Design Size Cooling Supply Air Flow Rate [m3/s],Design Size Heating Supply Air Flow Rate [m3/s],Design Size No Cooling Supply Air Flow Rate [m3/s],Design Size No Heating Supply Air Flow Rate [m3/s]
+,PLANTAX08:OFFICE VRF INDOOR UNIT,1.78,1.78,1.78,1.78
+User-Specified values were used. Design Size values were used if no User-Specified values were provided.
+
+
+Coil:Cooling:DX:VariableRefrigerantFlow
+
+,,Design Size Rated Air Flow Rate [m3/s],Design Size Gross Rated Total Cooling Capacity [W],Design Size Gross Rated Sensible Heat Ratio
+,PLANTAX08:OFFICE VRF INDOOR UNIT DX COOLING COIL,1.78,42335.30,0.714358
+User-Specified values were used. Design Size values were used if no User-Specified values were provided.
+
+
+Coil:Heating:DX:VariableRefrigerantFlow
+
+,,Design Size Rated Air Flow Rate [m3/s],Design Size Gross Rated Heating Capacity [W]
+,PLANTAX08:OFFICE VRF INDOOR UNIT DX HEATING COIL,1.78,42335.30
+User-Specified values were used. Design Size values were used if no User-Specified values were provided.
+
+
+Fan:ConstantVolume
+
+,,Design Size Maximum Flow Rate [m3/s]
+,PLANTAX08:OFFICE VRF INDOOR UNIT SUPPLY FAN,1.78
+User-Specified values were used. Design Size values were used if no User-Specified values were provided.
+
+
+AirConditioner:VariableRefrigerantFlow
+
+,,Design Size Rated Total Cooling Capacity (gross) [W],Design Size Rated Total Heating Capacity [W],Design Size Resistive Defrost Heater Capacity,Design Size Evaporative Condenser Air Flow Rate [m3/s],Design Size Evaporative Condenser Pump Rated Power Consumption [W]
+,VRF OUTDOOR UNIT,42335.30,42335.30,42335.30,4.83,180.60
+User-Specified values were used. Design Size values were used if no User-Specified values were provided.
+
+
+----------------------------------------------------------------------------------------------------
+REPORT:,Adaptive Comfort Summary
+FOR:,Entire Facility
+Time Not Meeting the Adaptive Comfort Models during Occupied Hours
+
+,,ASHRAE55 90% Acceptability Limits [Hours],ASHRAE55 80% Acceptability Limits  [Hours],CEN15251 Category I Acceptability Limits [Hours],CEN15251 Category II Acceptability Limits [Hours],CEN15251 Category III Acceptability Limits [Hours]
+
+
+----------------------------------------------------------------------------------------------------
+REPORT:,Climatic Data Summary
+FOR:,Entire Facility
+SizingPeriod:DesignDay
+
+,,Maximum Dry Bulb [C],Daily Temperature Range [deltaC],Humidity Value,Humidity Type,Wind Speed [m/s],Wind Direction
+,SUMMER DESIGN DAY IN CICSE ALJARAFE CENTER (01-01:31-12) JUL,39.80,16.10,23.60,Wetbulb [C],0.00,0.00
+,WINTER DESIGN DAY IN CICSE ALJARAFE CENTER (01-01:31-12),1.90,0.00,1.90,Wetbulb [C],10.20,0.00
+
+
+Weather Statistics File
+
+,,Value
+,None,
+
+
+----------------------------------------------------------------------------------------------------
+REPORT:,Envelope Summary
+FOR:,Entire Facility
+Opaque Exterior
+
+,,Construction,Reflectance,U-Factor with Film [W/m2-K],U-Factor no Film [W/m2-K],Gross Area [m2],Net Area [m2],Azimuth [deg],Tilt [deg],Cardinal Direction
+,PLANTAX08:OFFICE_WALL_2_0_0,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.40,0.774,0.875,43.45,30.03,60.02,90.00,E
+,PLANTAX08:OFFICE_WALL_3_0_0,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.40,0.774,0.875,59.20,48.46,341.73,90.00,N
+,PLANTAX08:OFFICE_WALL_4_0_0,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.40,0.774,0.875,33.72,22.98,240.02,90.00,W
+,PLANTAX08:OFFICE_WALL_5_0_0,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.40,0.774,0.875,0.19,0.19,264.28,90.00,W
+,PLANTAX08:OFFICE_WALL_21_0_0,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.40,0.774,0.875,29.28,21.23,230.66,90.00,W
+,PLANTAX08:OFFICE_WALL_22_0_0,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.40,0.774,0.875,50.23,50.23,155.32,90.00,S
+,PLANTAX08:OFFICE_WALL_23_0_0,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.40,0.774,0.875,34.20,23.46,71.34,90.00,E
+,PLANTAX08:OFFICE_WALL_24_0_0,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.40,0.774,0.875,16.31,10.94,43.06,90.00,N
+,PLANTAX08:OFFICE_WALL_25_0_0,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.40,0.774,0.875,15.54,12.85,69.38,90.00,E
+
+
+Opaque Interior
+
+,,Construction,Reflectance,U-Factor with Film [W/m2-K],U-Factor no Film [W/m2-K],Gross Area [m2],Net Area [m2],Azimuth [deg],Tilt [deg],Cardinal Direction
+,PLANTAX08:OFFICE_PARTITION_6_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,8.95,8.95,150.02,90.00,S
+,PLANTAX08:OFFICE_PARTITION_7_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,2.43,2.43,240.02,90.00,W
+,PLANTAX08:OFFICE_PARTITION_8_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,12.72,12.72,150.02,90.00,S
+,PLANTAX08:OFFICE_PARTITION_9_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,0.37,0.37,240.02,90.00,W
+,PLANTAX08:OFFICE_PARTITION_10_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,4.49,4.49,150.02,90.00,S
+,PLANTAX08:OFFICE_PARTITION_11_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,15.49,15.49,60.02,90.00,E
+,PLANTAX08:OFFICE_PARTITION_12_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,9.68,9.68,150.02,90.00,S
+,PLANTAX08:OFFICE_PARTITION_13_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,25.43,25.43,240.02,90.00,W
+,PLANTAX08:OFFICE_PARTITION_14_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,9.68,9.68,330.02,90.00,N
+,PLANTAX08:OFFICE_PARTITION_15_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,23.20,23.20,240.02,90.00,W
+,PLANTAX08:OFFICE_PARTITION_16_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,9.56,9.56,150.02,90.00,S
+,PLANTAX08:OFFICE_PARTITION_17_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,16.56,16.56,240.02,90.00,W
+,PLANTAX08:OFFICE_PARTITION_18_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,9.56,9.56,330.02,90.00,N
+,PLANTAX08:OFFICE_PARTITION_19_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,17.21,17.21,330.02,90.00,N
+,PLANTAX08:OFFICE_PARTITION_20_0_0,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.50,0.410,0.455,10.17,10.17,330.02,90.00,N
+,PLANTAX08:OFFICE_FLOOR_0_0_0,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,0.50,1.287,2.208,74.81,74.81,335.32,180.00,
+,PLANTAX08:OFFICE_FLOOR_0_0_1,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,0.50,1.287,2.208,0.43,0.43,335.32,180.00,
+,PLANTAX08:OFFICE_FLOOR_0_0_2,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,0.50,1.287,2.208,16.06,16.06,330.02,180.00,
+,PLANTAX08:OFFICE_FLOOR_0_0_3,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,0.50,1.287,2.208,20.13,20.13,43.06,180.00,
+,PLANTAX08:OFFICE_FLOOR_0_0_4,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,0.50,1.287,2.208,111.14,111.14,335.32,180.00,
+,PLANTAX08:OFFICE_FLOOR_0_0_5,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,0.50,1.287,2.208,0.12,0.12,330.02,180.00,
+,PLANTAX08:OFFICE_FLOOR_0_0_6,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,0.50,1.287,2.208,2.99,2.99,330.02,180.00,
+,PLANTAX08:OFFICE_FLOOR_0_0_8,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,0.50,1.287,2.208,20.13,20.13,330.02,180.00,
+,PLANTAX08:OFFICE_FLOOR_0_0_9,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,0.50,1.287,2.208,28.50,28.50,330.02,180.00,
+,PLANTAX08:OFFICE_FLOOR_0_0_10,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,0.50,1.287,2.208,58.18,58.18,330.02,180.00,
+,PLANTAX08:OFFICE_CEILING_1_0_0,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,0.42,1.498,2.208,20.12,20.12,155.32,0.00,
+,PLANTAX08:OFFICE_CEILING_1_0_1,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,0.42,1.498,2.208,2.52,2.52,84.28,0.00,
+,PLANTAX08:OFFICE_CEILING_1_0_2,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,0.42,1.498,2.208,5.53,5.53,150.02,0.00,
+,PLANTAX08:OFFICE_CEILING_1_0_3,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,0.42,1.498,2.208,13.75,13.75,150.02,0.00,
+,PLANTAX08:OFFICE_CEILING_1_0_4,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,0.42,1.498,2.208,4.97,4.97,150.02,0.00,
+,PLANTAX08:OFFICE_CEILING_1_0_5,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,0.42,1.498,2.208,44.66,44.66,150.02,0.00,
+,PLANTAX08:OFFICE_CEILING_1_0_6,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,0.42,1.498,2.208,15.85,15.85,150.02,0.00,
+,PLANTAX08:OFFICE_CEILING_1_0_7,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,0.42,1.498,2.208,0.12,0.12,150.02,0.00,
+,PLANTAX08:OFFICE_CEILING_1_0_8,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,0.42,1.498,2.208,58.61,58.61,150.02,0.00,
+,PLANTAX08:OFFICE_CEILING_1_0_9,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,0.42,1.498,2.208,57.82,57.82,150.02,0.00,
+,PLANTAX08:OFFICE_CEILING_1_0_10,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,0.42,1.498,2.208,108.55,108.55,155.32,0.00,
+
+
+Exterior Fenestration
+
+,,Construction,Glass Area [m2],Frame Area [m2],Divider Area [m2],Area of One Opening [m2],Area of Multiplied Openings [m2],Glass U-Factor [W/m2-K],Glass SHGC,Glass Visible Transmittance,Frame Conductance [W/m2-K],Divider Conductance [W/m2-K],Shade Control,Parent Surface,Azimuth [deg],Tilt [deg],Cardinal Direction
+,PLANTAX08:OFFICE_WALL_2_0_0_0_0_4_WIN,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,2.33,0.29,0.07,2.69,13.43,2.685,0.703,0.781,33.986,33.986,No,PLANTAX08:OFFICE_WALL_2_0_0,60.02,90.00,E
+,PLANTAX08:OFFICE_WALL_3_0_0_0_0_3_WIN,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,2.33,0.29,0.07,2.69,10.74,2.685,0.703,0.781,33.986,33.986,No,PLANTAX08:OFFICE_WALL_3_0_0,341.73,90.00,N
+,PLANTAX08:OFFICE_WALL_4_0_0_0_0_3_WIN,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,2.33,0.29,0.07,2.69,10.74,2.685,0.703,0.781,33.986,33.986,No,PLANTAX08:OFFICE_WALL_4_0_0,240.02,90.00,W
+,PLANTAX08:OFFICE_WALL_21_0_0_0_0_2_WIN,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,2.33,0.29,0.07,2.69,8.06,2.685,0.703,0.781,33.986,33.986,No,PLANTAX08:OFFICE_WALL_21_0_0,230.66,90.00,W
+,PLANTAX08:OFFICE_WALL_23_0_0_0_0_3_WIN,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,2.33,0.29,0.07,2.69,10.74,2.685,0.703,0.781,33.986,33.986,No,PLANTAX08:OFFICE_WALL_23_0_0,71.34,90.00,E
+,PLANTAX08:OFFICE_WALL_24_0_0_0_0_1_WIN,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,2.33,0.29,0.07,2.69,5.37,2.685,0.703,0.781,33.986,33.986,No,PLANTAX08:OFFICE_WALL_24_0_0,43.06,90.00,N
+,PLANTAX08:OFFICE_WALL_25_0_0_0_0_0_WIN,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,2.33,0.29,0.07,2.69,2.69,2.685,0.703,0.781,33.986,33.986,No,PLANTAX08:OFFICE_WALL_25_0_0,69.38,90.00,E
+,Total or Average,,,,,,61.76,2.685,0.703,0.781,,,,,,,
+,North Total or Average,,,,,,16.11,2.685,0.703,0.781,,,,,,,
+,Non-North Total or Average,,,,,,45.65,2.685,0.703,0.781,,,,,,,
+
+
+Interior Fenestration
+
+,,Construction,Area of One Opening [m2],Area of Openings [m2],Glass U-Factor [W/m2-K],Glass SHGC,Glass Visible Transmittance,Parent Surface
+,Total or Average,,,0.00,-,-,-,
+
+
+Exterior Door
+
+,,Construction,U-Factor with Film [W/m2-K],U-Factor no Film [W/m2-K],Gross Area [m2],Parent Surface
+,None,,,,,
+
+
+Interior Door
+
+,,Construction,U-Factor with Film [W/m2-K],U-Factor no Film [W/m2-K],Gross Area [m2],Parent Surface
+,None,,,,,
+
+
+----------------------------------------------------------------------------------------------------
+REPORT:,Lighting Summary
+FOR:,Entire Facility
+Interior Lighting
+
+,,Zone,Lighting Power Density [W/m2],Zone Area [m2],Total Power [W],End Use Subcategory,Schedule Name,Scheduled Hours/Week [hr],Hours/Week > 1% [hr],Full Load Hours/Week [hr],Return Air Fraction,Conditioned (Y/N),Consumption [kWh]
+,PLANTAX08:OFFICE GENERAL LIGHTING,PLANTAX08:OFFICE,11.5400,312.37,3604.77,ELECTRIC EQUIPMENT#PlantaX08:Office#GeneralLights,OFFICE_OPENOFF_LIGHT,60.07,60.07,60.07,0.0000,Y,11290.15
+,Interior Lighting Total,,11.5400,312.37,3604.77,,,,,,,,11290.15
+
+
+Daylighting
+
+,,Zone,Control Name,Daylighting Method,Control Type,Fraction Controlled,Lighting Installed in Zone [W],Lighting Controlled [W]
+,None,,,,,,,
+
+
+Exterior Lighting
+
+,,Total Watts,Astronomical Clock/Schedule,Schedule Name,Scheduled Hours/Week [hr],Hours/Week > 1% [hr],Full Load Hours/Week [hr],Consumption [kWh]
+,Exterior Lighting Total,0.00,,,,,,0.00
+
+
+----------------------------------------------------------------------------------------------------
+REPORT:,Equipment Summary
+FOR:,Entire Facility
+Central Plant
+
+,,Type,Nominal Capacity [W],Nominal Efficiency [W/W],IPLV in SI Units [W/W],IPLV in IP Units [Btu/W-h]
+,None,,,,,
+
+
+Cooling Coils
+
+,,Type,Design Coil Load [W],Nominal Total Capacity [W],Nominal Sensible Capacity [W],Nominal Latent Capacity [W],Nominal Sensible Heat Ratio,Nominal Efficiency [W/W],Nominal Coil UA Value [W/C],Nominal Coil Surface Area [m2]
+,None,,,,,,,,,
+
+
+DX Cooling Coils
+
+,,DX Cooling Coil Type,Standard Rated Net Cooling Capacity [W],Standard Rated Net COP [W/W],EER [Btu/W-h],SEER User [Btu/W-h],SEER Standard [Btu/W-h],IEER [Btu/W-h]
+,None,,,,,,,
+
+
+DX Cooling Coil ASHRAE 127 Standard Ratings Report
+
+,,DX Cooling Coil Type,Rated Net Cooling Capacity Test A [W],Rated Electric Power Test A [W],Rated Net Cooling Capacity Test B [W],Rated Electric Power Test B [W],Rated Net Cooling Capacity Test C [W],Rated Electric Power Test C [W],Rated Net Cooling Capacity Test D [W],Rated Electric Power Test D [W]
+,None,,,,,,,,,
+
+
+DX Heating Coils
+
+,,DX Heating Coil Type,High Temperature Heating (net) Rating Capacity [W],Low Temperature Heating (net) Rating Capacity [W],HSPF [Btu/W-h],Region Number
+,None,,,,,
+
+
+Heating Coils
+
+,,Type,Design Coil Load [W],Nominal Total Capacity [W],Nominal Efficiency [W/W]
+,None,,,,
+
+
+Fans
+
+,,Type,Total Efficiency [W/W],Delta Pressure [pa],Max Air Flow Rate [m3/s],Rated Electricity Rate [W],Rated Power Per Max Air Flow Rate [W-s/m3],Motor Heat In Air Fraction,Fan Energy Index,End Use Subcategory,Design Day Name for Fan Sizing Peak,Date/Time for Fan Sizing Peak
+,PLANTAX08:OFFICE VRF INDOOR UNIT SUPPLY FAN,Fan:ConstantVolume,0.70,100.00,1.78,253.76,142.86,1.00,3.06,General,SUMMER DESIGN DAY IN CICSE ALJARAFE CENTER (01-01:31-12) JUL,7/15 17:50:00
+
+
+Pumps
+
+,,Type,Control,Head [pa],Water Flow [m3/s],Electricity Rate [W],Power Per Water Flow Rate [W-s/m3],Motor Efficiency [W/W],End Use Subcategory
+,None,,,,,,,,
+
+
+Service Water Heating
+
+,,Type,Storage Volume [m3],Input [W],Thermal Efficiency [W/W],Recovery Efficiency [W/W],Energy Factor
+,None,,,,,,
+
+
+----------------------------------------------------------------------------------------------------
+REPORT:,HVAC Sizing Summary
+FOR:,Entire Facility
+Zone Sensible Cooling
+
+,,Calculated Design Load [W],User Design Load [W],User Design Load per Area [W/m2],Calculated Design Air Flow [m3/s],User Design Air Flow [m3/s],Design Day Name,Date/Time Of Peak {TIMESTAMP},Thermostat Setpoint Temperature at Peak Load [C],Indoor Temperature at Peak Load [C],Indoor Humidity Ratio at Peak Load [kgWater/kgDryAir],Outdoor Temperature at Peak Load [C],Outdoor Humidity Ratio at Peak Load [kgWater/kgDryAir],Minimum Outdoor Air Flow Rate [m3/s],Heat Gain Rate from DOAS [W]
+,PLANTAX08:OFFICE,18468.65,21238.94,67.99,1.545,1.776,SUMMER DESIGN DAY IN CICSE ALJARAFE CENTER (01-01:31-12) JUL,7/15 17:50:00,23.74,23.74,0.01481,36.20,0.01171,0.000,0.00
+The Design Load is the zone sensible load only. It does not include any system effects or ventilation loads.
+
+
+Zone Sensible Heating
+
+,,Calculated Design Load [W],User Design Load [W],User Design Load per Area [W/m2],Calculated Design Air Flow [m3/s],User Design Air Flow [m3/s],Design Day Name,Date/Time Of Peak {TIMESTAMP},Thermostat Setpoint Temperature at Peak Load [C],Indoor Temperature at Peak Load [C],Indoor Humidity Ratio at Peak Load [kgWater/kgDryAir],Outdoor Temperature at Peak Load [C],Outdoor Humidity Ratio at Peak Load [kgWater/kgDryAir],Minimum Outdoor Air Flow Rate [m3/s],Heat Gain Rate from DOAS [W]
+,PLANTAX08:OFFICE,8271.54,10339.43,33.10,0.251,0.314,WINTER DESIGN DAY IN CICSE ALJARAFE CENTER (01-01:31-12),1/15 24:00:00,22.89,22.89,0.00677,1.90,0.00434,0.000,0.00
+The Design Load is the zone sensible load only. It does not include any system effects or ventilation loads.
+
+
+System Design Air Flow Rates
+
+,,Calculated cooling [m3/s],User cooling [m3/s],Calculated heating [m3/s],User heating [m3/s],Adjusted cooling [m3/s],Adjusted heating [m3/s],Adjusted main [m3/s],Calculated Heating Air Flow Ratio [],User Heating Air Flow Ratio []
+,None,,,,,,,,,
+
+
+Plant Loop Coincident Design Fluid Flow Rate Adjustments
+
+,,Previous Design Volume Flow Rate [m3/s],Algorithm Volume Flow Rate [m3/s],Coincident Design Volume Flow Rate [m3/s],Coincident Size Adjusted,Peak Sizing Period Name,Peak Day into Period {TIMESTAMP}[day],Peak Hour Of Day {TIMESTAMP}[hr],Peak Step Start Minute {TIMESTAMP}[min]
+,None,,,,,,,,
+
+
+Coil Sizing Summary
+
+,,Coil Type,HVAC Type,HVAC Name,Coil Final Gross Total Capacity [W],Coil Final Gross Sensible Capacity [W],Coil Final Reference Air Volume Flow Rate [m3/s],Coil Final Reference Plant Fluid Volume Flow Rate [m3/s],Coil U-value Times Area Value [W/K],Design Day Name at Sensible Ideal Loads Peak,Date/Time at Sensible Ideal Loads Peak,Design Day Name at Air Flow Ideal Loads Peak,Date/Time at Air Flow Ideal Loads Peak,Coil Total Capacity at Ideal Loads Peak [W],Coil Sensible Capacity at Ideal Loads Peak [W],Coil Air Volume Flow Rate at Ideal Loads Peak [m3/s],Coil Entering Air Drybulb at Ideal Loads Peak [C],Coil Entering Air Wetbulb at Ideal Loads Peak [C],Coil Entering Air Humidity Ratio at Ideal Loads Peak [kgWater/kgDryAir],Coil Leaving Air Drybulb at Ideal Loads Peak [C],Coil Leaving Air Wetbulb at Ideal Loads Peak [C],Coil Leaving Air Humidity Ratio at Ideal Loads Peak [kgWater/kgDryAir],Outdoor Air Drybulb at Ideal Loads Peak [C],Outdoor Air Humidity Ratio at Ideal Loads Peak [kgWater/kgDryAir],Outdoor Air Wetbulb at Ideal Loads Peak [C],Outdoor Air Flow Percentage at Ideal Loads Peak [%],Zone Air Drybulb at Ideal Loads Peak [C],Zone Air Humidity Ratio at Ideal Loads Peak [kgWater/kgDryAir],Zone Air Relative Humidity at Ideal Loads Peak [%],Zone Sensible Heat Gain at Ideal Loads Peak [W],Zone Latent Heat Gain at Ideal Loads Peak [W],Coil Total Capacity at Rating Conditions [W],Coil Sensible Capacity at Rating Conditions [W]
+,PLANTAX08:OFFICE VRF INDOOR UNIT DX COOLING COIL,Coil:Cooling:DX:VariableRefrigerantFlow,ZONEHVAC:TERMINALUNIT:VARIABLEREFRIGERANTFLOW,PLANTAX08:OFFICE VRF INDOOR UNIT,42335.297,30242.555,1.776315,-999.0,-999.000,SUMMER DESIGN DAY IN CICSE ALJARAFE CENTER (01-01:31-12) JUL,7/15 17:50:00,unknown,7/15 17:50:00,35046.28,15404.37,1.776315,23.75,21.18,0.01481166,13.88,13.00,0.00900000,36.20,0.01170604,22.63,0.0000,23.74,0.01481166,79.9113,21238.94,0.00,48126.09,32544.13
+,PLANTAX08:OFFICE VRF INDOOR UNIT DX HEATING COIL,Coil:Heating:DX:VariableRefrigerantFlow,ZONEHVAC:TERMINALUNIT:VARIABLEREFRIGERANTFLOW,PLANTAX08:OFFICE VRF INDOOR UNIT,42335.297,0.000,1.776315,-999.0,-999.000,WINTER DESIGN DAY IN CICSE ALJARAFE CENTER (01-01:31-12),1/15 24:00:00,WINTER DESIGN DAY IN CICSE ALJARAFE CENTER (01-01:31-12),1/15 24:00:00,42335.30,42335.30,1.776315,22.89,14.40,0.00677426,50.00,21.19,0.00400000,1.90,0.00433723,1.88,0.0000,22.89,0.00677426,38.9601,10339.43,0.00,42311.46,42311.46
+
+
+----------------------------------------------------------------------------------------------------
+REPORT:,System Summary
+FOR:,Entire Facility
+Economizer
+
+,,High Limit Shutoff Control,Minimum Outdoor Air [m3/s],Maximum Outdoor Air [m3/s],Return Air Temp Limit,Return Air Enthalpy Limit,Outdoor Air Temperature Limit [C],Outdoor Air Enthalpy Limit [C]
+,None,,,,,,,
+
+
+Demand Controlled Ventilation using Controller:MechanicalVentilation
+
+,,Controller:MechanicalVentilation Name,Outdoor Air Per Person [m3/s-person],Outdoor Air Per Area [m3/s-m2],Outdoor Air Per Zone [m3/s],Outdoor Air ACH [ach],Outdoor Air Method,Outdoor Air Schedule Name,Air Distribution Effectiveness in Cooling Mode,Air Distribution Effectiveness in Heating Mode,Air Distribution Effectiveness Schedule Name
+,None,,,,,,,,,,
+
+
+Time Not Comfortable Based on Simple ASHRAE 55-2004
+
+,,Winter Clothes [hr],Summer Clothes [hr],Summer or Winter Clothes [hr]
+,PLANTAX08:OFFICE,6062.83,6657.83,4335.67
+,Facility,6062.83,6657.83,4335.67
+Aggregated over the RunPeriods for Weather
+
+
+Time Setpoint Not Met
+
+,,During Heating [hr],During Cooling [hr],During Occupied Heating [hr],During Occupied Cooling [hr]
+,PLANTAX08:OFFICE,0.00,0.00,0.00,0.00
+,Facility,0.00,0.00,0.00,0.00
+Aggregated over the RunPeriods for Weather
+
+
+----------------------------------------------------------------------------------------------------
+REPORT:,Outdoor Air Summary
+FOR:,Entire Facility
+Average Outdoor Air During Occupied Hours
+
+,,Average Number of Occupants,Nominal Number of Occupants,Zone Volume [m3],Mechanical Ventilation [ach],Infiltration [ach],AFN Infiltration [ach],Simple Ventilation [ach]
+,PLANTAX08:OFFICE,34.67,34.67,843.63,0.000,0.718,0.000,0.000
+Values shown for a single zone without multipliers
+
+
+Minimum Outdoor Air During Occupied Hours
+
+,,Average Number of Occupants,Nominal Number of Occupants,Zone Volume [m3],Mechanical Ventilation [ach],Infiltration [ach],AFN Infiltration [ach],Simple Ventilation [ach]
+,PLANTAX08:OFFICE,34.67,34.67,843.63,0.000,0.012,0.000,0.000
+Values shown for a single zone without multipliers
+
+
+----------------------------------------------------------------------------------------------------
+REPORT:,Object Count Summary
+FOR:,Entire Facility
+Surfaces by Class
+
+,,Total,Outdoors
+,Wall,24,9
+,Floor,10,0
+,Roof,11,0
+,Internal Mass,0,0
+,Building Detached Shading,214,214
+,Fixed Detached Shading,0,0
+,Window,7,7
+,Door,0,0
+,Glass Door,0,0
+,Shading,0,0
+,Overhang,0,0
+,Fin,0,0
+,Tubular Daylighting Device Dome,0,0
+,Tubular Daylighting Device Diffuser,0,0
+
+
+HVAC
+
+,,Count
+,HVAC Air Loops,0
+,Conditioned Zones,1
+,Unconditioned Zones,0
+,Supply Plenums,0
+,Return Plenums,0
+
+
+Input Fields
+
+,,Count
+,IDF Objects,551
+,Defaulted Fields,85
+,Fields with Defaults,1354
+,Autosized Fields,19
+,Autosizable Fields,22
+,Autocalculated Fields,18
+,Autocalculatable Fields,215
+
+
+----------------------------------------------------------------------------------------------------
+REPORT:,Sensible Heat Gain Summary
+FOR:,Entire Facility
+Annual Building Sensible Heat Gain Components
+
+,,HVAC Zone Eq & Other Sensible Air Heating [kWh],HVAC Zone Eq & Other Sensible Air Cooling [kWh],HVAC Terminal Unit Sensible Air Heating [kWh],HVAC Terminal Unit Sensible Air Cooling [kWh],HVAC Input Heated Surface Heating [kWh],HVAC Input Cooled Surface Cooling [kWh],People Sensible Heat Addition [kWh],Lights Sensible Heat Addition [kWh],Equipment Sensible Heat Addition [kWh],Window Heat Addition [kWh],Interzone Air Transfer Heat Addition [kWh],Infiltration Heat Addition [kWh],Opaque Surface Conduction and Other Heat Addition [kWh],Equipment Sensible Heat Removal [kWh],Window Heat Removal [kWh],Interzone Air Transfer Heat Removal [kWh],Infiltration Heat Removal [kWh],Opaque Surface Conduction and Other Heat Removal [kWh]
+,PLANTAX08:OFFICE,1626.498,-29096.46,0.000,0.000,0.000,0.000,20283.199,11290.147,0.000,23149.625,0.000,1764.849,0.542,0.000,-6957.51,0.000,-12854.48,-9205.87
+,Total Facility,1626.498,-29096.46,0.000,0.000,0.000,0.000,20283.199,11290.147,0.000,23149.625,0.000,1764.849,0.542,0.000,-6957.51,0.000,-12854.48,-9205.87
+
+
+Peak Cooling Sensible Heat Gain Components
+
+,,Time of Peak {TIMESTAMP},HVAC Zone Eq & Other Sensible Air Heating [W],HVAC Zone Eq & Other Sensible Air Cooling [W],HVAC Terminal Unit Sensible Air Heating [W],HVAC Terminal Unit Sensible Air Cooling [W],HVAC Input Heated Surface Heating [W],HVAC Input Cooled Surface Cooling [W],People Sensible Heat Addition [W],Lights Sensible Heat Addition [W],Equipment Sensible Heat Addition [W],Window Heat Addition [W],Interzone Air Transfer Heat Addition [W],Infiltration Heat Addition [W],Opaque Surface Conduction and Other Heat Addition [W],Equipment Sensible Heat Removal [W],Window Heat Removal [W],Interzone Air Transfer Heat Removal [W],Infiltration Heat Removal [W],Opaque Surface Conduction and Other Heat Removal [W]
+,PLANTAX08:OFFICE,30-SEP-23:01,0.00,-29037.65,0.00,0.00,0.00,0.00,1950.61,0.00,0.00,0.00,0.00,0.00,29196.04,0.00,-1138.40,0.00,-970.60,0.00
+,Total Facility,30-SEP-23:01,0.00,-29037.65,0.00,0.00,0.00,0.00,1950.61,0.00,0.00,0.00,0.00,0.00,29196.04,0.00,-1138.40,0.00,-970.60,0.00
+
+
+Peak Heating Sensible Heat Gain Components
+
+,,Time of Peak {TIMESTAMP},HVAC Zone Eq & Other Sensible Air Heating [W],HVAC Zone Eq & Other Sensible Air Cooling [W],HVAC Terminal Unit Sensible Air Heating [W],HVAC Terminal Unit Sensible Air Cooling [W],HVAC Input Heated Surface Heating [W],HVAC Input Cooled Surface Cooling [W],People Sensible Heat Addition [W],Lights Sensible Heat Addition [W],Equipment Sensible Heat Addition [W],Window Heat Addition [W],Interzone Air Transfer Heat Addition [W],Infiltration Heat Addition [W],Opaque Surface Conduction and Other Heat Addition [W],Equipment Sensible Heat Removal [W],Window Heat Removal [W],Interzone Air Transfer Heat Removal [W],Infiltration Heat Removal [W],Opaque Surface Conduction and Other Heat Removal [W]
+,PLANTAX08:OFFICE,31-DEC-07:00,6277.62,0.00,0.00,0.00,0.00,0.00,2600.08,0.00,0.00,0.00,0.00,0.00,0.00,0.00,-3268.64,0.00,-5133.41,-475.65
+,Total Facility,31-DEC-07:00,6277.62,0.00,0.00,0.00,0.00,0.00,2600.08,0.00,0.00,0.00,0.00,0.00,0.00,0.00,-3268.64,0.00,-5133.41,-475.65
+
+
+----------------------------------------------------------------------------------------------------
+REPORT:,Standard 62.1 Summary
+FOR:,Entire Facility
+System Ventilation Requirements for Cooling
+
+,,Sum of Zone Primary Air Flow - Vpz-sum [m3/s],System Population - Ps,Sum of Zone Population - Pz-sum,Occupant Diversity - D,Uncorrected Outdoor Air Intake Airflow - Vou [m3/s],System Primary Airflow - Vps [m3/s],Average Outdoor Air Fraction - Xs,System Ventilation Efficiency - Ev,Outdoor Air Intake Flow - Vot [m3/s],Percent Outdoor Air - %OA,Environment Name of Peak System Population - Ps,Date and Time of Last Peak System Population - Ps
+,None,,,,,,,,,,,,
+
+
+System Ventilation Requirements for Heating
+
+,,Sum of Zone Primary Air Flow - Vpz-sum [m3/s],System Population - Ps,Sum of Zone Population - Pz-sum,Occupant Diversity - D,Uncorrected Outdoor Air Intake Airflow - Vou [m3/s],System Primary Airflow - Vps [m3/s],Average Outdoor Air Fraction - Xs,System Ventilation Efficiency - Ev,Outdoor Air Intake Flow Vot [m3/s],Percent Outdoor Air - %OA,Environment Name of Peak System Population - Ps,Date and Time of Last Peak System Population - Ps
+,None,,,,,,,,,,,,
+
+
+Zone Ventilation Parameters
+
+,,AirLoop Name,People Outdoor Air Rate - Rp [m3/s-person],Zone Population - Pz,Area Outdoor Air Rate - Ra [m3/s-m2],Zone Floor Area - Az [m2],Breathing Zone Outdoor Airflow - Vbz [m3/s],Cooling Zone Air Distribution Effectiveness - Ez-clg,Cooling Zone Outdoor Airflow - Voz-clg [m3/s],Heating Zone Air Distribution Effectiveness - Ez-htg,Heating Zone Outdoor Airflow - Voz-htg [m3/s]
+,None,,,,,,,,,,
+
+
+System Ventilation Parameters
+
+,,People Outdoor Air Rate - Rp [m3/s-person],Sum of Zone Population - Pz-sum,Area Outdoor Air Rate - Ra [m3/s-m2],Sum of Zone Floor Area - Az-sum [m2],Breathing Zone Outdoor Airflow - Vbz [m3/s],Cooling Zone Outdoor Airflow - Voz-clg [m3/s],Heating Zone Outdoor Airflow - Voz-htg [m3/s]
+,None,,,,,,,
+
+
+Zone Ventilation Calculations for Cooling Design
+
+,,AirLoop Name,Box Type,Zone Primary Airflow - Vpz [m3/s],Zone Discharge Airflow - Vdz [m3/s],Minimum Zone Primary Airflow - Vpz-min [m3/s],Zone Outdoor Airflow Cooling - Voz-clg [m3/s],Primary Outdoor Air Fraction - Zpz,Primary Air Fraction - Ep,Secondary Recirculation Fraction- Er,Supply Air Fraction- Fa,Mixed Air Fraction - Fb,Outdoor Air Fraction - Fc,Zone Ventilation Efficiency - Evz
+,None,,,,,,,,,,,,,
+
+
+System Ventilation Calculations for Cooling Design
+
+,,Sum of Zone Primary Airflow - Vpz-sum [m3/s],System Primary Airflow - Vps [m3/s],Sum of Zone Discharge Airflow - Vdz-sum [m3/s],Sum of Min Zone Primary Airflow - Vpz-min [m3/s],Zone Outdoor Airflow Cooling - Voz-clg [m3/s],Zone Ventilation Efficiency - Evz-min
+,None,,,,,,
+
+
+Zone Ventilation Calculations for Heating Design
+
+,,AirLoop Name,Box Type,Zone Primary Airflow - Vpz [m3/s],Zone Discharge Airflow - Vdz [m3/s],Minimum Zone Primary Airflow - Vpz-min [m3/s],Zone Outdoor Airflow Heating - Voz-htg [m3/s],Primary Outdoor Air Fraction - Zpz,Primary Air Fraction - Ep,Secondary Recirculation Fraction- Er,Supply Air Fraction- Fa,Mixed Air Fraction - Fb,Outdoor Air Fraction - Fc,Zone Ventilation Efficiency - Evz
+,None,,,,,,,,,,,,,
+
+
+System Ventilation Calculations for Heating Design
+
+,,Sum of Zone Primary Airflow - Vpz-sum [m3/s],System Primary Airflow - Vps [m3/s],Sum of Zone Discharge Airflow - Vdz-sum [m3/s],Sum of Min Zone Primary Airflow - Vpz-min [m3/s],Zone Outdoor Airflow Heating - Voz-htg [m3/s],Zone Ventilation Efficiency - Evz-min
+,None,,,,,,
+
+

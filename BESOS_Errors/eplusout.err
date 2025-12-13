@@ -1,40 +1,38 @@
-Program Version,EnergyPlus, Version 25.1.0-68a4a7c774, YMD=2025.12.04 14:17,
+Program Version,EnergyPlus, Version 9.4.0-998c4b761e, YMD=2025.12.13 10:17,
    ************* Beginning Zone Sizing Calculations
-   ** Warning ** GetHTSurfaceData: Surfaces with interface to Ground found but no "Ground Temperatures" were input.
-   **   ~~~   ** Found first in surface=SURFACE 1
-   **   ~~~   ** Defaults, constant throughout the year of (18.0) will be used.
-   ** Warning ** CheckUsedConstructions: There are 2 nominally unused constructions in input.
+   ** Warning ** Weather file location will be used rather than entered (IDF) Location object.
+   **   ~~~   ** ..Location object=CICSE ALJARAFE CENTER (01-01:31-12)  (01-01:31-12)
+   **   ~~~   ** ..Weather File Location=SEVILLA - ESP IWEC Data WMO#=083910
+   **   ~~~   ** ..due to location differences, Latitude difference=[0.00] degrees, Longitude difference=[0.00] degrees.
+   **   ~~~   ** ..Time Zone difference=[0.0] hour(s), Elevation difference=[244.44] percent, [22.00] meters.
+   ** Warning ** GetSurfaceData: Entered Zone Floor Areas differ from calculated Zone Floor Area(s).
+   **   ~~~   ** ...use Output:Diagnostics,DisplayExtraWarnings; to show more details on individual zones.
+   ** Warning ** GetSurfaceData: There are 6 window/glass door(s) that may cause inaccurate shadowing due to Solar Distribution.
+   **   ~~~   ** For explicit details on each window, use Output:Diagnostics,DisplayExtraWarnings;
+   ************* Note that the following warning(s) may/will occur if you have not enclosed your zone completely.
+   ** Warning ** Entered Zone Volumes differ from calculated zone volume(s).
+   **   ~~~   ** ...use Output:Diagnostics,DisplayExtraWarnings; to show more details on individual zones.
+   ** Warning ** CalculateZoneVolume: 1 zone is not fully enclosed. For more details use:  Output:Diagnostics,DisplayExtrawarnings; 
+   ** Warning ** CheckUsedConstructions: There are 6 nominally unused constructions in input.
    **   ~~~   ** For explicit details on each unused construction, use Output:Diagnostics,DisplayExtraWarnings;
-   ** Warning ** PEOPLE="FLOOR_1 RESIDENTIAL LIVING OCCUPANTS", Air velocity is beyond the reasonable range (0.1,0.5) for thermal comfort control.
-   **   ~~~   **  During Warmup & Sizing, Environment=SEVILLA ANN CLG .4% CONDNS DB=>MWB, at Simulation time=07/21 00:00 - 00:10
-   ** Warning ** PEOPLE="FLOOR_2 RESIDENTIAL LIVING OCCUPANTS", Air velocity is beyond the reasonable range (0.1,0.5) for thermal comfort control.
-   **   ~~~   **  During Warmup & Sizing, Environment=SEVILLA ANN CLG .4% CONDNS DB=>MWB, at Simulation time=07/21 00:00 - 00:10
-   ** Warning ** SetUpZoneSizingArrays: Requested Sizing for Zone="FLOOR_1_ZONE", Zone has no thermostat (ref: ZoneControl:Thermostat, et al)
-   ** Warning ** SetUpZoneSizingArrays: Requested Sizing for Zone="FLOOR_2_ZONE", Zone has no thermostat (ref: ZoneControl:Thermostat, et al)
-   ** Severe  ** UpdateZoneSizing: Heating supply air temperature (calculated) within 2C of zone temperature
-   **   ~~~   ** ...check zone thermostat set point and design supply air temperatures
-   **   ~~~   ** ...zone name = FLOOR_1_ZONE
-   **   ~~~   ** ...design heating load         = 4608.86 W
-   **   ~~~   ** ...thermostat set point temp   = 37.762 C
-   **   ~~~   ** ...zone temperature            = 39.579 C
-   **   ~~~   ** ...supply air temperature      = 40.000 C
-   **   ~~~   ** ...temperature difference      = 0.42087 C
-   **   ~~~   ** ...calculated volume flow rate = 7.62615 m3/s
-   **   ~~~   ** ...calculated mass flow rate   = 9.15054 kg/s
-   ** Severe  ** UpdateZoneSizing: Heating supply air temperature (calculated) within 2C of zone temperature
-   **   ~~~   ** ...check zone thermostat set point and design supply air temperatures
-   **   ~~~   ** ...zone name = FLOOR_2_ZONE
-   **   ~~~   ** ...design heating load         = 4573.57 W
-   **   ~~~   ** ...thermostat set point temp   = 37.774 C
-   **   ~~~   ** ...zone temperature            = 39.571 C
-   **   ~~~   ** ...supply air temperature      = 40.000 C
-   **   ~~~   ** ...temperature difference      = 0.42944 C
-   **   ~~~   ** ...calculated volume flow rate = 7.42573 m3/s
-   **   ~~~   ** ...calculated mass flow rate   = 8.91005 kg/s
-   ** Warning ** GetVRFInput: AirConditioner:VariableRefrigerantFlow="VRF SYSTEM" curve values
-   **   ~~~   ** ... Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name = VRF SYSTEM VRFCOOLCAPFT output is not equal to 1.0 (+ or - 10%) at rated conditions.
+   ** Warning ** GetVRFInput: AirConditioner:VariableRefrigerantFlow="VRF OUTDOOR UNIT" curve values
+   **   ~~~   ** ... Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name = VRFCOOLCAPFT output is not equal to 1.0 (+ or - 10%) at rated conditions.
    **   ~~~   ** ... Curve output at rated conditions = 1.136
-   ************* Beginning Plant Sizing Calculations
+   ** Warning ** AirConditioner:VariableRefrigerantFlow = "VRF OUTDOOR UNIT", Minimum Outdoor Temperature in Heat Recovery Mode is less than the minimum temperature in heat pump mode.
+   **   ~~~   ** ...Minimum Outdoor Temperature in Heat Recovery Mode = -9.99 C
+   **   ~~~   ** ...Minimum Outdoor Temperature in Cooling Mode = -5.99 C
+   **   ~~~   ** ...Minimum Outdoor Temperature in Heating Mode = -19.99 C
+   **   ~~~   ** ...Minimum Outdoor Temperature in Heat Recovery Mode reset to greater of cooling or heating minimum temperature and simulation continues.
+   **   ~~~   ** ... adjusted Minimum Outdoor Temperature in Heat Recovery Mode = -5.99 C
+   ** Warning ** GetDXCoils: Coil:Cooling:DX:VariableRefrigerantFlow="PLANTAX08:OFFICE VRF INDOOR UNIT DX COOLING COIL" curve values
+   **   ~~~   ** ... Cooling Capacity Ratio Modifier Function of Temperature Curve Name = VRFTUCOOLCAPFT output is not equal to 1.0 (+ or - 10%) at rated conditions.
+   **   ~~~   ** ... Curve output at rated conditions = 1.136
+   ** Warning ** ZoneTerminalUnitList "VRF OUTDOOR UNIT ZONE LIST"
+   ** Warning ** ...Only 1 Terminal Unit connected to system and heat recovery is selected.
+   **   ~~~   ** ...Heat recovery will be disabled.
+   ** Warning ** ManageSizing: For a plant sizing run, there must be at least 1 Sizing:Plant object input. SimulationControl Plant Sizing option ignored.
+   ** Warning ** Output:Meter: invalid Key Name="NATURALGAS:FACILITY" - not found.
+   ** Warning ** Output:Meter: invalid Key Name="INTERIOREQUIPMENT:ELECTRICITY" - not found.
    ************* Testing Individual Branch Integrity
    ************* All Branches passed integrity testing
    ************* Testing Individual Supply Air Path Integrity
@@ -42,49 +40,20 @@ Program Version,EnergyPlus, Version 25.1.0-68a4a7c774, YMD=2025.12.04 14:17,
    ************* Testing Individual Return Air Path Integrity
    ************* All Return Air Paths passed integrity testing
    ************* No node connection errors were found.
-   ** Severe  ** Invalid Output:Variable or Output:Meter Index Key Name =PEOPLE FLOOR_1 RESIDENTIAL LIVING OCCUPANTS
+   ** Severe  ** Invalid Output:Variable or Output:Meter Index Key Name =PLANTAX08:OFFICE PEOPLE PLANTAX08:OFFICE
    **   ~~~   ** For Output:Variable or Output:Meter = ZONE THERMAL COMFORT FANGER MODEL PMV
-   **   ~~~   ** Entered in EnergyManagementSystem:Sensor=PMV_FLOOR_1_RESIDENTIAL_LIVING_OCCUPANTS
+   **   ~~~   ** Entered in EnergyManagementSystem:Sensor=PMV_PLANTAX08_OFFICE_PEOPLE_PLANTAX08_OFFICE
    **   ~~~   ** Unique Key Name not found.
-   ** Severe  ** Invalid Output:Variable or Output:Meter Index Key Name =PEOPLE FLOOR_2 RESIDENTIAL LIVING OCCUPANTS
-   **   ~~~   ** For Output:Variable or Output:Meter = ZONE THERMAL COMFORT FANGER MODEL PMV
-   **   ~~~   ** Entered in EnergyManagementSystem:Sensor=PMV_FLOOR_2_RESIDENTIAL_LIVING_OCCUPANTS
+   ** Severe  ** Invalid Output:Variable or Output:Meter Index Key Name =PLANTAX08:OFFICE PEOPLE PLANTAX08:OFFICE
+   **   ~~~   ** For Output:Variable or Output:Meter = PEOPLE OCCUPANT COUNT
+   **   ~~~   ** Entered in EnergyManagementSystem:Sensor=PEOPLE_OCCUPANT_COUNT_PLANTAX08_OFFICE_PEOPLE_PLANTAX08_OFFICE
    **   ~~~   ** Unique Key Name not found.
    **  Fatal  ** Errors found in processing Energy Management System input. Preceding condition causes termination.
    ...Summary of Errors that led to program termination:
-   ..... Reference severe error count=4
-   ..... Last severe error=Invalid Output:Variable or Output:Meter Index Key Name =PEOPLE FLOOR_2 RESIDENTIAL LIVING OCCUPANTS
+   ..... Reference severe error count=2
+   ..... Last severe error=Invalid Output:Variable or Output:Meter Index Key Name =PLANTAX08:OFFICE PEOPLE PLANTAX08:OFFICE
    ************* Warning:  Node connection errors not checked - most system input has not been read (see previous warning).
    ************* Fatal error -- final processing.  Program exited before simulations began.  See previous error messages.
-   *************
-   ************* ===== Recurring Surface Error Summary =====
-   ************* The following surface error messages occurred.
-   *************
-   ************* Base Surface does not surround subsurface errors occurring...
-   ************* Check that the GlobalGeometryRules object is expressing the proper starting corner and direction [CounterClockwise/Clockwise]
-   *************
-   ** Warning ** Base surface does not surround subsurface (CHKSBS), Overlap Status=Partial-Overlap
-   **   ~~~   **   The base surround errors occurred 1 times.
-   **   ~~~   ** Surface "SURFACE 2_DOOR" overlaps SubSurface "ENTRY DOOR"
-   *************
-   **   ~~~   **   The base surround errors occurred 1 times (total).
-   *************
-   *************
-   ************* ===== Recurring Error Summary =====
-   ************* The following recurring error messages occurred.
-   *************
-   *************  ** Warning ** PEOPLE="FLOOR_1 RESIDENTIAL LIVING OCCUPANTS",Air velocity is still beyond the reasonable range (0.1,0.5)
-   *************  **   ~~~   **   This error occurred 62041 total times;
-   *************  **   ~~~   **   during Warmup 48582 times;
-   *************  **   ~~~   **   during Sizing 61698 times.
-   *************  **   ~~~   **   Max=1.000000 [m/s]  Min=1.000000 [m/s]
-   *************
-   *************  ** Warning ** PEOPLE="FLOOR_2 RESIDENTIAL LIVING OCCUPANTS",Air velocity is still beyond the reasonable range (0.1,0.5)
-   *************  **   ~~~   **   This error occurred 62049 total times;
-   *************  **   ~~~   **   during Warmup 48587 times;
-   *************  **   ~~~   **   during Sizing 61706 times.
-   *************  **   ~~~   **   Max=1.000000 [m/s]  Min=1.000000 [m/s]
-   *************
    *************
    ************* ===== Final Error Summary =====
    ************* The following error categories occurred.  Consider correcting or noting.
@@ -94,5 +63,5 @@ Program Version,EnergyPlus, Version 25.1.0-68a4a7c774, YMD=2025.12.04 14:17,
    ************* ..object. You may remove the constructions indicated (when you use the DisplayExtraWarnings option).
    *************
    ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
-   ************* EnergyPlus Sizing Error Summary. During Sizing: 5 Warning; 2 Severe Errors.
-   ************* EnergyPlus Terminated--Fatal Error Detected. 124096 Warning; 4 Severe Errors; Elapsed Time=00hr 00min  0.77sec
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 11 Warning; 0 Severe Errors.
+   ************* EnergyPlus Terminated--Fatal Error Detected. 19 Warning; 2 Severe Errors; Elapsed Time=00hr 00min  2.93sec

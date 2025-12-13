@@ -1,0 +1,781 @@
+Program Version,EnergyPlus, Version 9.4.0-998c4b761e, YMD=2025.12.13 08:27
+! <Version>, Version ID
+ Version, 9.4
+! <Timesteps per Hour>, #TimeSteps, Minutes per TimeStep {minutes}
+ Timesteps per Hour,  6, 10
+! <System Convergence Limits>, Minimum System TimeStep {minutes}, Max HVAC Iterations, Minimum Plant Iterations, Maximum Plant Iterations
+ System Convergence Limits, 1, 25, 2, 8
+! <Simulation Control>, Do Zone Sizing, Do System Sizing, Do Plant Sizing, Do Design Days, Do Weather Simulation, Do HVAC Sizing Simulation
+ Simulation Control, Yes, Yes, Yes, No, Yes, No
+! <Performance Precision Tradeoffs>, Use Coil Direct Simulation, Zone Radiant Exchange Algorithm, Override Mode, Number of Timestep In Hour, Force Euler Method, Minimum Number of Warmup Days, Force Suppress All Begin Environment Resets, Minimum System Timestep, MaxZoneTempDiff, MaxAllowedDelTemp
+ Performance Precision Tradeoffs, No, ScriptF, Normal, 6, No, 1, No, 1.0, 0.300, 2.0000E-003
+! <Output Reporting Tolerances>, Tolerance for Time Heating Setpoint Not Met, Tolerance for Zone Cooling Setpoint Not Met Time
+ Output Reporting Tolerances, 1.110, 1.110, 
+! <Site:GroundTemperature:BuildingSurface>,Jan{C},Feb{C},Mar{C},Apr{C},May{C},Jun{C},Jul{C},Aug{C},Sep{C},Oct{C},Nov{C},Dec{C}
+ Site:GroundTemperature:BuildingSurface,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00
+! <Site:GroundTemperature:FCfactorMethod>,Jan{C},Feb{C},Mar{C},Apr{C},May{C},Jun{C},Jul{C},Aug{C},Sep{C},Oct{C},Nov{C},Dec{C}
+ Site:GroundTemperature:FCfactorMethod,  13.60,  11.20,  10.55,  11.12,  14.35,  17.97,  21.38,  23.85,  24.57,  23.41,  20.62,  17.10
+! <Site:GroundTemperature:Shallow>,Jan{C},Feb{C},Mar{C},Apr{C},May{C},Jun{C},Jul{C},Aug{C},Sep{C},Oct{C},Nov{C},Dec{C}
+ Site:GroundTemperature:Shallow,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00
+! <Site:GroundTemperature:Deep>,Jan{C},Feb{C},Mar{C},Apr{C},May{C},Jun{C},Jul{C},Aug{C},Sep{C},Oct{C},Nov{C},Dec{C}
+ Site:GroundTemperature:Deep,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00,  14.00
+! <Site:GroundReflectance>,Jan{dimensionless},Feb{dimensionless},Mar{dimensionless},Apr{dimensionless},May{dimensionless},Jun{dimensionless},Jul{dimensionless},Aug{dimensionless},Sep{dimensionless},Oct{dimensionless},Nov{dimensionless},Dec{dimensionless}
+ Site:GroundReflectance,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20
+! <Site:GroundReflectance:SnowModifier>, Normal, Daylighting {dimensionless}
+ Site:GroundReflectance:SnowModifier,   2.000,   2.000
+! <Site:GroundReflectance:Snow>,Jan{dimensionless},Feb{dimensionless},Mar{dimensionless},Apr{dimensionless},May{dimensionless},Jun{dimensionless},Jul{dimensionless},Aug{dimensionless},Sep{dimensionless},Oct{dimensionless},Nov{dimensionless},Dec{dimensionless}
+ Site:GroundReflectance:Snow,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40
+! <Site:GroundReflectance:Snow:Daylighting>,Jan{dimensionless},Feb{dimensionless},Mar{dimensionless},Apr{dimensionless},May{dimensionless},Jun{dimensionless},Jul{dimensionless},Aug{dimensionless},Sep{dimensionless},Oct{dimensionless},Nov{dimensionless},Dec{dimensionless}
+ Site:GroundReflectance:Snow:Daylighting,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40,  0.40
+! <Environment:Weather Station>,Wind Sensor Height Above Ground {m},Wind Speed Profile Exponent {},Wind Speed Profile Boundary Layer Thickness {m},Air Temperature Sensor Height Above Ground {m},Wind Speed Modifier Coefficient-Internal,Temperature Modifier Coefficient-Internal
+Environment:Weather Station,10.000,0.140,270.000,1.500,1.586,9.750E-003
+! <Site:Location>, Location Name, Latitude {N+/S- Deg}, Longitude {E+/W- Deg},  Time Zone Number {GMT+/-}, Elevation {m},  Standard Pressure at Elevation {Pa}, Standard RhoAir at Elevation
+Site:Location,SEVILLA - ESP IWEC Data WMO#=083910,37.42,-5.90,1.00,31.00,100953,1.1999
+! <Site Water Mains Temperature Information>,Calculation Method{},Water Mains Temperature Schedule Name{},Annual Average Outdoor Air Temperature{C},Maximum Difference In Monthly Average Outdoor Air Temperatures{deltaC},Fixed Default Water Mains Temperature{C}
+Site Water Mains Temperature Information,Correlation,NA,10.00,20.00,NA
+! <Building Information>, Building Name,North Axis {deg},Terrain,  Loads Convergence Tolerance Value,Temperature Convergence Tolerance Value,  Solar Distribution,Maximum Number of Warmup Days,Minimum Number of Warmup Days
+ Building Information,Building,0.000,Suburbs,4.00000E-002,0.40000,FullExteriorWithReflectionsFromExteriorSurfaces,25,6
+! <Inside Convection Algorithm>, Algorithm {Simple | TARP | CeilingDiffuser | AdaptiveConvectionAlgorithm}
+Inside Convection Algorithm,TARP
+! <Outside Convection Algorithm>, Algorithm {SimpleCombined | TARP | MoWitt | DOE-2 | AdaptiveConvectionAlgorithm}
+Outside Convection Algorithm,DOE-2
+! <Sky Radiance Distribution>, Value {Anisotropic}
+Sky Radiance Distribution,Anisotropic
+! <Zone Air Solution Algorithm>, Value {ThirdOrderBackwardDifference | AnalyticalSolution | EulerMethod}
+ Zone Air Solution Algorithm, ThirdOrderBackwardDifference
+! <Zone Air Carbon Dioxide Balance Simulation>, Simulation {Yes/No}, Carbon Dioxide Concentration
+ Zone Air Carbon Dioxide Balance Simulation, No,N/A
+! <Zone Air Generic Contaminant Balance Simulation>, Simulation {Yes/No}, Generic Contaminant Concentration
+ Zone Air Generic Contaminant Balance Simulation, No,N/A
+! <Zone Air Mass Flow Balance Simulation>, Enforce Mass Balance, Adjust Zone Mixing, Adjust Zone Infiltration {AddInfiltration | AdjustInfiltration | None}, Infiltration Zones {MixingSourceZonesOnly | AllZones}
+ Zone Air Mass Flow Balance Simulation, No,N/A,N/A,N/A
+! <HVACSystemRootFindingAlgorithm>, Value {RegulaFalsi | Bisection | BisectionThenRegulaFalsi | RegulaFalsiThenBisection}
+ HVACSystemRootFindingAlgorithm, RegulaFalsi
+! <Environment:Site Atmospheric Variation>,Wind Speed Profile Exponent {},Wind Speed Profile Boundary Layer Thickness {m},Air Temperature Gradient Coefficient {K/m}
+Environment:Site Atmospheric Variation,0.220,370.000,6.500000E-003
+! <Surface Geometry>,Starting Corner,Vertex Input Direction,Coordinate System,Daylight Reference Point Coordinate System,Rectangular (Simple) Surface Coordinate System
+ Surface Geometry,LowerLeftCorner,Counterclockwise,RelativeCoordinateSystem,RelativeCoordinateSystem,RelativeToZoneOrigin
+! <ShadingProperty Reflectance>,Shading Surface Name,Shading Type,Diffuse Solar Reflectance, Diffuse Visible Reflectance,Surface Glazing Fraction,Surface Glazing Contruction
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 1 (1),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 1 (1),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 2 (2),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 2 (2),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 3 (3),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 3 (3),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 4 (4),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 4 (4),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 5 (5),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 5 (5),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 6 (6),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 6 (6),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 7 (7),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 7 (7),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 8 (8),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 8 (8),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 9 (9),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 9 (9),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 10 (10),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 10 (10),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 11 (11),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 11 (11),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 12 (12),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 12 (12),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 13 (13),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 13 (13),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 14 (14),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 14 (14),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 15 (15),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 15 (15),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 16 (16),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 16 (16),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 17 (17),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 17 (17),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 18 (18),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 18 (18),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 19 (19),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 19 (19),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 20 (20),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 20 (20),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 21 (21),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 21 (21),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 22 (22),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 22 (22),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 23 (23),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 23 (23),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 24 (24),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 24 (24),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 25 (25),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 25 (25),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 26 (26),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 26 (26),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 27 (27),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 27 (27),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 28 (28),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 28 (28),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 29 (29),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 29 (29),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 30 (30),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 30 (30),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 31 (31),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 31 (31),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 32 (32),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 32 (32),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 33 (33),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 33 (33),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 34 (34),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 34 (34),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 35 (35),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 35 (35),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 36 (36),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 36 (36),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 37 (37),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 37 (37),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 38 (38),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 38 (38),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 39 (39),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 39 (39),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 40 (40),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 40 (40),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +00 - SURFACE 41 (41),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 41 (41),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 1 (42),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 1 (42),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 2 (43),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 2 (43),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 3 (44),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 3 (44),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 4 (45),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 4 (45),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 5 (46),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 5 (46),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 6 (47),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 6 (47),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 7 (48),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 7 (48),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 8 (49),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 8 (49),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 9 (50),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 9 (50),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 10 (51),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 10 (51),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 11 (52),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 11 (52),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 12 (53),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 12 (53),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 13 (54),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 13 (54),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 14 (55),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 14 (55),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 15 (56),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 15 (56),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 16 (57),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 16 (57),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 17 (58),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 17 (58),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 18 (59),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 18 (59),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 19 (60),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 19 (60),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 20 (61),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 20 (61),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +01 - SURFACE 21 (62),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 21 (62),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 1 (63),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 1 (63),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 2 (64),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 2 (64),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 3 (65),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 3 (65),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 4 (66),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 4 (66),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 5 (67),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 5 (67),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 6 (68),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 6 (68),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 7 (69),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 7 (69),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 8 (70),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 8 (70),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 9 (71),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 9 (71),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 10 (72),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 10 (72),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 11 (73),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 11 (73),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 12 (74),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 12 (74),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 13 (75),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 13 (75),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 14 (76),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 14 (76),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - HOTEL - SURFACE 15 (77),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - HOTEL - SURFACE 15 (77),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 1 (78),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 1 (78),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 2 (79),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 2 (79),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 3 (80),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 3 (80),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 4 (81),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 4 (81),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 5 (82),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 5 (82),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 6 (83),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 6 (83),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 7 (84),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 7 (84),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 8 (85),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 8 (85),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 9 (86),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 9 (86),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 10 (87),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 10 (87),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 11 (88),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 11 (88),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 12 (89),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 12 (89),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 13 (90),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 13 (90),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 14 (91),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 14 (91),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 15 (92),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 15 (92),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 1 (93),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 1 (93),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 2 (94),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 2 (94),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 3 (95),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 3 (95),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 4 (96),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 4 (96),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 5 (97),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 5 (97),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 6 (98),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 6 (98),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 7 (99),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 7 (99),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 8 (100),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 8 (100),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 9 (101),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 9 (101),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 10 (102),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 10 (102),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 11 (103),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 11 (103),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 12 (104),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 12 (104),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 13 (105),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 13 (105),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 14 (106),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 14 (106),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 15 (107),Detached Shading:Building,0.40,0.40,0.00, N/A
+ShadingProperty Reflectance,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 15 (107),Detached Shading:Building,0.40,0.40,0.00, N/A
+! <Surface Heat Transfer Algorithm>, Value {CTF - ConductionTransferFunction | EMPD - MoisturePenetrationDepthConductionTransferFunction | CondFD - ConductionFiniteDifference | HAMT - CombinedHeatAndMoistureFiniteElement} - Description,Inside Surface Max Temperature Limit{C}, Surface Convection Coefficient Lower Limit {W/m2-K}, Surface Convection Coefficient Upper Limit {W/m2-K}
+Surface Heat Transfer Algorithm, CTF - ConductionTransferFunction,2000,1.00E-008,1000.0
+! <Shading Summary>, Number of Fixed Detached Shades, Number of Building Detached Shades, Number of Attached Shades
+ Shading Summary,0,214,0
+! <Zone Summary>, Number of Zones, Number of Zone Surfaces, Number of SubSurfaces
+ Zone Summary,1,52,7
+! <Zone Information>,Zone Name,North Axis {deg},Origin X-Coordinate {m},Origin Y-Coordinate {m},Origin Z-Coordinate {m},Centroid X-Coordinate {m},Centroid Y-Coordinate {m},Centroid Z-Coordinate {m},Type,Zone Multiplier,Zone List Multiplier,Minimum X {m},Maximum X {m},Minimum Y {m},Maximum Y {m},Minimum Z {m},Maximum Z {m},Ceiling Height {m},Volume {m3},Zone Inside Convection Algorithm {Simple-Detailed-CeilingDiffuser-TrombeWall},Zone Outside Convection Algorithm {Simple-Detailed-Tarp-MoWitt-DOE-2-BLAST}, Floor Area {m2},Exterior Gross Wall Area {m2},Exterior Net Wall Area {m2},Exterior Window Area {m2}, Number of Surfaces, Number of SubSurfaces, Number of Shading SubSurfaces,  Part of Total Building Area
+ Zone Information, PLANTAX08:OFFICE,0.0,0.00,0.00,0.00,7.48,-5.11,33.31,1,1,1,-7.96,20.45,-21.70,9.51,31.44,35.18,1.71,843.63,TARP,DOE-2,312.37,282.14,220.38,16.77,45,7,0,Yes
+! <Zone Internal Gains Nominal>,Zone Name, Floor Area {m2},# Occupants,Area per Occupant {m2/person},Occupant per Area {person/m2},Interior Lighting {W/m2},Electric Load {W/m2},Gas Load {W/m2},Other Load {W/m2},Hot Water Eq {W/m2},Steam Equipment {W/m2},Sum Loads per Area {W/m2},Outdoor Controlled Baseboard Heat
+ Zone Internal Gains Nominal, PLANTAX08:OFFICE,312.37,34.7,9.009,0.111,11.540,0.000,0.000,0.000,0.000,0.000,11.540,No
+! <People Internal Gains Nominal>,Name,Schedule Name,Zone Name,Zone Floor Area {m2},# Zone Occupants,Number of People {},People/Floor Area {person/m2},Floor Area per person {m2/person},Fraction Radiant,Fraction Convected,Sensible Fraction Calculation,Activity level,ASHRAE 55 Warnings,Carbon Dioxide Generation Rate,Nominal Minimum Number of People,Nominal Maximum Number of People,MRT Calculation Type,Work Efficiency, Clothing Insulation Calculation Method,Clothing Insulation Calculation Method Schedule,Clothing,Air Velocity,Fanger Calculation,Pierce Calculation,KSU Calculation
+ People Internal Gains Nominal, PEOPLE PLANTAX08:OFFICE,ON,PLANTAX08:OFFICE,312.37,34.7,34.7,0.111,9.009,0.300,0.700,AutoCalculate,ACTIVITY SCHEDULE 42268,No,3.8200E-008,35,35,Zone Averaged,WORK EFFICIENCY,Clothing Insulation Schedule,N/A,CLOTHING SCHEDULE 42268,DEFAULT AIR VELOCITY FOR COMFORT CALCULATIONS,Yes,No,No
+! <Lights Internal Gains Nominal>,Name,Schedule Name,Zone Name,Zone Floor Area {m2},# Zone Occupants,Lighting Level {W},Lights/Floor Area {W/m2},Lights per person {W/person},Fraction Return Air,Fraction Radiant,Fraction Short Wave,Fraction Convected,Fraction Replaceable,End-Use Category,Nominal Minimum Lighting Level {W},Nominal Maximum Lighting Level {W}
+ Lights Internal Gains Nominal, PLANTAX08:OFFICE GENERAL LIGHTING,OFFICE_OPENOFF_LIGHT,PLANTAX08:OFFICE,312.37,34.7,3604.769,11.540,103.964,0.000,0.720,0.180,0.100,1.000,ELECTRIC EQUIPMENT#PlantaX08:Office#GeneralLights,0.000,3604.769
+! <Solar View Factor Check Values>,Zone/Enclosure Name,Original Check Value,Calculated Fixed Check Value,Final Check Value,Number of Iterations,Fixed RowSum Convergence,Used RowSum Convergence
+Solar View Factor Check Values,PLANTAX08:OFFICE,3.786054,7.303399E-004,7.303399E-004,11,52.000000,7.303399E-004
+! <Construction CTF>,Construction Name,Index,#Layers,#CTFs,Time Step {hours},ThermalConductance {w/m2-K},OuterThermalAbsorptance,InnerThermalAbsorptance,OuterSolarAbsorptance,InnerSolarAbsorptance,Roughness
+! <Material CTF Summary>,Material Name,Thickness {m},Conductivity {w/m-K},Density {kg/m3},Specific Heat {J/kg-K},ThermalResistance {m2-K/w}
+! <Material:Air>,Material Name,ThermalResistance {m2-K/w}
+! <CTF>,Time,Outside,Cross,Inside,Flux (except final one)
+ Construction CTF,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,   3,   5,  12,   0.167,      2.208    ,   0.900,   0.900,   0.500,   0.580,Rough
+ Material CTF Summary,PLACA DE YESO LAMINADO [PYL] 750 < D < 900_.015,  0.0150,         0.250,    825.000,     1000.000,  0.6000E-01
+ Material CTF Summary,1_RVAL_2,  0.0000,         0.000,      0.000,        0.000,  0.1500    
+ Material CTF Summary,FR SIN ENTREVIGADO -CANTO 350 MM_.35,  0.3500,         4.375,   2350.000,     1000.000,  0.8000E-01
+ Material CTF Summary,1_RVAL_4,  0.0000,         0.000,      0.000,        0.000,  0.1500    
+ Material CTF Summary,MARMOL [2600 < D < 2800]_.045,  0.0450,         3.500,   2700.000,     1000.000,  0.1286E-01
+ CTF,  12,      0.34002837E-07,      0.32324344E-14,      0.77134742E-07,     -0.14234307E-14
+ CTF,  11,     -0.61436780E-04,     -0.73495321E-13,     -0.60177717E-03,      0.11669699E-07
+ CTF,  10,      0.54691279E-02,      0.12504676E-11,      0.30239024E-01,     -0.20472414E-04
+ CTF,   9,     -0.12801460    ,      0.60902323E-09,     -0.63719423    ,      0.81380653E-03
+ CTF,   8,       1.4628651    ,      0.44627935E-07,       7.4042472    ,     -0.13487546E-01
+ CTF,   7,      -9.8237539    ,      0.91810880E-06,      -52.729835    ,      0.12331070    
+ CTF,   6,       42.023510    ,      0.65067798E-05,       241.89195    ,     -0.69192419    
+ CTF,   5,      -118.77264    ,      0.17413177E-04,      -730.56287    ,       2.4973631    
+ CTF,   4,       224.02544    ,      0.17586885E-04,       1456.7027    ,      -5.8838500    
+ CTF,   3,      -278.32064    ,      0.62218805E-05,      -1887.2107    ,       8.9501962    
+ CTF,   2,       218.13729    ,      0.57687831E-06,       1521.1612    ,      -8.4270992    
+ CTF,   1,      -97.544834    ,      0.22988598E-07,      -690.74584    ,       4.4446752    
+ CTF,   0,       18.935406    ,     -0.31475150E-08,       134.69675    
+ Construction CTF,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,   5,   5,  12,   0.167,      2.208    ,   0.900,   0.900,   0.580,   0.500,Rough
+ Material CTF Summary,MARMOL [2600 < D < 2800]_.045,  0.0450,         3.500,   2700.000,     1000.000,  0.1286E-01
+ Material CTF Summary,3_RVAL_2,  0.0000,         0.000,      0.000,        0.000,  0.1500    
+ Material CTF Summary,FR SIN ENTREVIGADO -CANTO 350 MM_.35,  0.3500,         4.375,   2350.000,     1000.000,  0.8000E-01
+ Material CTF Summary,3_RVAL_4,  0.0000,         0.000,      0.000,        0.000,  0.1500    
+ Material CTF Summary,PLACA DE YESO LAMINADO [PYL] 750 < D < 900_.015,  0.0150,         0.250,    825.000,     1000.000,  0.6000E-01
+ CTF,  12,      0.77134742E-07,     -0.32322872E-14,      0.34002837E-07,     -0.14181382E-14
+ CTF,  11,     -0.60177717E-03,     -0.73495963E-13,     -0.61436780E-04,      0.11669699E-07
+ CTF,  10,      0.30239024E-01,      0.12504884E-11,      0.54691279E-02,     -0.20472414E-04
+ CTF,   9,     -0.63719423    ,      0.60902238E-09,     -0.12801460    ,      0.81380653E-03
+ CTF,   8,       7.4042472    ,      0.44627949E-07,       1.4628651    ,     -0.13487546E-01
+ CTF,   7,      -52.729835    ,      0.91810867E-06,      -9.8237539    ,      0.12331070    
+ CTF,   6,       241.89195    ,      0.65067805E-05,       42.023510    ,     -0.69192419    
+ CTF,   5,      -730.56287    ,      0.17413175E-04,      -118.77264    ,       2.4973631    
+ CTF,   4,       1456.7027    ,      0.17586891E-04,       224.02544    ,      -5.8838500    
+ CTF,   3,      -1887.2107    ,      0.62218714E-05,      -278.32064    ,       8.9501962    
+ CTF,   2,       1521.1612    ,      0.57688683E-06,       218.13729    ,      -8.4270992    
+ CTF,   1,      -690.74584    ,      0.22984116E-07,      -97.544834    ,       4.4446752    
+ CTF,   0,       134.69675    ,     -0.31465097E-08,       18.935406    
+ Construction CTF,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,   7,   4,   9,   0.167,     0.8748    ,   0.900,   0.900,   0.600,   0.500,Rough
+ Material CTF Summary,CONCRETE CAST - GLASS REINFORCED_.1,  0.1000,         0.900,   1950.000,      840.000,  0.1111    
+ Material CTF Summary,5_RVAL_2,  0.0000,         0.000,      0.000,        0.000,  0.1800    
+ Material CTF Summary,MW LANA MINERAL [0.05 W/[MK]]_.04,  0.0400,         0.050,     40.000,     1000.000,  0.8000    
+ Material CTF Summary,PLACA DE YESO LAMINADO [PYL] 750 < D < 900_.013,  0.0130,         0.250,    825.000,     1000.000,  0.5200E-01
+ CTF,   9,     -0.87844585E-12,      0.40541275E-13,     -0.97783502E-08,      0.89808052E-14
+ CTF,   8,      0.35322513E-06,      0.60688027E-10,      0.31864040E-05,     -0.35665229E-08
+ CTF,   7,     -0.80635868E-04,      0.78569181E-07,     -0.36816765E-03,      0.84371132E-06
+ CTF,   6,      0.62733942E-02,      0.12553666E-04,      0.18560842E-01,     -0.69121179E-04
+ CTF,   5,     -0.21138560    ,      0.43457767E-03,     -0.42792944    ,      0.24992993E-02
+ CTF,   4,       3.2053546    ,      0.39479628E-02,       4.6027383    ,     -0.41872909E-01
+ CTF,   3,      -22.432350    ,      0.97542817E-02,      -22.324029    ,      0.33270977    
+ CTF,   2,       69.870382    ,      0.59044709E-02,       49.177980    ,      -1.2247360    
+ CTF,   1,      -90.343584    ,      0.59718033E-03,      -48.476426    ,       1.9078593    
+ CTF,   0,       39.926043    ,      0.19674956E-05,       17.450124    
+ Construction CTF,PARTICION INTERNA ALJARAFE CENTER OFICINAS,   9,   3,   9,   0.167,     0.4545    ,   0.900,   0.900,   0.500,   0.500,Rough
+ Material CTF Summary,GYPSUM PLASTERBOARD_.025,  0.0250,         0.250,    900.000,     1000.000,  0.1000    
+ Material CTF Summary,MW LANA MINERAL [0.05 W/[MK]]_.1,  0.1000,         0.050,     40.000,     1000.000,   2.000    
+ Material CTF Summary,GYPSUM PLASTERBOARD_.025,  0.0250,         0.250,    900.000,     1000.000,  0.1000    
+ CTF,   9,     -0.64018489E-12,      0.53409723E-14,     -0.64018714E-12,      0.29465224E-15
+ CTF,   8,      0.25036162E-08,      0.21744041E-10,      0.25036162E-08,     -0.49631098E-12
+ CTF,   7,     -0.23816585E-05,      0.32153173E-07,     -0.23816585E-05,      0.16664418E-08
+ CTF,   6,      0.69669564E-03,      0.88783329E-05,      0.69669564E-03,     -0.91527778E-06
+ CTF,   5,     -0.66690749E-01,      0.51989433E-03,     -0.66690749E-01,      0.17403626E-03
+ CTF,   4,       1.4881144    ,      0.68946201E-02,       1.4881144    ,     -0.12010986E-01
+ CTF,   3,      -11.548064    ,      0.21401604E-01,      -11.548064    ,      0.19595200    
+ CTF,   2,       35.733246    ,      0.14451211E-01,       35.733246    ,     -0.90906528    
+ CTF,   1,      -46.338096    ,      0.14412966E-02,      -46.338096    ,       1.6265656    
+ CTF,   0,       20.775517    ,      0.31640394E-05,       20.775517    
+! <WindowConstruction>,Construction Name,Index,#Layers,Roughness,Conductance {W/m2-K},SHGC,Solar Transmittance at Normal Incidence,Visible Transmittance at Normal Incidence
+! <WindowMaterial:Glazing>, Material Name, Optical Data Type, Spectral Data Set Name, Thickness {m}, Solar Transmittance,Front Solar Reflectance, Back Solar Reflectance, Visible Transmittance, Front Visible Reflectance,Back Visible Reflectance,Infrared Transmittance, Front Thermal Emissivity, Back Thermal Emissivity,Conductivity {W/m-K},Dirt Factor,Solar Diffusing
+! <WindowMaterial:Gas>,Material Name,GasType,Thickness {m}
+ WindowConstruction,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,11,3,VerySmooth,2.685,0.703,0.604,0.781
+ WindowMaterial:Glazing,3,SpectralAverage,,6.00000E-003,0.77500,7.10000E-002,7.10000E-002,0.88100,8.00000E-002,8.00000E-002,0.00000,0.84000,0.84000,0.90000,1.00000,No
+ WindowMaterial:Gas,1017,Air,1.200E-002
+ WindowMaterial:Glazing,3,SpectralAverage,,6.00000E-003,0.77500,7.10000E-002,7.10000E-002,0.88100,8.00000E-002,8.00000E-002,0.00000,0.84000,0.84000,0.90000,1.00000,No
+! <Shadowing/Sun Position Calculations Annual Simulations>, Shading Calculation Method, Shading Calculation Update Frequency Method, Shading Calculation Update Frequency {days}, Maximum Figures in Shadow Overlap Calculations {}, Polygon Clipping Algorithm, Pixel Counting Resolution, Sky Diffuse Modeling Algorithm, Output External Shading Calculation Results, Disable Self-Shading Within Shading Zone Groups, Disable Self-Shading From Shading Zone Groups to Other Zones
+Shadowing/Sun Position Calculations Annual Simulations,PolygonClipping,Periodic,20,15000,SutherlandHodgman,512,SimpleSkyDiffuseModeling,No,No,No
+! <Surface View Factor Check Values>,Zone/Enclosure Name,Original Check Value,Calculated Fixed Check Value,Final Check Value,Number of Iterations,Fixed RowSum Convergence,Used RowSum Convergence
+Surface View Factor Check Values,PLANTAX08:OFFICE,3.786054,7.303399E-004,7.303399E-004,11,52.000000,7.303399E-004
+! <Surface Convection Parameters>, Surface Name, Outside Model Assignment, Outside Area [m2], Outside Perimeter [m], Outside Height [m], Inside Model Assignment, Inside Height [m], Inside Perimeter Envelope [m], Inside Hydraulic Diameter [m], Window Wall Ratio, Window Location, Near Radiant {Yes/No}, Has Active HVAC {Yes/No}
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_2_0_0,0,57.25,119.10,35.18,0,1.71,75.44,10.48,5.95E-002,3,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_2_0_0_0_0_4_WIN,0,57.25,119.10,35.18,0,1.71,75.44,10.48,5.95E-002,2,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_3_0_0,0,59.20,105.93,35.18,0,1.71,75.44,10.48,5.95E-002,3,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_3_0_0_0_0_3_WIN,0,57.77,105.93,35.18,0,1.71,75.44,10.48,5.95E-002,2,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_4_0_0,0,60.49,132.04,35.18,0,1.71,75.44,10.48,5.95E-002,3,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_4_0_0_0_0_3_WIN,0,60.49,132.04,35.18,0,1.71,75.44,10.48,5.95E-002,2,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_5_0_0,0,0.19,79.93,35.18,0,1.71,75.44,10.48,5.95E-002,3,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_6_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_7_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_8_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_9_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_10_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_11_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_12_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_13_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_14_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_15_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_16_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_17_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_18_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_19_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_PARTITION_20_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_21_0_0,0,60.49,132.04,35.18,0,1.71,75.44,10.48,5.95E-002,3,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_21_0_0_0_0_2_WIN,0,60.49,132.04,35.18,0,1.71,75.44,10.48,5.95E-002,2,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_22_0_0,0,50.23,129.99,35.18,0,1.71,75.44,10.48,5.95E-002,3,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_23_0_0,0,47.94,122.41,35.18,0,1.71,75.44,10.48,5.95E-002,3,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_23_0_0_0_0_3_WIN,0,47.94,122.41,35.18,0,1.71,75.44,10.48,5.95E-002,2,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_24_0_0,0,57.25,119.10,35.18,0,1.71,75.44,10.48,5.95E-002,3,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_24_0_0_0_0_1_WIN,0,57.25,119.10,35.18,0,1.71,75.44,10.48,5.95E-002,2,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_25_0_0,0,47.94,122.41,35.18,0,1.71,75.44,10.48,5.95E-002,3,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_WALL_25_0_0_0_0_0_WIN,0,47.94,122.41,35.18,0,1.71,75.44,10.48,5.95E-002,2,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_FLOOR_0_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_FLOOR_0_0_1,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_FLOOR_0_0_2,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_FLOOR_0_0_3,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_FLOOR_0_0_4,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_FLOOR_0_0_5,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_FLOOR_0_0_6,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_FLOOR_0_0_8,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_FLOOR_0_0_9,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_FLOOR_0_0_10,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_CEILING_1_0_0,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_CEILING_1_0_1,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_CEILING_1_0_2,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_CEILING_1_0_3,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_CEILING_1_0_4,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_CEILING_1_0_5,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_CEILING_1_0_6,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_CEILING_1_0_7,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_CEILING_1_0_8,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_CEILING_1_0_9,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+Surface Convection Parameters,PLANTAX08:OFFICE_CEILING_1_0_10,0,0.00,0.00,0.00,0,1.71,75.44,10.48,5.95E-002,0,No,No
+! <Building Convection Parameters:North Facade>, Perimeter, Height, Xmin, Xmax, Ymin, Ymax, Zmin, Zmax 
+Building Convection Parameters:North Facade, 105.93,35.18,-7.96,7.07,0.00,9.51,0.00,35.18
+! <Building Convection Parameters:Northeast Facade>, Perimeter, Height, Xmin, Xmax, Ymin, Ymax, Zmin, Zmax 
+Building Convection Parameters:Northeast Facade, 119.10,35.18,0.00,17.53,-7.42,9.51,0.00,35.18
+! <Building Convection Parameters:East Facade>, Perimeter, Height, Xmin, Xmax, Ymin, Ymax, Zmin, Zmax 
+Building Convection Parameters:East Facade, 122.41,35.18,0.00,20.45,-16.09,0.00,0.00,35.18
+! <Building Convection Parameters:Southeast Facade>, Perimeter, Height, Xmin, Xmax, Ymin, Ymax, Zmin, Zmax 
+Building Convection Parameters:Southeast Facade, 129.99,35.18,0.00,20.45,-21.70,0.00,0.00,35.18
+! <Building Convection Parameters:South Facade>, Perimeter, Height, Xmin, Xmax, Ymin, Ymax, Zmin, Zmax 
+Building Convection Parameters:South Facade, 0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+! <Building Convection Parameters:Southwest Facade>, Perimeter, Height, Xmin, Xmax, Ymin, Ymax, Zmin, Zmax 
+Building Convection Parameters:Southwest Facade, 132.04,35.18,-7.96,8.25,-21.70,4.54,0.00,35.18
+! <Building Convection Parameters:West Facade>, Perimeter, Height, Xmin, Xmax, Ymin, Ymax, Zmin, Zmax 
+Building Convection Parameters:West Facade, 79.93,35.18,-3.45,0.00,-3.32,0.00,0.00,35.18
+! <Building Convection Parameters:Northwest Facade>, Perimeter, Height, Xmin, Xmax, Ymin, Ymax, Zmin, Zmax 
+Building Convection Parameters:NorthwWest Facade, 0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+! <Building Convection Parameters:Roof>, Area [m2], Perimeter [m], Height [m], XdYdZd:X, XdYdZd:Y, XdYdZd:Z,XdYdZu:X, XdYdZu:Y, XdYdZu:Z,XdYuZd:X, XdYuZd:Y, XdYuZd:Z,XdYuZu:X, XdYuZu:Y, XdYuZu:Z,XuYdZd:X, XuYdZd:Y, XuYdZd:Z,XuYuZd:X, XuYuZd:Y, XuYuZd:Z,XuYdZu:X, XuYdZu:Y, XuYdZu:Z,XuYuZu:X, XuYuZu:Y, XuYuZu:Z
+Building Convection Parameters:Roof,0.00,0.00,0.00,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000
+! <ZoneInfiltration Airflow Stats Nominal>,Name,Schedule Name,Zone Name, Zone Floor Area {m2}, # Zone Occupants,Design Volume Flow Rate {m3/s},Volume Flow Rate/Floor Area {m3/s-m2},Volume Flow Rate/Exterior Surface Area {m3/s-m2},ACH - Air Changes per Hour,Equation A - Constant Term Coefficient {},Equation B - Temperature Term Coefficient {1/C},Equation C - Velocity Term Coefficient {s/m}, Equation D - Velocity Squared Term Coefficient {s2/m2}
+ ZoneInfiltration Airflow Stats Nominal, PLANTAX08:OFFICE INFILTRATION,ON 24/7,PLANTAX08:OFFICE,312.37,34.7,0.164,5.251E-004,5.814E-004,0.700,1.000,0.000,0.000,0.000
+! <AirFlow Model>, Simple
+ AirFlow Model, Simple
+! <RoomAir Model>, Zone Name, Mixing/Mundt/UCSDDV/UCSDCV/UCSDUFI/UCSDUFE/User Defined
+RoomAir Model,PLANTAX08:OFFICE,Mixing/Well-Stirred
+! <AirflowNetwork Model:Control>, No Multizone or Distribution/Multizone with Distribution/Multizone without Distribution/Multizone with Distribution only during Fan Operation
+AirflowNetwork Model:Control,NoMultizoneOrDistribution
+! <Zone Volume Capacitance Multiplier>, Sensible Heat Capacity Multiplier, Moisture Capacity Multiplier, Carbon Dioxide Capacity Multiplier, Generic Contaminant Capacity Multiplier
+Zone Volume Capacitance Multiplier,   1.000 ,   1.000,   1.000,   1.000
+! <Zone Sizing DOAS Inputs>, Zone Name, DOAS Design Control Strategy, DOAS Design Low Setpoint Temperature {C}, DOAS Design High Setpoint Temperature {C} 
+ Zone Sizing DOAS Inputs, PLANTAX08:OFFICE, NeutralSupplyAir, 21.100, 23.900
+! <Load Timesteps in Zone Design Calculation Averaging Window>, Value
+ Load Timesteps in Zone Design Calculation Averaging Window,    6
+! <Heating Sizing Factor Information>, Sizing Factor ID, Value
+ Heating Sizing Factor Information, Global,   1.2500    
+ Heating Sizing Factor Information, Zone PLANTAX08:OFFICE,   1.2500    
+! <Cooling Sizing Factor Information>, Sizing Factor ID, Value
+ Cooling Sizing Factor Information, Global,   1.1500    
+ Cooling Sizing Factor Information, Zone PLANTAX08:OFFICE,   1.1500    
+! <Zone Sizing Information>, Zone Name, Load Type, Calc Des Load {W}, User Des Load {W}, Calc Des Air Flow Rate {m3/s}, User Des Air Flow Rate {m3/s}, Design Day Name, Date/Time of Peak, Temperature at Peak {C}, Humidity Ratio at Peak {kgWater/kgDryAir}, Floor Area {m2}, # Occupants, Calc Outdoor Air Flow Rate {m3/s}, Calc DOAS Heat Addition Rate {W}
+ Zone Sizing Information, PLANTAX08:OFFICE, Cooling, 18468.64601, 21238.94291, 1.54462, 1.77631, SUMMER DESIGN DAY IN CICSE ALJARAFE CENTER (01-01:31-12) JUL, 7/15 17:50:00, 36.20433, 1.17060E-002, 312.37170, 34.67326, 0.00000, 0.00000
+ Zone Sizing Information, PLANTAX08:OFFICE, Heating, 8271.54406, 10339.43007, 0.25120, 0.31399, WINTER DESIGN DAY IN CICSE ALJARAFE CENTER (01-01:31-12), 1/15 24:00:00, 1.90000, 4.33723E-003, 312.37170, 34.67326, 0.00000, 0.00000
+! <Component Sizing Information>, Component Type, Component Name, Input Field Description, Value
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, PLANTAX08:OFFICE VRF INDOOR UNIT, Design Size Cooling Supply Air Flow Rate [m3/s], 1.77631
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, PLANTAX08:OFFICE VRF INDOOR UNIT, Design Size Heating Supply Air Flow Rate [m3/s], 1.77631
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, PLANTAX08:OFFICE VRF INDOOR UNIT, Design Size No Cooling Supply Air Flow Rate [m3/s], 1.77631
+ Component Sizing Information, ZoneHVAC:TerminalUnit:VariableRefrigerantFlow, PLANTAX08:OFFICE VRF INDOOR UNIT, Design Size No Heating Supply Air Flow Rate [m3/s], 1.77631
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, PLANTAX08:OFFICE VRF INDOOR UNIT DX COOLING COIL, Design Size Rated Air Flow Rate [m3/s], 1.77631
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, PLANTAX08:OFFICE VRF INDOOR UNIT DX COOLING COIL, Design Size Gross Rated Total Cooling Capacity [W], 42335.29749
+ Component Sizing Information, Coil:Cooling:DX:VariableRefrigerantFlow, PLANTAX08:OFFICE VRF INDOOR UNIT DX COOLING COIL, Design Size Gross Rated Sensible Heat Ratio, 0.71436
+ Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, PLANTAX08:OFFICE VRF INDOOR UNIT DX HEATING COIL, Design Size Rated Air Flow Rate [m3/s], 1.77631
+ Component Sizing Information, Coil:Heating:DX:VariableRefrigerantFlow, PLANTAX08:OFFICE VRF INDOOR UNIT DX HEATING COIL, Design Size Gross Rated Heating Capacity [W], 42335.29749
+ Component Sizing Information, Fan:ConstantVolume, PLANTAX08:OFFICE VRF INDOOR UNIT SUPPLY FAN, Design Size Maximum Flow Rate [m3/s], 1.77631
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF OUTDOOR UNIT, Design Size Rated Total Cooling Capacity (gross) [W], 42335.29749
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF OUTDOOR UNIT, Design Size Rated Total Heating Capacity [W], 42335.29749
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF OUTDOOR UNIT, Design Size Resistive Defrost Heater Capacity, 42335.29749
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF OUTDOOR UNIT, Design Size Evaporative Condenser Air Flow Rate [m3/s], 4.82622
+ Component Sizing Information, AirConditioner:VariableRefrigerantFlow, VRF OUTDOOR UNIT, Design Size Evaporative Condenser Pump Rated Power Consumption [W], 180.60238
+! <VRF System Information>, VRF System Type, VRF System Name, VRF System Cooling Combination Ratio, VRF System Heating Combination Ratio, VRF System Cooling Piping Correction Factor, VRF System Heating Piping Correction Factor
+ VRF System Information, AirConditioner:VariableRefrigerantFlow, VRF OUTDOOR UNIT, 1.00000, 1.00000, 0.91519, 0.99797
+! <Zone Surfaces>,Zone Name,# Surfaces
+! <Shading Surfaces>,Number of Shading Surfaces,# Surfaces
+! <HeatTransfer Surface>,Surface Name,Surface Class,Base Surface,Heat Transfer Algorithm,Construction,Nominal U (w/o film coefs) {W/m2-K},Nominal U (with film coefs) {W/m2-K},Solar Diffusing,Area (Net) {m2},Area (Gross) {m2},Area (Sunlit Calc) {m2},Azimuth {deg},Tilt {deg},~Width {m},~Height {m},Reveal {m},ExtBoundCondition,ExtConvCoeffCalc,IntConvCoeffCalc,SunExposure,WindExposure,ViewFactorToGround,ViewFactorToSky,ViewFactorToGround-IR,ViewFactorToSky-IR,#Sides
+! <Shading Surface>,Surface Name,Surface Class,Base Surface,Heat Transfer Algorithm,Transmittance Schedule,Min Schedule Value,Max Schedule Value,Solar Diffusing,Area (Net) {m2},Area (Gross) {m2},Area (Sunlit Calc) {m2},Azimuth {deg},Tilt {deg},~Width {m},~Height {m},Reveal {m},ExtBoundCondition,ExtConvCoeffCalc,IntConvCoeffCalc,SunExposure,WindExposure,ViewFactorToGround,ViewFactorToSky,ViewFactorToGround-IR,ViewFactorToSky-IR,#Sides
+! <Frame/Divider Surface>,Surface Name,Surface Class,Base Surface,Heat Transfer Algorithm,Construction,Nominal U (w/o film coefs) {W/m2-K},Nominal U (with film coefs) {W/m2-K},Solar Diffusing,Area (Net) {m2},Area (Gross) {m2},Area (Sunlit Calc) {m2},Azimuth {deg},Tilt {deg},~Width {m},~Height {m},Reveal {m}
+Shading Surfaces,Number of Shading Surfaces,214
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 1 (1),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1133.89,1133.89,1133.89,338.06,180.00,33.67,33.67,,,,,,,,,,,6
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 1 (1),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1133.89,1133.89,1133.89,245.87,0.00,33.67,33.67,,,,,,,,,,,6
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 2 (2),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,2002.22,2002.22,2002.22,2.81,180.00,82.49,43.52,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 2 (2),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,2002.22,2002.22,2002.22,182.81,0.00,82.49,14.37,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 3 (3),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,336.55,336.55,336.55,315.06,180.00,9.56,29.83,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 3 (3),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,336.55,336.55,336.55,135.06,0.00,9.56,47.72,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 4 (4),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,19.58,19.58,19.58,324.72,180.00,1.56,13.10,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 4 (4),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,19.58,19.58,19.58,144.72,0.00,1.56,9.06,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 5 (5),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,196.10,196.10,196.10,324.72,180.00,11.88,11.14,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 5 (5),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,196.10,196.10,196.10,144.72,0.00,11.88,17.17,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 6 (6),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,156.22,156.22,156.22,294.53,180.00,3.79,15.09,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 6 (6),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,156.22,156.22,156.22,114.53,0.00,3.79,21.45,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 7 (7),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1334.73,1334.73,1334.73,50.50,180.00,36.53,36.53,,,,,,,,,,,6
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 7 (7),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1334.73,1334.73,1334.73,294.18,0.00,36.53,36.53,,,,,,,,,,,6
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 8 (8),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,43.49,43.49,43.49,2.81,180.00,8.50,11.15,,,,,,,,,,,3
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 8 (8),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,43.49,43.49,43.49,69.38,0.00,11.15,8.50,,,,,,,,,,,3
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 9 (9),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,116.57,116.57,116.57,294.53,180.00,18.30,3.22,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 9 (9),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,116.57,116.57,116.57,114.53,0.00,18.30,16.91,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 10 (10),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1056.29,1056.29,1056.29,346.56,180.00,32.50,32.50,,,,,,,,,,,5
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 10 (10),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1056.29,1056.29,1056.29,230.50,0.00,32.50,32.50,,,,,,,,,,,5
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 11 (11),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,123.03,123.03,123.03,166.56,0.00,11.09,11.09,,,,,,,,,,,5
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 11 (11),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,123.03,123.03,123.03,230.89,180.00,11.09,11.09,,,,,,,,,,,5
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 12 (12),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1061.03,1061.03,1061.03,76.79,0.00,64.14,60.88,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 12 (12),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1061.03,1061.03,1061.03,256.79,180.00,64.14,15.69,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 13 (13),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,652.98,652.98,652.98,114.53,0.00,25.55,25.55,,,,,,,,,,,5
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 13 (13),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,652.98,652.98,652.98,182.81,180.00,25.55,25.55,,,,,,,,,,,5
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 14 (14),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,13.94,13.94,13.94,161.41,0.00,8.10,1.83,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 14 (14),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,13.94,13.94,13.94,341.41,180.00,8.10,1.62,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 15 (15),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,157.87,157.87,157.87,182.81,0.00,29.94,28.90,,,,,,,,,,,3
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 15 (15),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,157.87,157.87,157.87,161.41,180.00,28.90,29.94,,,,,,,,,,,3
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 16 (16),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1276.89,1276.89,1276.89,182.81,0.00,62.16,12.59,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 16 (16),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1276.89,1276.89,1276.89,2.81,180.00,62.16,33.98,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 17 (17),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1913.73,1913.73,1913.73,158.06,0.00,43.75,43.75,,,,,,,,,,,6
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 17 (17),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1913.73,1913.73,1913.73,240.02,180.00,43.75,43.75,,,,,,,,,,,6
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 18 (18),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,177.44,177.44,177.44,144.72,0.00,13.32,13.32,,,,,,,,,,,5
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 18 (18),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,177.44,177.44,177.44,249.38,180.00,13.32,13.32,,,,,,,,,,,5
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 19 (19),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1018.73,1018.73,1018.73,135.06,0.00,27.21,67.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 19 (19),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,1018.73,1018.73,1018.73,315.06,180.00,27.21,29.83,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 20 (20),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,60.36,60.36,60.36,69.38,90.00,13.41,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 20 (20),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,60.36,60.36,60.36,249.38,90.00,13.41,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 21 (21),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,43.04,43.04,43.04,135.06,90.00,9.56,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 21 (21),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,43.04,43.04,43.04,315.06,90.00,9.56,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 22 (22),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,134.23,134.23,134.23,69.27,90.00,29.83,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 22 (22),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,134.23,134.23,134.23,249.27,90.00,29.83,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 23 (23),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,207.49,207.49,207.49,37.56,90.00,46.11,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 23 (23),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,207.49,207.49,207.49,217.56,90.00,46.11,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 24 (24),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,49.86,49.86,49.86,114.53,90.00,11.08,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 24 (24),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,49.86,49.86,49.86,294.53,90.00,11.08,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 25 (25),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,294.42,294.42,294.42,182.81,90.00,65.43,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 25 (25),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,294.42,294.42,294.42,2.81,90.00,65.43,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 26 (26),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,148.79,148.79,148.79,245.87,90.00,33.07,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 26 (26),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,148.79,148.79,148.79,65.87,90.00,33.07,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 27 (27),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,106.67,106.67,106.67,229.29,90.00,23.71,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 27 (27),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,106.67,106.67,106.67,49.29,90.00,23.71,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 28 (28),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,78.41,78.41,78.41,158.06,90.00,17.43,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 28 (28),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,78.41,78.41,78.41,338.06,90.00,17.43,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 29 (29),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,103.48,103.48,103.48,68.02,90.00,22.99,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 29 (29),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,103.48,103.48,103.48,248.02,90.00,22.99,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 30 (30),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,294.86,294.86,294.86,60.02,90.00,65.52,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 30 (30),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,294.86,294.86,294.86,240.02,90.00,65.52,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 31 (31),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,360.30,360.30,360.30,342.90,90.00,80.07,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 31 (31),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,360.30,360.30,360.30,162.90,90.00,80.07,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 32 (32),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,8.22,8.22,8.22,255.07,90.00,1.83,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 32 (32),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,8.22,8.22,8.22,75.07,90.00,1.83,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 33 (33),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,123.40,123.40,123.40,341.41,90.00,27.42,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 33 (33),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,123.40,123.40,123.40,161.41,90.00,27.42,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 34 (34),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,14.58,14.58,14.58,294.18,90.00,3.24,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 34 (34),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,14.58,14.58,14.58,114.18,90.00,3.24,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 35 (35),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,226.24,226.24,226.24,240.01,90.00,50.28,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 35 (35),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,226.24,226.24,226.24,60.01,90.00,50.28,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 36 (36),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,187.97,187.97,187.97,230.50,90.00,41.77,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 36 (36),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,187.97,187.97,187.97,50.50,90.00,41.77,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 37 (37),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,11.42,11.42,11.42,166.56,90.00,2.54,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 37 (37),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,11.42,11.42,11.42,346.56,90.00,2.54,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 38 (38),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,18.28,18.28,18.28,230.89,90.00,4.06,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 38 (38),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,18.28,18.28,18.28,50.89,90.00,4.06,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 39 (39),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,19.76,19.76,19.76,256.79,90.00,4.39,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 39 (39),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,19.76,19.76,19.76,76.79,90.00,4.39,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 40 (40),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,40.75,40.75,40.75,228.58,90.00,9.06,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 40 (40),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,40.75,40.75,40.75,48.58,90.00,9.06,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +00 - SURFACE 41 (41),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,60.48,60.48,60.48,144.72,90.00,13.44,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +00 - SURFACE 41 (41),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +00,0.00,0.00, ,60.48,60.48,60.48,324.72,90.00,13.44,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 1 (42),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,336.55,336.55,336.55,315.06,180.00,9.56,29.83,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 1 (42),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,336.55,336.55,336.55,135.06,0.00,9.56,47.72,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 2 (43),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,19.58,19.58,19.58,324.72,180.00,1.56,13.10,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 2 (43),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,19.58,19.58,19.58,144.72,0.00,1.56,9.06,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 3 (44),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,687.24,687.24,687.24,324.72,180.00,26.22,26.22,,,,,,,,,,,5
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 3 (44),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,687.24,687.24,687.24,230.89,0.00,26.22,26.22,,,,,,,,,,,5
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 4 (45),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,1680.98,1680.98,1680.98,335.33,180.00,41.00,41.00,,,,,,,,,,,6
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 4 (45),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,1680.98,1680.98,1680.98,240.02,0.00,41.00,41.00,,,,,,,,,,,6
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 5 (46),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,481.38,481.38,481.38,155.33,0.00,21.94,21.94,,,,,,,,,,,5
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 5 (46),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,481.38,481.38,481.38,240.02,180.00,21.94,21.94,,,,,,,,,,,5
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 6 (47),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,1046.79,1046.79,1046.79,76.79,0.00,32.35,32.35,,,,,,,,,,,5
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 6 (47),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,1046.79,1046.79,1046.79,217.56,180.00,32.35,32.35,,,,,,,,,,,5
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 7 (48),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,177.44,177.44,177.44,144.72,0.00,13.32,13.32,,,,,,,,,,,5
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 7 (48),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,177.44,177.44,177.44,249.38,180.00,13.32,13.32,,,,,,,,,,,5
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 8 (49),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,1018.73,1018.73,1018.73,135.06,0.00,27.21,67.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 8 (49),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,1018.73,1018.73,1018.73,315.06,180.00,27.21,29.83,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 9 (50),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,60.48,60.48,60.48,144.72,90.00,13.44,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 9 (50),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,60.48,60.48,60.48,324.72,90.00,13.44,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 10 (51),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,60.36,60.36,60.36,69.38,90.00,13.41,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 10 (51),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,60.36,60.36,60.36,249.38,90.00,13.41,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 11 (52),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,43.04,43.04,43.04,135.06,90.00,9.56,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 11 (52),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,43.04,43.04,43.04,315.06,90.00,9.56,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 12 (53),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,134.23,134.23,134.23,69.27,90.00,29.83,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 12 (53),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,134.23,134.23,134.23,249.27,90.00,29.83,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 13 (54),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,338.92,338.92,338.92,37.56,90.00,75.32,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 13 (54),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,338.92,338.92,338.92,217.56,90.00,75.32,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 14 (55),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,41.49,41.49,41.49,316.62,90.00,9.22,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 14 (55),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,41.49,41.49,41.49,136.62,90.00,9.22,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 15 (56),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,245.15,245.15,245.15,240.02,90.00,54.48,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 15 (56),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,245.15,245.15,245.15,60.02,90.00,54.48,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 16 (57),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,79.52,79.52,79.52,230.66,90.00,17.67,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 16 (57),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,79.52,79.52,79.52,50.66,90.00,17.67,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 17 (58),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,18.43,18.43,18.43,155.33,90.00,4.09,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 17 (58),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,18.43,18.43,18.43,335.33,90.00,4.09,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 18 (59),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,109.55,109.55,109.55,240.02,90.00,24.34,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 18 (59),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,109.55,109.55,109.55,60.02,90.00,24.34,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 19 (60),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,18.86,18.86,18.86,230.89,90.00,4.19,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 19 (60),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,18.86,18.86,18.86,50.89,90.00,4.19,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 20 (61),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,19.76,19.76,19.76,256.79,90.00,4.39,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 20 (61),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,19.76,19.76,19.76,76.79,90.00,4.39,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +01 - SURFACE 21 (62),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,40.75,40.75,40.75,228.58,90.00,9.06,4.50,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +01 - SURFACE 21 (62),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +01,0.00,0.00, ,40.75,40.75,40.75,48.58,90.00,9.06,4.50,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 1 (63),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,16.76,16.76,16.76,35.76,180.00,9.05,9.02,,,,,,,,,,,3
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 1 (63),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,16.76,16.76,16.76,60.02,0.00,9.02,9.05,,,,,,,,,,,3
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 2 (64),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,20.09,20.09,20.09,324.72,180.00,1.63,13.14,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 2 (64),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,20.09,20.09,20.09,144.72,0.00,1.63,9.07,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 3 (65),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,434.54,434.54,434.54,324.72,180.00,20.85,20.85,,,,,,,,,,,6
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 3 (65),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,434.54,434.54,434.54,240.02,0.00,20.85,20.85,,,,,,,,,,,6
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 4 (66),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,49.69,49.69,49.69,76.79,0.00,17.67,4.15,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 4 (66),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,49.69,49.69,49.69,256.79,180.00,17.67,5.89,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 5 (67),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,15.81,15.81,15.81,69.38,0.00,12.01,16.18,,,,,,,,,,,3
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 5 (67),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,15.81,15.81,15.81,60.02,180.00,16.18,12.01,,,,,,,,,,,3
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 6 (68),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,405.88,405.88,405.88,144.72,0.00,20.15,20.15,,,,,,,,,,,6
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 6 (68),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,405.88,405.88,405.88,240.02,180.00,20.15,20.15,,,,,,,,,,,6
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 7 (69),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,653.40,653.40,653.40,144.72,90.00,13.44,48.62,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 7 (69),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,653.40,653.40,653.40,324.72,90.00,13.44,48.62,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 8 (70),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,860.03,860.03,860.03,69.38,90.00,17.69,48.62,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 8 (70),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,860.03,860.03,860.03,249.38,90.00,17.69,48.62,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 9 (71),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,231.18,231.18,231.18,35.76,90.00,4.75,48.62,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 9 (71),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,231.18,231.18,231.18,215.76,90.00,4.75,48.62,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 10 (72),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,438.43,438.43,438.43,60.02,90.00,9.02,48.62,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 10 (72),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,438.43,438.43,438.43,240.02,90.00,9.02,48.62,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 11 (73),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,769.63,769.63,769.63,318.31,90.00,15.83,48.62,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 11 (73),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,769.63,769.63,769.63,138.31,90.00,15.83,48.62,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 12 (74),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,564.89,564.89,564.89,240.02,90.00,11.62,48.62,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 12 (74),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,564.89,564.89,564.89,60.02,90.00,11.62,48.62,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 13 (75),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,202.01,202.01,202.01,230.66,90.00,4.15,48.62,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 13 (75),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,202.01,202.01,202.01,50.66,90.00,4.15,48.62,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 14 (76),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,214.40,214.40,214.40,256.79,90.00,4.41,48.62,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 14 (76),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,214.40,214.40,214.40,76.79,90.00,4.41,48.62,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - HOTEL - SURFACE 15 (77),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,441.13,441.13,441.13,228.64,90.00,9.07,48.62,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - HOTEL - SURFACE 15 (77),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - HOTEL,0.00,0.00, ,441.13,441.13,441.13,48.64,90.00,9.07,48.62,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 1 (78),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,50.21,50.21,50.21,43.06,180.00,17.70,4.15,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 1 (78),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,50.21,50.21,50.21,223.06,0.00,17.70,5.96,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 2 (79),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,15.81,15.81,15.81,50.66,180.00,12.01,16.19,,,,,,,,,,,3
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 2 (79),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,15.81,15.81,15.81,60.02,0.00,16.19,12.01,,,,,,,,,,,3
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 3 (80),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,405.66,405.66,405.66,335.32,180.00,20.14,20.14,,,,,,,,,,,6
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 3 (80),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,405.66,405.66,405.66,240.02,0.00,20.14,20.14,,,,,,,,,,,6
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 4 (81),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,106.71,106.71,106.71,264.28,90.00,4.76,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 4 (81),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,106.71,106.71,106.71,84.28,90.00,4.76,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 5 (82),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,397.45,397.45,397.45,230.66,90.00,17.71,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 5 (82),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,397.45,397.45,397.45,50.66,90.00,17.71,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 6 (83),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,202.35,202.35,202.35,240.02,90.00,9.02,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 6 (83),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,202.35,202.35,202.35,60.02,90.00,9.02,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 7 (84),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,355.22,355.22,355.22,341.73,90.00,15.83,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 7 (84),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,355.22,355.22,355.22,161.73,90.00,15.83,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 8 (85),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,260.72,260.72,260.72,60.02,90.00,11.62,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 8 (85),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,260.72,260.72,260.72,240.02,90.00,11.62,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 9 (86),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,93.22,93.22,93.22,69.38,90.00,4.15,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 9 (86),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,93.22,93.22,93.22,249.38,90.00,4.15,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 10 (87),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,97.89,97.89,97.89,43.06,90.00,4.36,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 10 (87),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,97.89,97.89,97.89,223.06,90.00,4.36,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 11 (88),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,205.20,205.20,205.20,71.34,90.00,9.14,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 11 (88),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,205.20,205.20,205.20,251.34,90.00,9.14,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 12 (89),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,301.39,301.39,301.39,155.32,90.00,13.43,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 12 (89),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,301.39,301.39,301.39,335.32,90.00,13.43,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 13 (90),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,16.75,16.75,16.75,84.28,0.00,9.05,9.02,,,,,,,,,,,3
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 13 (90),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,16.75,16.75,16.75,60.02,180.00,9.02,9.05,,,,,,,,,,,3
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 14 (91),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,20.12,20.12,20.12,155.32,0.00,1.63,13.16,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 14 (91),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,20.12,20.12,20.12,335.32,180.00,1.63,9.14,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - PLANTA +03-07 - SURFACE 15 (92),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,434.80,434.80,434.80,155.32,0.00,20.85,20.85,,,,,,,,,,,6
+Shading Surface,Mir-ALJARAFE CENTER - PLANTA +03-07 - SURFACE 15 (92),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - PLANTA +03-07,0.00,0.00, ,434.80,434.80,434.80,240.02,180.00,20.85,20.85,,,,,,,,,,,6
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 1 (93),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,50.21,50.21,50.21,43.06,180.00,17.70,4.15,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 1 (93),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,50.21,50.21,50.21,223.06,0.00,17.70,5.96,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 2 (94),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,15.81,15.81,15.81,50.66,180.00,12.01,16.19,,,,,,,,,,,3
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 2 (94),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,15.81,15.81,15.81,60.02,0.00,16.19,12.01,,,,,,,,,,,3
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 3 (95),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,405.66,405.66,405.66,335.32,180.00,20.14,20.14,,,,,,,,,,,6
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 3 (95),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,405.66,405.66,405.66,240.02,0.00,20.14,20.14,,,,,,,,,,,6
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 4 (96),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,106.71,106.71,106.71,264.28,90.00,4.76,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 4 (96),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,106.71,106.71,106.71,84.28,90.00,4.76,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 5 (97),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,397.45,397.45,397.45,230.66,90.00,17.71,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 5 (97),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,397.45,397.45,397.45,50.66,90.00,17.71,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 6 (98),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,202.35,202.35,202.35,240.02,90.00,9.02,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 6 (98),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,202.35,202.35,202.35,60.02,90.00,9.02,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 7 (99),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,355.22,355.22,355.22,341.73,90.00,15.83,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 7 (99),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,355.22,355.22,355.22,161.73,90.00,15.83,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 8 (100),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,260.72,260.72,260.72,60.02,90.00,11.62,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 8 (100),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,260.72,260.72,260.72,240.02,90.00,11.62,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 9 (101),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,93.22,93.22,93.22,69.38,90.00,4.15,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 9 (101),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,93.22,93.22,93.22,249.38,90.00,4.15,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 10 (102),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,97.89,97.89,97.89,43.06,90.00,4.36,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 10 (102),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,97.89,97.89,97.89,223.06,90.00,4.36,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 11 (103),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,205.20,205.20,205.20,71.34,90.00,9.14,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 11 (103),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,205.20,205.20,205.20,251.34,90.00,9.14,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 12 (104),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,301.39,301.39,301.39,155.32,90.00,13.43,22.44,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 12 (104),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,301.39,301.39,301.39,335.32,90.00,13.43,22.44,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 13 (105),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,16.75,16.75,16.75,84.28,0.00,9.05,9.02,,,,,,,,,,,3
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 13 (105),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,16.75,16.75,16.75,60.02,180.00,9.02,9.05,,,,,,,,,,,3
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 14 (106),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,20.12,20.12,20.12,155.32,0.00,1.63,13.16,,,,,,,,,,,4
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 14 (106),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,20.12,20.12,20.12,335.32,180.00,1.63,9.14,,,,,,,,,,,4
+Shading Surface,ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 15 (107),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,434.80,434.80,434.80,155.32,0.00,20.85,20.85,,,,,,,,,,,6
+Shading Surface,Mir-ALJARAFE CENTER - COMPONENT BLOCK 1 - SURFACE 15 (107),Detached Shading:Building,,None,TRANSMITTANCE SCHEDULE FOR ALJARAFE CENTER - COMPONENT BLOCK 1,0.00,0.00, ,434.80,434.80,434.80,240.02,180.00,20.85,20.85,,,,,,,,,,,6
+Zone Surfaces,PLANTAX08:OFFICE,52
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_2_0_0,Wall,,CTF - ConductionTransferFunction,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.875,0.774,,30.03,43.45,41.06,60.02,90.00,11.62,3.74,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_2_0_0_0_0_4_WIN,Window,PLANTAX08:OFFICE_WALL_2_0_0,Window5 Detailed Fenestration,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,N/A,2.685,No,11.63,2.40,2.40,60.02,90.00,0.92,2.62,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+Frame/Divider Surface,1,Frame,PLANTAX08:OFFICE_WALL_2_0_0_0_0_4_WIN,Window5 Detailed Fenestration,,N/A,N/A,,1.44,0.29,*,N/A,N/A,4.00E-002,N/A
+Frame/Divider Surface,1,Divider:DividedLite,PLANTAX08:OFFICE_WALL_2_0_0_0_0_4_WIN,,,N/A,N/A,,0.35,7.02E-002,*,N/A,N/A,2.00E-002,N/A
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_3_0_0,Wall,,CTF - ConductionTransferFunction,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.875,0.774,,48.46,59.20,56.81,341.73,90.00,15.83,3.74,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_3_0_0_0_0_3_WIN,Window,PLANTAX08:OFFICE_WALL_3_0_0,Window5 Detailed Fenestration,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,N/A,2.685,No,9.30,2.40,2.40,341.73,90.00,0.92,2.62,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+Frame/Divider Surface,1,Frame,PLANTAX08:OFFICE_WALL_3_0_0_0_0_3_WIN,Window5 Detailed Fenestration,,N/A,N/A,,1.16,0.29,*,N/A,N/A,4.00E-002,N/A
+Frame/Divider Surface,1,Divider:DividedLite,PLANTAX08:OFFICE_WALL_3_0_0_0_0_3_WIN,,,N/A,N/A,,0.28,7.02E-002,*,N/A,N/A,2.00E-002,N/A
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_4_0_0,Wall,,CTF - ConductionTransferFunction,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.875,0.774,,22.98,33.72,31.33,240.02,90.00,9.02,3.74,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_4_0_0_0_0_3_WIN,Window,PLANTAX08:OFFICE_WALL_4_0_0,Window5 Detailed Fenestration,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,N/A,2.685,No,9.30,2.40,2.40,240.02,90.00,0.92,2.62,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+Frame/Divider Surface,1,Frame,PLANTAX08:OFFICE_WALL_4_0_0_0_0_3_WIN,Window5 Detailed Fenestration,,N/A,N/A,,1.16,0.29,*,N/A,N/A,4.00E-002,N/A
+Frame/Divider Surface,1,Divider:DividedLite,PLANTAX08:OFFICE_WALL_4_0_0_0_0_3_WIN,,,N/A,N/A,,0.28,7.02E-002,*,N/A,N/A,2.00E-002,N/A
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_5_0_0,Wall,,CTF - ConductionTransferFunction,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.875,0.774,,0.19,0.19,0.19,264.28,90.00,5.13E-002,3.74,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.51,0.49,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_6_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,8.95,8.95,8.95,150.02,90.00,2.39,3.74,0.00,PLANTAX08:OFFICE_PARTITION_6_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_7_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,2.43,2.43,2.43,240.02,90.00,0.65,3.74,0.00,PLANTAX08:OFFICE_PARTITION_7_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_8_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,12.72,12.72,12.72,150.02,90.00,3.40,3.74,0.00,PLANTAX08:OFFICE_PARTITION_8_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_9_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,0.37,0.37,0.37,240.02,90.00,1.00E-001,3.74,0.00,PLANTAX08:OFFICE_PARTITION_9_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_10_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,4.49,4.49,4.49,150.02,90.00,1.20,3.74,0.00,PLANTAX08:OFFICE_PARTITION_10_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_11_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,15.49,15.49,15.49,60.02,90.00,4.14,3.74,0.00,PLANTAX08:OFFICE_PARTITION_11_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_12_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,9.68,9.68,9.68,150.02,90.00,2.59,3.74,0.00,PLANTAX08:OFFICE_PARTITION_12_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_13_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,25.43,25.43,25.43,240.02,90.00,6.80,3.74,0.00,PLANTAX08:OFFICE_PARTITION_13_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_14_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,9.68,9.68,9.68,330.02,90.00,2.59,3.74,0.00,PLANTAX08:OFFICE_PARTITION_14_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_15_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,23.20,23.20,23.20,240.02,90.00,6.20,3.74,0.00,PLANTAX08:OFFICE_PARTITION_15_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_16_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,9.56,9.56,9.56,150.02,90.00,2.56,3.74,0.00,PLANTAX08:OFFICE_PARTITION_16_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_17_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,16.56,16.56,16.56,240.02,90.00,4.43,3.74,0.00,PLANTAX08:OFFICE_PARTITION_17_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_18_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,9.56,9.56,9.56,330.02,90.00,2.56,3.74,0.00,PLANTAX08:OFFICE_PARTITION_18_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_19_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,17.21,17.21,17.21,330.02,90.00,4.60,3.74,0.00,PLANTAX08:OFFICE_PARTITION_19_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_PARTITION_20_0_0,Wall,,CTF - ConductionTransferFunction,PARTICION INTERNA ALJARAFE CENTER OFICINAS,0.455,0.426,,10.17,10.17,10.17,330.02,90.00,2.72,3.74,0.00,PLANTAX08:OFFICE_PARTITION_20_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_21_0_0,Wall,,CTF - ConductionTransferFunction,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.875,0.774,,21.23,29.28,26.88,230.66,90.00,7.83,3.74,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_21_0_0_0_0_2_WIN,Window,PLANTAX08:OFFICE_WALL_21_0_0,Window5 Detailed Fenestration,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,N/A,2.685,No,6.98,2.40,2.40,230.66,90.00,0.92,2.62,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+Frame/Divider Surface,1,Frame,PLANTAX08:OFFICE_WALL_21_0_0_0_0_2_WIN,Window5 Detailed Fenestration,,N/A,N/A,,0.87,0.29,*,N/A,N/A,4.00E-002,N/A
+Frame/Divider Surface,1,Divider:DividedLite,PLANTAX08:OFFICE_WALL_21_0_0_0_0_2_WIN,,,N/A,N/A,,0.21,7.02E-002,*,N/A,N/A,2.00E-002,N/A
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_22_0_0,Wall,,CTF - ConductionTransferFunction,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.875,0.774,,50.23,50.23,50.23,155.32,90.00,13.43,3.74,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.73,0.27,4
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_23_0_0,Wall,,CTF - ConductionTransferFunction,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.875,0.774,,23.46,34.20,31.80,71.34,90.00,9.14,3.74,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.54,0.46,4
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_23_0_0_0_0_3_WIN,Window,PLANTAX08:OFFICE_WALL_23_0_0,Window5 Detailed Fenestration,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,N/A,2.685,No,9.30,2.40,2.40,71.34,90.00,0.92,2.62,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.54,0.46,4
+Frame/Divider Surface,1,Frame,PLANTAX08:OFFICE_WALL_23_0_0_0_0_3_WIN,Window5 Detailed Fenestration,,N/A,N/A,,1.16,0.29,*,N/A,N/A,4.00E-002,N/A
+Frame/Divider Surface,1,Divider:DividedLite,PLANTAX08:OFFICE_WALL_23_0_0_0_0_3_WIN,,,N/A,N/A,,0.28,7.02E-002,*,N/A,N/A,2.00E-002,N/A
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_24_0_0,Wall,,CTF - ConductionTransferFunction,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.875,0.774,,10.94,16.31,13.92,43.06,90.00,4.36,3.74,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.51,0.49,4
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_24_0_0_0_0_1_WIN,Window,PLANTAX08:OFFICE_WALL_24_0_0,Window5 Detailed Fenestration,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,N/A,2.685,No,4.65,2.40,2.40,43.06,90.00,0.92,2.62,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.50,0.50,4
+Frame/Divider Surface,1,Frame,PLANTAX08:OFFICE_WALL_24_0_0_0_0_1_WIN,Window5 Detailed Fenestration,,N/A,N/A,,0.58,0.29,*,N/A,N/A,4.00E-002,N/A
+Frame/Divider Surface,1,Divider:DividedLite,PLANTAX08:OFFICE_WALL_24_0_0_0_0_1_WIN,,,N/A,N/A,,0.14,7.02E-002,*,N/A,N/A,2.00E-002,N/A
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_25_0_0,Wall,,CTF - ConductionTransferFunction,FACHADA EXTERIOR ALJARAFE CENTER OFICINAS,0.875,0.774,,12.85,15.54,13.14,69.38,90.00,4.15,3.74,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.51,0.49,4
+HeatTransfer Surface,PLANTAX08:OFFICE_WALL_25_0_0_0_0_0_WIN,Window,PLANTAX08:OFFICE_WALL_25_0_0,Window5 Detailed Fenestration,VIDRIO ALJARAFE CENTER CLR 6MM/12MM AIR - 1001,N/A,2.685,No,2.33,2.40,2.40,69.38,90.00,0.92,2.62,0.00,ExternalEnvironment,DOE-2,ASHRAETARP,SunExposed,WindExposed,0.50,0.50,0.51,0.49,4
+Frame/Divider Surface,1,Frame,PLANTAX08:OFFICE_WALL_25_0_0_0_0_0_WIN,Window5 Detailed Fenestration,,N/A,N/A,,0.29,0.29,*,N/A,N/A,4.00E-002,N/A
+Frame/Divider Surface,1,Divider:DividedLite,PLANTAX08:OFFICE_WALL_25_0_0_0_0_0_WIN,,,N/A,N/A,,7.02E-002,7.02E-002,*,N/A,N/A,2.00E-002,N/A
+HeatTransfer Surface,PLANTAX08:OFFICE_FLOOR_0_0_0,Floor,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,2.208,1.437,,74.81,74.81,74.81,335.32,180.00,8.64,8.52,0.00,PLANTAX08:OFFICE_FLOOR_0_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_FLOOR_0_0_1,Floor,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,2.208,1.437,,0.43,0.43,0.43,335.32,180.00,3.36E-002,12.95,0.00,PLANTAX08:OFFICE_FLOOR_0_0_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_FLOOR_0_0_2,Floor,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,2.208,1.437,,16.06,16.06,16.06,330.02,180.00,2.59,6.20,0.00,PLANTAX08:OFFICE_FLOOR_0_0_2,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_FLOOR_0_0_3,Floor,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,2.208,1.437,,20.13,20.13,20.13,43.06,180.00,10.32,4.15,0.00,PLANTAX08:OFFICE_FLOOR_0_0_3,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_FLOOR_0_0_4,Floor,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,2.208,1.437,,111.14,111.14,111.14,335.32,180.00,10.54,10.54,0.00,PLANTAX08:OFFICE_FLOOR_0_0_4,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.00,1.00,0.00,5
+HeatTransfer Surface,PLANTAX08:OFFICE_FLOOR_0_0_5,Floor,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,2.208,1.437,,0.12,0.12,0.12,330.02,180.00,1.20,0.10,0.00,PLANTAX08:OFFICE_FLOOR_0_0_5,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_FLOOR_0_0_6,Floor,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,2.208,1.437,,2.99,2.99,2.99,330.02,180.00,4.60,0.65,0.00,PLANTAX08:OFFICE_FLOOR_0_0_6,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_FLOOR_0_0_8,Floor,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,2.208,1.437,,20.13,20.13,20.13,330.02,180.00,5.94,3.39,0.00,PLANTAX08:OFFICE_FLOOR_0_0_8,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_FLOOR_0_0_9,Floor,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,2.208,1.437,,28.50,28.50,28.50,330.02,180.00,8.53,2.46,0.00,PLANTAX08:OFFICE_FLOOR_0_0_9,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_FLOOR_0_0_10,Floor,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS,2.208,1.437,,58.18,58.18,58.18,330.02,180.00,6.97,7.62,0.00,PLANTAX08:OFFICE_FLOOR_0_0_10,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,0.00,1.00,0.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_CEILING_1_0_0,Roof,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,2.208,1.559,,20.12,20.12,20.12,155.32,0.00,1.63,13.16,0.00,PLANTAX08:OFFICE_CEILING_1_0_0,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_CEILING_1_0_1,Roof,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,2.208,1.559,,2.52,2.52,2.52,84.28,0.00,3.67,3.34,0.00,PLANTAX08:OFFICE_CEILING_1_0_1,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,3
+HeatTransfer Surface,PLANTAX08:OFFICE_CEILING_1_0_2,Roof,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,2.208,1.559,,5.53,5.53,5.53,150.02,0.00,2.39,3.72,0.00,PLANTAX08:OFFICE_CEILING_1_0_2,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_CEILING_1_0_3,Roof,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,2.208,1.559,,13.75,13.75,13.75,150.02,0.00,3.40,4.04,0.00,PLANTAX08:OFFICE_CEILING_1_0_3,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_CEILING_1_0_4,Roof,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,2.208,1.559,,4.97,4.97,4.97,150.02,0.00,1.20,4.14,0.00,PLANTAX08:OFFICE_CEILING_1_0_4,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_CEILING_1_0_5,Roof,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,2.208,1.559,,44.66,44.66,44.66,150.02,0.00,9.53,5.67,0.00,PLANTAX08:OFFICE_CEILING_1_0_5,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_CEILING_1_0_6,Roof,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,2.208,1.559,,15.85,15.85,15.85,150.02,0.00,2.56,6.20,0.00,PLANTAX08:OFFICE_CEILING_1_0_6,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_CEILING_1_0_7,Roof,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,2.208,1.559,,0.12,0.12,0.12,150.02,0.00,3.34E-002,3.70,0.00,PLANTAX08:OFFICE_CEILING_1_0_7,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_CEILING_1_0_8,Roof,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,2.208,1.559,,58.61,58.61,58.61,150.02,0.00,5.94,10.49,0.00,PLANTAX08:OFFICE_CEILING_1_0_8,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+HeatTransfer Surface,PLANTAX08:OFFICE_CEILING_1_0_9,Roof,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,2.208,1.559,,57.82,57.82,57.82,150.02,0.00,7.60,7.60,0.00,PLANTAX08:OFFICE_CEILING_1_0_9,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,5
+HeatTransfer Surface,PLANTAX08:OFFICE_CEILING_1_0_10,Roof,,CTF - ConductionTransferFunction,FORJADO INTERIOR ALJARAFE CENTER OFICINAS_REVERSED,2.208,1.559,,108.55,108.55,108.55,155.32,0.00,11.81,7.83,0.00,PLANTAX08:OFFICE_CEILING_1_0_10,Other/Same Surface Int Conv,ASHRAETARP,NoSun,NoWind,0.00,1.00,0.00,1.00,4
+! <Environment>,Environment Name,Environment Type, Start Date, End Date, Start DayOfWeek, Duration {#days}, Source:Start DayOfWeek,  Use Daylight Saving, Use Holidays, Apply Weekend Holiday Rule,  Use Rain Values, Use Snow Values, Sky Temperature Model
+! <Environment:Special Days>, Special Day Name, Special Day Type, Source, Start Date, Duration {#days}
+! <Environment:Daylight Saving>, Daylight Saving Indicator, Source, Start Date, End Date
+! <Environment:WarmupDays>, NumberofWarmupDays
+Environment,CICSE ALJARAFE CENTER (01-01:31-12),WeatherFileRunPeriod,01/01/2013,12/31/2013,Tuesday,365,Use RunPeriod Specified Day,No,No,Yes,Yes,Yes,Clark and Allen
+Environment:Daylight Saving,Yes,InputFile,03/31,10/27
+Environment:WarmupDays,  7
+! <Warmup Convergence Information>,Zone Name,Environment Type/Name,Average Warmup Temperature Difference {deltaC},Std Dev Warmup Temperature Difference {deltaC},Max Temperature Pass/Fail Convergence,Min Temperature Pass/Fail Convergence,Average Warmup Load Difference {W},Std Dev Warmup Load Difference {W},Heating Load Pass/Fail Convergence,Cooling Load Pass/Fail Convergence
+ Warmup Convergence Information,PLANTAX08:OFFICE,RunPeriod: CICSE ALJARAFE CENTER (01-01:31-12),3.5743651134E-002,2.2629506234E-002,Pass,Pass,0.1397068841,0.5942671728,Pass,Pass
+! <Program Control Information:Threads/Parallel Sims>, Threading Supported,Maximum Number of Threads, Env Set Threads (OMP_NUM_THREADS), EP Env Set Threads (EP_OMP_NUM_THREADS), IDF Set Threads, Number of Threads Used (Interior Radiant Exchange), Number Nominal Surfaces, Number Parallel Sims
+Program Control:Threads/Parallel Sims, No,1, N/A, N/A, N/A, N/A, N/A, N/A
+End of Data
