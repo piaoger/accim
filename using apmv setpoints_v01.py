@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from besos import eppy_funcs as ef
 from besos import eplus_funcs as ep
-import accim.sim.apmv_setpoints_wip_4_3_testing as apmv
-wip = '_wip_4_2'
+import accim.sim.apmv_setpoints_wip_4_4_testing as apmv
+wip = '_wip_4_4'
 import os
 
 # Visualization setup
@@ -14,11 +14,11 @@ sns.set_style("whitegrid")
 # Define file paths
 # idfname = 'TestModel_onlyGeometryForVRFsystem_2zones_CalcVent_V940.idf'
 # idfname = 'TestModel_ALJARAFE CENTER_mod.idf'# not working yet, see zonename from apmv.get_available_target_names(building=building_pmv)
-idfname = 'TestModel_ALJARAFE CENTER_mod_zonelist.idf'
+# idfname = 'TestModel_ALJARAFE CENTER_mod_zonelist.idf'
 
 
-# idfname = 'TestModel_TestResidentialUnit_v01_VRF_2_air-veloc-mod.idf' # only spacelist, no zonelist; not working yet
-# idfname = 'TestModel_TestResidentialUnit_v01_VRF_2_air-veloc-mod_zonelist-and-spacelist.idf'
+idfname = 'TestModel_TestResidentialUnit_v01_VRF_2_air-veloc-mod.idf' # only spacelist, no zonelist;
+# idfname = 'TestModel_TestResidentialUnit_v01_VRF_2_air-veloc-mod_zonelist-and-spacelist.idf' # not working yet
 epwfile = "Seville.epw"
 
 # print(f"IDF File: {idfname}")
