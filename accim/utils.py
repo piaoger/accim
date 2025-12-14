@@ -24,9 +24,21 @@ from besos.IDF_class import IDF
 import besos
 from os import PathLike
 from unidecode import unidecode
-from typing import List, Literal, Dict, Any, Union
+from typing import List, Literal, Dict, Any, Union, Tuple
 
 from accim import lists
+
+import subprocess
+import platform
+import re
+import numpy as np
+from typing import Dict, Optional
+
+import pandas as pd
+import warnings
+from besos import eppy_funcs as ef
+from besos.eplus_funcs import get_idf_version, run_building
+
 
 def modify_timesteps(idf_object: besos.IDF_class.IDF, timesteps: int) -> besos.IDF_class.IDF:
     """
@@ -185,12 +197,6 @@ def amend_idf_version_from_dsb(file_path: str):
     remove(file_path)
     # Move new file
     move(abs_path, file_path)
-
-
-import pandas as pd
-import warnings
-from besos import eppy_funcs as ef
-from besos.eplus_funcs import get_idf_version, run_building
 
 
 class print_available_outputs_mod:
@@ -944,10 +950,6 @@ def get_spaces_from_spacelist(idf: besos.IDF_class.IDF, spacelist_name: str) -> 
     return []
 
 
-import besos.IDF_class
-from typing import List
-
-
 def convert_standard_to_comfort_thermostats(
         idf: besos.IDF_class.IDF,
         pmv_heating_schedule_name: str,
@@ -1125,3 +1127,281 @@ def inspect_thermostat_objects(idf: besos.IDF_class.IDF) -> Dict[str, List[Dict[
         # inspection_results[obj_type] = obj_list
 
     return inspection_results
+
+
+def read_eso_using_readvarseso(
+        eso_file_path: str = 'eplusout.eso',
+        eplus_install_dir: Optional[str] = None,
+        only_run_period: bool = True,
+        cleanup: bool = True
+) -> Dict[str, Dict[str, pd.DataFrame]]:
+    """
+    Converts an EnergyPlus Standard Output (.eso) file into Pandas DataFrames using
+    the official 'ReadVarsESO' utility.
+
+    This function is robust against formatting changes in EnergyPlus versions because
+    it relies on the native CSV conversion tool. It organizes the data by reporting
+    frequency and generates metadata tables similar to DesignBuilder/ResultsViewer.
+
+    Returns a dictionary with two main keys:
+    1. 'data': A dictionary {Frequency: DataFrame} containing the time-series data.
+       - Columns are MultiIndex: [Area, Variable, Units].
+       - Index is Date/Time.
+    2. 'metadata': A dictionary {Frequency: DataFrame} containing a summary of variables.
+       - Columns: [Report Type, Area, Units].
+
+    :param eso_file_path: Path to the .eso file (e.g., 'outputs/eplusout.eso').
+    :param eplus_install_dir: Path to the EnergyPlus installation directory (e.g., 'C:/EnergyPlusV23-1-0').
+                              If None, attempts to find it in common default locations.
+    :param only_run_period: If True, filters out Design Days and Sizing Periods, returning
+                            only the actual simulation RunPeriod (e.g., 8760 hours).
+    :param cleanup: If True, deletes the temporary CSV, RVI, and audit files generated during the process.
+    :return: A dictionary containing 'data' and 'metadata' sub-dictionaries.
+    """
+
+    # --- 1. FIND READVARSESO EXECUTABLE ---
+    # Determine the executable name based on the OS
+    exe_name = 'ReadVarsESO'
+    if platform.system() == 'Windows':
+        exe_name += '.exe'
+
+    readvars_path = None
+
+    # A. Check if the user provided a specific directory
+    if eplus_install_dir:
+        # Case 1: User provided the full path to the executable
+        if os.path.isfile(eplus_install_dir) and eplus_install_dir.endswith(exe_name):
+            readvars_path = eplus_install_dir
+        # Case 2: User provided the installation directory
+        else:
+            # Check V23+ structure (executable inside 'PostProcess' folder)
+            path_v23 = os.path.join(eplus_install_dir, 'PostProcess', exe_name)
+            # Check Legacy structure (executable in root folder)
+            path_legacy = os.path.join(eplus_install_dir, exe_name)
+
+            if os.path.exists(path_v23):
+                readvars_path = path_v23
+            elif os.path.exists(path_legacy):
+                readvars_path = path_legacy
+
+    # B. Fallback: Try common default installation paths if not found yet
+    if not readvars_path:
+        common_paths = [
+            r'C:\EnergyPlusV23-1-0', r'C:\EnergyPlusV23-2-0', r'C:\EnergyPlusV22-2-0',  # Windows Modern
+            r'C:\EnergyPlusV9-6-0', r'C:\EnergyPlusV9-4-0',  # Windows Legacy
+            '/usr/local/bin', '/Applications/EnergyPlus-23-1-0'  # Linux/Mac
+        ]
+        for path in common_paths:
+            # Check both modern and legacy subpaths
+            potential_v23 = os.path.join(path, 'PostProcess', exe_name)
+            potential_old = os.path.join(path, exe_name)
+            if os.path.exists(potential_v23):
+                readvars_path = potential_v23
+                break
+            if os.path.exists(potential_old):
+                readvars_path = potential_old
+                break
+
+    if not readvars_path:
+        raise FileNotFoundError(
+            f"Could not find '{exe_name}'. Please specify 'eplus_install_dir' pointing to your EnergyPlus folder."
+        )
+
+    # --- 2. PREPARE FILES ---
+    # Get absolute paths to ensure subprocess works correctly regardless of current working dir
+    abs_eso_path = os.path.abspath(eso_file_path)
+    work_dir = os.path.dirname(abs_eso_path)
+    eso_filename = os.path.basename(abs_eso_path)
+
+    # Define output filenames
+    csv_filename = eso_filename.replace('.eso', '.csv')
+    if csv_filename == eso_filename: csv_filename += '.csv'  # Safety if input has no extension
+
+    csv_output_path = os.path.join(work_dir, csv_filename)
+    rvi_filename = 'temp_readvars.rvi'
+    rvi_path = os.path.join(work_dir, rvi_filename)
+
+    # Create the RVI file. This tells ReadVarsESO exactly what to read and write.
+    # It must be created in the same directory where the command will be executed.
+    with open(rvi_path, 'w') as f:
+        f.write(f"{eso_filename}\n")
+        f.write(f"{csv_filename}\n")
+
+    # --- 3. RUN READVARSESO ---
+    # We run the command inside the directory where the ESO file is located (cwd=work_dir).
+    cmd = [readvars_path, rvi_filename]
+
+    try:
+        subprocess.run(cmd, cwd=work_dir, check=True, capture_output=True)
+    except subprocess.CalledProcessError as e:
+        # Capture stderr to see why E+ failed
+        err_msg = e.stderr.decode() if e.stderr else "No error message provided."
+        raise RuntimeError(f"ReadVarsESO failed to run.\nCommand: {cmd}\nError: {err_msg}")
+
+    # --- 4. READ CSV ---
+    if not os.path.exists(csv_output_path):
+        raise FileNotFoundError(f"ReadVarsESO finished but '{csv_filename}' was not created in {work_dir}.")
+
+    try:
+        # Read the CSV. EnergyPlus CSVs always have a header row.
+        df_all = pd.read_csv(csv_output_path)
+    except Exception as e:
+        raise RuntimeError(f"Failed to read the generated CSV: {e}")
+
+    # --- 5. FILTER DESIGN DAYS ---
+    # EnergyPlus outputs Design Days before the RunPeriod. We want to remove them if requested.
+    if only_run_period and 'Date/Time' in df_all.columns:
+
+        # Helper to parse " MM/DD  HH:MM:SS" into a sortable integer (Month*100 + Day)
+        def parse_date_value(date_str):
+            try:
+                # Regex matches: Start, optional space, 1-2 digits (Month), slash, 1-2 digits (Day)
+                match = re.match(r'\s*(\d{1,2})/(\d{1,2})', str(date_str))
+                if match:
+                    m, d = int(match.group(1)), int(match.group(2))
+                    return m * 100 + d
+                return 0
+            except:
+                return 0
+
+        # Vectorized parsing of the Date/Time column
+        time_values = df_all['Date/Time'].apply(parse_date_value).values
+
+        # Calculate differences between consecutive rows.
+        # A large negative difference (e.g., Dec -> Jan) indicates a time reset (start of new environment).
+        diffs = np.diff(time_values)
+        reset_indices = np.where(diffs < 0)[0]
+
+        if len(reset_indices) > 0:
+            # The RunPeriod starts after the LAST reset found.
+            start_idx = reset_indices[-1] + 1
+            df_all = df_all.iloc[start_idx:].reset_index(drop=True)
+        elif len(df_all) > 8784:
+            # Fallback: If no reset detected but rows > 8784 (Leap year max),
+            # assume the RunPeriod is at the end.
+            df_all = df_all.tail(8760).reset_index(drop=True)
+
+    # --- 6. SPLIT BY FREQUENCY & CREATE METADATA ---
+    data_dict = {}
+    metadata_dict = {}
+    date_col = 'Date/Time'
+
+    # Determine base hours to detect Timestep frequency by row count
+    hourly_cols = [c for c in df_all.columns if '(Hourly)' in c]
+    if hourly_cols:
+        base_hours = df_all[hourly_cols[0]].dropna().count()
+        if base_hours == 0: base_hours = 8760  # Safety default
+    else:
+        base_hours = 8760
+
+    # Regex to detect frequency suffix added by ReadVarsESO: e.g., "VarName [Units](Hourly)"
+    freq_pattern = re.compile(r'\((Hourly|Daily|Monthly|RunPeriod|Annual|TimeStep)\)$', re.IGNORECASE)
+
+    # Group columns by frequency
+    cols_by_freq = {}
+
+    for col in df_all.columns:
+        if col == date_col: continue
+
+        match = freq_pattern.search(col)
+        if match:
+            raw_freq = match.group(1)
+            freq_key = raw_freq.capitalize()
+            if freq_key == "Timestep": freq_key = "Timestep"  # Ensure casing
+
+            if freq_key not in cols_by_freq: cols_by_freq[freq_key] = []
+            cols_by_freq[freq_key].append(col)
+        else:
+            # Columns without suffix. Check row count to guess frequency.
+            val_count = df_all[col].dropna().count()
+            # If count is a multiple of base_hours (e.g. 6 * 8760), it's likely Timestep
+            if val_count > base_hours and base_hours > 0 and val_count % base_hours == 0:
+                if 'Timestep' not in cols_by_freq: cols_by_freq['Timestep'] = []
+                cols_by_freq['Timestep'].append(col)
+            else:
+                if 'Other' not in cols_by_freq: cols_by_freq['Other'] = []
+                cols_by_freq['Other'].append(col)
+
+    # Helper to parse column names into components
+    def parse_column_metadata(raw_col_name: str) -> Tuple[str, str, str]:
+        """
+        Parses 'Object:Variable [Units](Freq)' into (Area, Variable, Units).
+        """
+        # 1. Remove Frequency suffix
+        clean_col = re.sub(r'\([a-zA-Z]+\)$', '', raw_col_name).strip()
+
+        # 2. Extract Units [in brackets]
+        units = "-"
+        unit_match = re.search(r'\[(.*?)\]', clean_col)
+        if unit_match:
+            units = unit_match.group(1)
+            # Remove units from string
+            clean_col = re.sub(r'\s*\[.*?\]', '', clean_col).strip()
+
+        # 3. Extract Area (Object) and Variable
+        if ':' in clean_col:
+            parts = clean_col.split(':', 1)
+            area = parts[0].strip()
+            variable = parts[1].strip()
+        else:
+            # Global variables (e.g. Environment) often don't have a colon
+            area = "Environment"
+            variable = clean_col.strip()
+
+        return area, variable, units
+
+    # Process each frequency group
+    for freq, cols in cols_by_freq.items():
+        # --- A. CREATE DATA DATAFRAME ---
+        cols_to_keep = [date_col] + cols if date_col in df_all.columns else cols
+        df_subset = df_all[cols_to_keep].copy()
+
+        # Remove rows that contain only NaNs for the data columns (cleaning up mixed frequencies)
+        df_subset.dropna(subset=cols, how='all', inplace=True)
+
+        # Set Date/Time as Index
+        if date_col in df_subset.columns:
+            df_subset.set_index(date_col, inplace=True)
+
+        # Create MultiIndex for Columns (Area, Variable, Units)
+        new_columns = []
+        for col in cols:
+            area, variable, units = parse_column_metadata(col)
+            new_columns.append((area, variable, units))
+
+        df_subset.columns = pd.MultiIndex.from_tuples(
+            new_columns,
+            names=['Area', 'Variable', 'Units']
+        )
+
+        data_dict[freq] = df_subset
+
+        # --- B. CREATE METADATA DATAFRAME ---
+        # Convert MultiIndex to a flat DataFrame for summary
+        meta_df = df_subset.columns.to_frame(index=False)
+
+        # Rename columns to match DesignBuilder/ResultsViewer style
+        meta_df.rename(columns={'Variable': 'Report Type'}, inplace=True)
+
+        # Reorder columns
+        meta_df = meta_df[['Report Type', 'Area', 'Units']]
+
+        # Sort for better readability
+        meta_df.sort_values(by=['Report Type', 'Area'], inplace=True)
+        meta_df.reset_index(drop=True, inplace=True)
+
+        metadata_dict[freq] = meta_df
+
+    # --- 7. CLEANUP ---
+    if cleanup:
+        try:
+            if os.path.exists(csv_output_path): os.remove(csv_output_path)
+            if os.path.exists(rvi_path): os.remove(rvi_path)
+
+            # ReadVarsESO also creates an audit file
+            audit_file = os.path.join(work_dir, 'readvars.audit')
+            if os.path.exists(audit_file): os.remove(audit_file)
+        except OSError as e:
+            warnings.warn(f"Could not clean up temporary files: {e}")
+
+    return {'data': data_dict, 'metadata': metadata_dict}
