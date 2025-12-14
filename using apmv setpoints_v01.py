@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from besos import eppy_funcs as ef
 from besos import eplus_funcs as ep
-import accim.sim.apmv_setpoints_wip_4_4_testing as apmv
+import accim.sim.apmv_setpoints_wip_4_4_works_doc as apmv
 wip = '_wip_4_4'
 import os
 
@@ -14,11 +14,14 @@ sns.set_style("whitegrid")
 # Define file paths
 # idfname = 'TestModel_onlyGeometryForVRFsystem_2zones_CalcVent_V940.idf'
 # idfname = 'TestModel_ALJARAFE CENTER_mod.idf'# not working yet, see zonename from apmv.get_available_target_names(building=building_pmv)
-# idfname = 'TestModel_ALJARAFE CENTER_mod_zonelist.idf'
+idfname = 'TestModel_ALJARAFE CENTER_mod_zonelist.idf'
 
 
-idfname = 'TestModel_TestResidentialUnit_v01_VRF_2_air-veloc-mod.idf' # only spacelist, no zonelist;
+# idfname = 'TestModel_TestResidentialUnit_v01_VRF_2_air-veloc-mod.idf' # only spacelist, no zonelist;
 # idfname = 'TestModel_TestResidentialUnit_v01_VRF_2_air-veloc-mod_zonelist-and-spacelist.idf' # not working yet
+
+# idfname = 'Test_VRF_mult-spaces-in-zone_v01.idf'
+
 epwfile = "Seville.epw"
 
 # print(f"IDF File: {idfname}")
@@ -30,8 +33,7 @@ building = ef.get_building(idfname)
 zones = apmv._resolve_targets(building=building)
 print(zones)
 
-# Ensure zones are always occupied for the demonstration
-# apmv.set_zones_always_occupied(building=building)
+
 
 # zones = [i.Zone_or_ZoneList_Name for i in building.idfobjects['people']]
 # zones = [i.Zone_or_ZoneList_or_Space_or_SpaceList_Name for i in building.idfobjects['people']]
@@ -57,19 +59,23 @@ print(zones)
 building_pmv = ef.get_building(idfname)
 # apmv.add_vrf_system(building=building_pmv, SupplyAirTempInputMethod='temperature difference')
 #Continuar aqui: re-simular con ocupación constante siempre ocupado
-# apmv.set_zones_always_occupied(building=building_pmv)
+apmv.set_zones_always_occupied(building=building_pmv)
 
 # saveas_name = idfname.split('.idf')[0] + '_debugging.idf'
 # building_pmv.saveas(saveas_name)
 
-# zones = apmv.get_available_target_names(building=building_pmv)
-# zone_dict = apmv.get_input_template_dictionary(building=building_pmv)
-# zones
-
+zones = apmv.get_available_target_names(building=building_pmv)
+zone_dict = apmv.get_input_template_dictionary(building=building_pmv)
+zones
+zone_dict
 
 
 ##
 csp_dict = {'Floor_1 Residential Living Occupants': 0.6, 'Floor_2 Residential Living Occupants': 0.3}
+# csp_dict = {
+#     'Space 1 - 1 189.1-2009 - Office - OpenOffice - CZ4-8 People': 0.75,
+#     'Space 2 - 1 189.1-2009 - Office - OpenOffice - CZ4-8 People': 0.3
+# }
 # Apply setpoints with coefficients set to 0
 building_with_pmv = apmv.apply_apmv_setpoints(
     building=building_pmv,

@@ -1,57 +1,133 @@
-Program Version,EnergyPlus, Version 9.4.0-998c4b761e, YMD=2025.12.13 10:17,
+Program Version,EnergyPlus, Version 25.1.0-68a4a7c774, YMD=2025.12.14 08:31,
+   ** Warning ** ProcessScheduleInput: Schedule:Compact = PMV_H_SP_THERMAL ZONE 2
+   **   ~~~   ** Schedule Type Limits Name = ANY NUMBER, item not found.
+   **   ~~~   ** Schedule will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Compact = PMV_H_SP_THERMAL ZONE 1
+   **   ~~~   ** Schedule Type Limits Name = ANY NUMBER, item not found.
+   **   ~~~   ** Schedule will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Compact = PMV_C_SP_THERMAL ZONE 2
+   **   ~~~   ** Schedule Type Limits Name = ANY NUMBER, item not found.
+   **   ~~~   ** Schedule will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Compact = PMV_C_SP_THERMAL ZONE 1
+   **   ~~~   ** Schedule Type Limits Name = ANY NUMBER, item not found.
+   **   ~~~   ** Schedule will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Compact = THERMAL COMFORT CONTROL TYPE SCHEDULE NAME THERMAL ZONE 2
+   **   ~~~   ** Schedule Type Limits Name = ANY NUMBER, item not found.
+   **   ~~~   ** Schedule will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Compact = THERMAL COMFORT CONTROL TYPE SCHEDULE NAME THERMAL ZONE 1
+   **   ~~~   ** Schedule Type Limits Name = ANY NUMBER, item not found.
+   **   ~~~   ** Schedule will not be validated.
    ************* Beginning Zone Sizing Calculations
-   ** Warning ** Weather file location will be used rather than entered (IDF) Location object.
-   **   ~~~   ** ..Location object=CICSE ALJARAFE CENTER (01-01:31-12)  (01-01:31-12)
-   **   ~~~   ** ..Weather File Location=SEVILLA - ESP IWEC Data WMO#=083910
-   **   ~~~   ** ..due to location differences, Latitude difference=[0.00] degrees, Longitude difference=[0.00] degrees.
-   **   ~~~   ** ..Time Zone difference=[0.0] hour(s), Elevation difference=[244.44] percent, [22.00] meters.
-   ** Warning ** GetSurfaceData: Entered Zone Floor Areas differ from calculated Zone Floor Area(s).
-   **   ~~~   ** ...use Output:Diagnostics,DisplayExtraWarnings; to show more details on individual zones.
-   ** Warning ** GetSurfaceData: There are 6 window/glass door(s) that may cause inaccurate shadowing due to Solar Distribution.
-   **   ~~~   ** For explicit details on each window, use Output:Diagnostics,DisplayExtraWarnings;
-   ************* Note that the following warning(s) may/will occur if you have not enclosed your zone completely.
-   ** Warning ** Entered Zone Volumes differ from calculated zone volume(s).
-   **   ~~~   ** ...use Output:Diagnostics,DisplayExtraWarnings; to show more details on individual zones.
+   ** Warning ** GetHTSurfaceData: Surfaces with interface to Ground found but no "Ground Temperatures" were input.
+   **   ~~~   ** Found first in surface=FACE 0
+   **   ~~~   ** Defaults, constant throughout the year of (18.0) will be used.
    ** Warning ** CalculateZoneVolume: 1 zone is not fully enclosed. For more details use:  Output:Diagnostics,DisplayExtrawarnings; 
-   ** Warning ** CheckUsedConstructions: There are 6 nominally unused constructions in input.
+   ** Warning ** CheckUsedConstructions: There are 5 nominally unused constructions in input.
    **   ~~~   ** For explicit details on each unused construction, use Output:Diagnostics,DisplayExtraWarnings;
-   ** Warning ** GetVRFInput: AirConditioner:VariableRefrigerantFlow="VRF OUTDOOR UNIT" curve values
-   **   ~~~   ** ... Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name = VRFCOOLCAPFT output is not equal to 1.0 (+ or - 10%) at rated conditions.
-   **   ~~~   ** ... Curve output at rated conditions = 1.136
-   ** Warning ** AirConditioner:VariableRefrigerantFlow = "VRF OUTDOOR UNIT", Minimum Outdoor Temperature in Heat Recovery Mode is less than the minimum temperature in heat pump mode.
-   **   ~~~   ** ...Minimum Outdoor Temperature in Heat Recovery Mode = -9.99 C
-   **   ~~~   ** ...Minimum Outdoor Temperature in Cooling Mode = -5.99 C
-   **   ~~~   ** ...Minimum Outdoor Temperature in Heating Mode = -19.99 C
-   **   ~~~   ** ...Minimum Outdoor Temperature in Heat Recovery Mode reset to greater of cooling or heating minimum temperature and simulation continues.
-   **   ~~~   ** ... adjusted Minimum Outdoor Temperature in Heat Recovery Mode = -5.99 C
-   ** Warning ** GetDXCoils: Coil:Cooling:DX:VariableRefrigerantFlow="PLANTAX08:OFFICE VRF INDOOR UNIT DX COOLING COIL" curve values
-   **   ~~~   ** ... Cooling Capacity Ratio Modifier Function of Temperature Curve Name = VRFTUCOOLCAPFT output is not equal to 1.0 (+ or - 10%) at rated conditions.
-   **   ~~~   ** ... Curve output at rated conditions = 1.136
-   ** Warning ** ZoneTerminalUnitList "VRF OUTDOOR UNIT ZONE LIST"
-   ** Warning ** ...Only 1 Terminal Unit connected to system and heat recovery is selected.
-   **   ~~~   ** ...Heat recovery will be disabled.
-   ** Warning ** ManageSizing: For a plant sizing run, there must be at least 1 Sizing:Plant object input. SimulationControl Plant Sizing option ignored.
-   ** Warning ** Output:Meter: invalid Key Name="NATURALGAS:FACILITY" - not found.
-   ** Warning ** Output:Meter: invalid Key Name="INTERIOREQUIPMENT:ELECTRICITY" - not found.
-   ************* Testing Individual Branch Integrity
-   ************* All Branches passed integrity testing
-   ************* Testing Individual Supply Air Path Integrity
-   ************* All Supply Air Paths passed integrity testing
-   ************* Testing Individual Return Air Path Integrity
-   ************* All Return Air Paths passed integrity testing
-   ************* No node connection errors were found.
-   ** Severe  ** Invalid Output:Variable or Output:Meter Index Key Name =PLANTAX08:OFFICE PEOPLE PLANTAX08:OFFICE
-   **   ~~~   ** For Output:Variable or Output:Meter = ZONE THERMAL COMFORT FANGER MODEL PMV
-   **   ~~~   ** Entered in EnergyManagementSystem:Sensor=PMV_PLANTAX08_OFFICE_PEOPLE_PLANTAX08_OFFICE
-   **   ~~~   ** Unique Key Name not found.
-   ** Severe  ** Invalid Output:Variable or Output:Meter Index Key Name =PLANTAX08:OFFICE PEOPLE PLANTAX08:OFFICE
-   **   ~~~   ** For Output:Variable or Output:Meter = PEOPLE OCCUPANT COUNT
-   **   ~~~   ** Entered in EnergyManagementSystem:Sensor=PEOPLE_OCCUPANT_COUNT_PLANTAX08_OFFICE_PEOPLE_PLANTAX08_OFFICE
-   **   ~~~   ** Unique Key Name not found.
-   **  Fatal  ** Errors found in processing Energy Management System input. Preceding condition causes termination.
+   ** Severe  ** EnergyManagementSystem:Sensor="PMV_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:Sensor="PEOPLE_OCCUPANT_COUNT_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:Sensor="PMV_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:Sensor="PEOPLE_OCCUPANT_COUNT_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:Actuator="PMV_H_SP_ACT_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:Actuator="PMV_C_SP_ACT_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:Actuator="PMV_H_SP_ACT_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:Actuator="PMV_C_SP_ACT_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_COOLING_SP_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_COOLING_SP_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_COOLING_SP_COOLING_SEASON_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_COOLING_SP_COOLING_SEASON_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_COOLING_SP_HEATING_SEASON_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_COOLING_SP_HEATING_SEASON_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_HEATING_SP_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_HEATING_SP_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_HEATING_SP_COOLING_SEASON_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_HEATING_SP_COOLING_SEASON_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_HEATING_SP_HEATING_SEASON_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="TOLERANCE_HEATING_SP_HEATING_SEASON_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="ADAP_COEFF_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="ADAP_COEFF_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="ADAP_COEFF_HEATING_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="ADAP_COEFF_HEATING_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="ADAP_COEFF_COOLING_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="ADAP_COEFF_COOLING_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="PMV_HEATING_SP_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="PMV_HEATING_SP_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="PMV_COOLING_SP_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="PMV_COOLING_SP_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="COMFHOUR_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="COMFHOUR_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="DISCOMFHOUR_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="DISCOMFHOUR_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="DISCOMFHOUR_HEAT_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="DISCOMFHOUR_HEAT_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="DISCOMFHOUR_COLD_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="DISCOMFHOUR_COLD_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="OCCUPIED_HOUR_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="OCCUPIED_HOUR_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_H_SP_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_H_SP_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_C_SP_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_C_SP_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_H_SP_NOTOL_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_H_SP_NOTOL_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_C_SP_NOTOL_SPACE_1___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   ** Severe  ** EnergyManagementSystem:GlobalVariable="APMV_C_SP_NOTOL_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
+   **   ~~~   ** ...Erl Variable Name; Names used as EMS variables cannot contain "." characters.
+   **  Fatal  ** Errors found in getting EMS Runtime Language input. Preceding condition causes termination.
    ...Summary of Errors that led to program termination:
-   ..... Reference severe error count=2
-   ..... Last severe error=Invalid Output:Variable or Output:Meter Index Key Name =PLANTAX08:OFFICE PEOPLE PLANTAX08:OFFICE
+   ..... Reference severe error count=50
+   ..... Last severe error=EnergyManagementSystem:GlobalVariable="APMV_C_SP_NOTOL_SPACE_2___1_189.1_2009___OFFICE___OPENOFFICE___CZ4_8_PEOPLE", Invalid variable name entered.
    ************* Warning:  Node connection errors not checked - most system input has not been read (see previous warning).
    ************* Fatal error -- final processing.  Program exited before simulations began.  See previous error messages.
    *************
@@ -63,5 +139,5 @@ Program Version,EnergyPlus, Version 9.4.0-998c4b761e, YMD=2025.12.13 10:17,
    ************* ..object. You may remove the constructions indicated (when you use the DisplayExtraWarnings option).
    *************
    ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
-   ************* EnergyPlus Sizing Error Summary. During Sizing: 11 Warning; 0 Severe Errors.
-   ************* EnergyPlus Terminated--Fatal Error Detected. 19 Warning; 2 Severe Errors; Elapsed Time=00hr 00min  2.93sec
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 3 Warning; 50 Severe Errors.
+   ************* EnergyPlus Terminated--Fatal Error Detected. 9 Warning; 50 Severe Errors; Elapsed Time=00hr 00min  0.13sec
