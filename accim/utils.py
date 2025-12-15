@@ -1406,3 +1406,5 @@ def read_eso_using_readvarseso(
 
     return {'data': data_dict, 'metadata': metadata_dict}
 
+
+
