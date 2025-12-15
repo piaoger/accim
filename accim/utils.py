@@ -1405,3 +1405,4 @@ def read_eso_using_readvarseso(
             warnings.warn(f"Could not clean up temporary files: {e}")
 
     return {'data': data_dict, 'metadata': metadata_dict}
+

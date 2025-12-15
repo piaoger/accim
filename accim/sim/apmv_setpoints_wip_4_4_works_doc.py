@@ -16,7 +16,7 @@ import os
 import re
 from typing import Dict, Any, List, Union, Optional
 import pandas as pd
-import besos.IDF_class
+from besos.IDF_class import IDF
 import besos.objectives
 import eppy
 from accim.utils import transform_ddmm_to_int
@@ -94,7 +94,7 @@ def _sanitize_ems_name(name: str) -> str:
     return re.sub(r'[^a-zA-Z0-9_]', '_', name)
 
 
-def _resolve_targets(building: besos.IDF_class) -> List[Dict[str, str]]:
+def _resolve_targets(building: IDF) -> List[Dict[str, str]]:
     """
     Analyzes the IDF to find all 'People' objects and resolves their target Zones or Spaces
     for EMS application. It follows a strict Global Hierarchy to determine the target level.
@@ -311,7 +311,7 @@ def _resolve_targets(building: besos.IDF_class) -> List[Dict[str, str]]:
 # ==============================================================================
 
 def apply_apmv_setpoints(
-        building: besos.IDF_class,
+        building: IDF,
         outputs_freq: List[str] = ['hourly'],
         other_PMV_related_outputs: bool = True,
         adap_coeff_cooling: Union[float, dict] = 0.293,
@@ -333,7 +333,7 @@ def apply_apmv_setpoints(
         dflt_for_tolerance_heating_sp_cooling_season: float = 0.1,
         dflt_for_tolerance_heating_sp_heating_season: float = 0.1,
         verbose_mode: bool = True,
-) -> besos.IDF_class:
+) -> IDF:
     """
     Applies setpoints based on the Adaptive Predicted Mean Vote (aPMV) index.
 
@@ -457,7 +457,7 @@ def apply_apmv_setpoints(
 # INFRASTRUCTURE HELPERS
 # ==============================================================================
 
-def _ensure_infrastructure(building: besos.IDF_class, unique_zones: List[str], verbose_mode: bool):
+def _ensure_infrastructure(building: IDF, unique_zones: List[str], verbose_mode: bool):
     """
     Ensures that the necessary standard EnergyPlus objects exist for the target zones.
     Specifically, it creates or verifies:
@@ -542,7 +542,7 @@ def _ensure_infrastructure(building: besos.IDF_class, unique_zones: List[str], v
             _update_fanger_object(building, f'Fanger Setpoint {zone}', zone, verbose_mode)
 
 
-def _create_tc_thermostat(building: besos.IDF_class, zone: str, verbose_mode: bool):
+def _create_tc_thermostat(building: IDF, zone: str, verbose_mode: bool):
     """
     Creates a new ZoneControl:Thermostat:ThermalComfort object and its dependencies.
 
@@ -580,7 +580,7 @@ def _create_tc_thermostat(building: besos.IDF_class, zone: str, verbose_mode: bo
     _update_fanger_object(building, f'Fanger Setpoint {zone}', zone, verbose_mode)
 
 
-def _update_fanger_object(building: besos.IDF_class, obj_name: str, zone: str, verbose_mode: bool):
+def _update_fanger_object(building: IDF, obj_name: str, zone: str, verbose_mode: bool):
     """
     Creates or updates the 'ThermostatSetpoint:ThermalComfort:Fanger:DualSetpoint' object.
     This object links the thermostat logic to the specific Heating/Cooling schedules.
@@ -615,7 +615,7 @@ def _update_fanger_object(building: besos.IDF_class, obj_name: str, zone: str, v
 # EMS GENERATORS
 # ==============================================================================
 
-def _add_apmv_sensors(building: besos.IDF_class, sensor_keys: List[str], suffixes: List[str], verbose_mode: bool):
+def _add_apmv_sensors(building: IDF, sensor_keys: List[str], suffixes: List[str], verbose_mode: bool):
     """
     Adds EnergyManagementSystem:Sensor objects to the IDF.
     Sensors allow the EMS to read data from EnergyPlus Output:Variables during the simulation.
@@ -662,7 +662,7 @@ def _add_apmv_sensors(building: besos.IDF_class, sensor_keys: List[str], suffixe
             warnings.warn(f"Sensor '{occ_sensor_name}' already exists. Skipping.")
 
 
-def _add_apmv_actuators(building: besos.IDF_class, target_data: List[Dict], verbose_mode: bool):
+def _add_apmv_actuators(building: IDF, target_data: List[Dict], verbose_mode: bool):
     """
     Adds EnergyManagementSystem:Actuator objects.
 
@@ -704,7 +704,7 @@ def _add_apmv_actuators(building: besos.IDF_class, target_data: List[Dict], verb
                 warnings.warn(f"Actuator '{act_name}' already exists. Skipping creation.")
 
 
-def _add_apmv_global_variables(building: besos.IDF_class, suffixes: List[str], verbose_mode: bool):
+def _add_apmv_global_variables(building: IDF, suffixes: List[str], verbose_mode: bool):
     """
     Adds EnergyManagementSystem:GlobalVariable objects.
     These variables store intermediate calculation results (like the calculated aPMV)
@@ -747,7 +747,7 @@ def _add_apmv_global_variables(building: besos.IDF_class, suffixes: List[str], v
                 warnings.warn(f"Global Variable '{gv}' already exists. Skipping.")
 
 
-def _add_apmv_programs(building: besos.IDF_class, suffixes: List[str], df_arguments: pd.DataFrame, cool_start: int, cool_end: int, verbose_mode: bool):
+def _add_apmv_programs(building: IDF, suffixes: List[str], df_arguments: pd.DataFrame, cool_start: int, cool_end: int, verbose_mode: bool):
     """
     Adds EnergyManagementSystem:Program objects.
     This contains the actual Erl (EnergyPlus Runtime Language) code that executes the control logic.
@@ -898,7 +898,7 @@ def _add_apmv_programs(building: besos.IDF_class, suffixes: List[str], df_argume
             warnings.warn(f"Program '{prog_name}' already exists. Skipping.")
 
 
-def _add_apmv_program_calling_managers(building: besos.IDF_class, verbose_mode: bool):
+def _add_apmv_program_calling_managers(building: IDF, verbose_mode: bool):
     """
     Adds EnergyManagementSystem:ProgramCallingManager objects.
     These objects tell EnergyPlus WHEN to execute the programs defined above.
@@ -918,7 +918,7 @@ def _add_apmv_program_calling_managers(building: besos.IDF_class, verbose_mode: 
             warnings.warn(f"ProgramCallingManager for '{prog}' already exists. Skipping.")
 
 
-def _add_apmv_outputs(building: besos.IDF_class, outputs_freq: List[str], other_PMV_related_outputs: bool, suffixes: List[str], unique_zones: List[str], verbose_mode: bool):
+def _add_apmv_outputs(building: IDF, outputs_freq: List[str], other_PMV_related_outputs: bool, suffixes: List[str], unique_zones: List[str], verbose_mode: bool):
     """
     Adds Output:Variable objects to report EMS calculations and standard results.
 
@@ -1078,7 +1078,7 @@ def generate_df_from_args(
     return df_arguments
 
 
-def get_available_target_names(building: besos.IDF_class) -> List[str]:
+def get_available_target_names(building: IDF) -> List[str]:
     """
     Identifies and returns a list of valid target names (keys) for the current model.
     These keys are what the user should use in the input dictionaries (e.g., adap_coeff_cooling).
@@ -1090,7 +1090,7 @@ def get_available_target_names(building: besos.IDF_class) -> List[str]:
     return [t['df_key'] for t in targets]
 
 
-def get_input_template_dictionary(building: besos.IDF_class) -> Dict[str, str]:
+def get_input_template_dictionary(building: IDF) -> Dict[str, str]:
     """
     Generates a template dictionary with all valid target keys and placeholder values.
     Useful for the user to know exactly which keys to populate.
@@ -1102,7 +1102,7 @@ def get_input_template_dictionary(building: besos.IDF_class) -> Dict[str, str]:
     return {key: "replace-me-with-float-value" for key in keys}
 
 
-def set_zones_always_occupied(building: besos.IDF_class, verbose_mode: bool = True):
+def set_zones_always_occupied(building: IDF, verbose_mode: bool = True):
     """
     Sets the occupancy schedule of all 'People' objects to 'On' (always occupied).
     If the 'On' schedule does not exist, it creates it.
@@ -1136,7 +1136,7 @@ def set_zones_always_occupied(building: besos.IDF_class, verbose_mode: bool = Tr
 
 
 def add_vrf_system(
-        building: besos.IDF_class,
+        building: IDF,
         SupplyAirTempInputMethod: str = 'supply air temperature',
         eer: float = 2,
         cop: float = 2.1,
@@ -1181,7 +1181,7 @@ def add_vrf_system(
     z.addForscriptSchVRFsystem(verboseMode=verbose_mode)
 
 
-def change_adaptive_coeff(building: besos.IDF_class, df_arguments: pd.DataFrame):
+def change_adaptive_coeff(building: IDF, df_arguments: pd.DataFrame):
     """
     Updates the adaptive coefficients in the existing EMS programs based on a new DataFrame.
     This allows modifying parameters (e.g., for optimization) without regenerating the
@@ -1201,3 +1201,36 @@ def change_adaptive_coeff(building: besos.IDF_class, df_arguments: pd.DataFrame)
             # Update the lines corresponding to adaptive coefficients
             program[0].Program_Line_1 = f'set adap_coeff_cooling_{zonename} = {df_arguments.loc[i, "adap_coeff_cooling"]}'
             program[0].Program_Line_2 = f'set adap_coeff_heating_{zonename} = {df_arguments.loc[i, "adap_coeff_heating"]}'
+
+
+def add_ems_debug_output(building: IDF, verbose_mode: bool = True):
+    """
+    Adds an Output:EnergyManagementSystem object to the IDF.
+
+    This object enables verbose reporting in the EnergyPlus output files (specifically
+    the .edd file). It is essential for debugging EMS scripts, as it lists all
+    available actuators, internal variables, and runtime errors.
+
+    Configuration applied:
+    - Actuator Availability: Verbose
+    - Internal Variable Availability: Verbose
+    - EMS Runtime Language Debug Output Level: Verbose
+
+    :param building: The BESOS/eppy IDF object.
+    :param verbose_mode: If True, prints success messages. Warnings are always printed.
+    """
+    # Check if the object already exists to avoid duplicates
+    output_ems_objs = [i for i in building.idfobjects['Output:EnergyManagementSystem']]
+
+    if len(output_ems_objs) == 0:
+        building.newidfobject(
+            key='Output:EnergyManagementSystem',
+            Actuator_Availability_Dictionary_Reporting='Verbose',
+            Internal_Variable_Availability_Dictionary_Reporting='Verbose',
+            EMS_Runtime_Language_Debug_Output_Level='Verbose'
+        )
+        if verbose_mode:
+            print("Added Output:EnergyManagementSystem object (Verbose Debugging)")
+    else:
+        # Warn if it already exists, as it might have different settings
+        warnings.warn("Output:EnergyManagementSystem object already exists. Skipping creation.")
