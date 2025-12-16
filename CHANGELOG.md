@@ -23,6 +23,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Automatically separates data by reporting frequency (Hourly, Monthly, Timestep).
   - Generates metadata tables (Report Type, Area, Units) replicating DesignBuilder/ResultsViewer structure.
   - Intelligently filters out Design Days and Sizing Periods to return only the RunPeriod data.
+- **Variable Key Pattern Identification**: Added `identify_variable_key_pattern` to `accim.utils`.
+  - Automatically detects the naming convention (Key Index) used by EnergyPlus for specific report variables (e.g., returns placeholders like `[Zone Name]`, `[Space Name] [People Name]`, or `[Schedule Name]`).
+  - Executes a rapid micro-simulation (1 day, minimal shadowing) to generate actual output keys.
+  - Implements a robust two-level search strategy:
+    1. **Direct Object Match**: Scans raw IDF fields to match keys against any object name (VRF, Schedules, Coils), ignoring specific IDD field names.
+    2. **Hierarchy Match**: Analyzes Zone/Space/People relationships, supporting both modern (E+ 9.6+) and legacy hierarchies.
+  - Handles variables with multiple keys and prioritizes specific object matches over global environment variables.
 - **PMV Parameter Management**: Added `set_pmv_input_parameters` to `apmv_setpoints`.
   - Allows bulk modification of `People` objects (Activity Level, Clothing Insulation, Air Velocity, Work Efficiency).
   - Automatically creates and assigns the necessary `Schedule:Compact` objects.
